@@ -8,22 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.Login_Seguridad.SeleccionRol
+namespace PagoAgilFrba.Login.SeleccionRol
 {
     public partial class SeleccionRol : Form
     {
 
-        public List<Int32> listita = new List<Int32>();
+        public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().obtenerRolesUsuario();
         
 
         public SeleccionRol()
         {
             InitializeComponent();
-            listita.Add(54);
-            listita.Add(88);
-            this.selectorDeRol.DataSource = listita;
-           // this.selectorDeRol.DisplayMember = "Name";
-           // this.selectorDeRol.ValueMember = "Value";
+            this.selectorDeRol.DataSource = listaDeRoles;
+            this.selectorDeRol.DisplayMember = "Nombre";
+            //this.selectorDeRol.ValueMember = "id";
             this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -33,6 +31,13 @@ namespace PagoAgilFrba.Login_Seguridad.SeleccionRol
 
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Seleccion_funcionalidades().ShowDialog();
+            this.Close();
         }
     }
 }

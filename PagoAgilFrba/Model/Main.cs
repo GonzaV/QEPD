@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba
 {
-    static class Program
+    static class main
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -16,7 +16,7 @@ namespace PagoAgilFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Seguridad.Login());
+            Application.Run(new Login.Login());
         }
     }
 }

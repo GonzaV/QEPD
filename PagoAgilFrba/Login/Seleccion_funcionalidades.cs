@@ -8,30 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-namespace PagoAgilFrba.Login_Seguridad
+namespace PagoAgilFrba.Login
 {
-    public partial class Login : Form
+    public partial class Seleccion_funcionalidades : Form
     {
-        public Login()
+        public Seleccion_funcionalidades()
         {
             InitializeComponent();
-            
-            
         }
 
-
-        private void aceptarLogin_Click(object sender, EventArgs e)
-
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+
             this.Hide();
-            new SeleccionRol.SeleccionRol().ShowDialog();
+            new Seleccion_funcionalidades_admin().ShowDialog();
             this.Close();
-            
+
         }
-
-
-
 
     }
 }

@@ -11,13 +11,14 @@ namespace PagoAgilFrba.Model
 
        public String nombre;
        public Int32 id;
-       public Boolean estado;
+       public Int16 estado;
+       private List<Funcionalidad> listaDeFuncionalidades = new List<Funcionalidad>();
 
-       public void rol(String nombre, Int32 id){
+       public Rol(String nombre, Int32 id){
 
            setNombre(nombre);
            setId(id);
-           setEstado(true);
+           setEstado(1);
 
         }
 
@@ -27,12 +28,22 @@ namespace PagoAgilFrba.Model
            return this.nombre;
        }
 
+       public string Nombre //Este metodo es el que usa el selector para mostrar los nombres del objeto,
+                            //quiza se pueda borrar el otro getter
+       {
+
+           get
+           {
+               return nombre;
+           }
+       }
+
        public Int32 getId()
         {
             return this.id;
         }
 
-       public Boolean getEstado()
+       public Int16 getEstado()
         {
             return this.estado;
         }
@@ -48,7 +59,7 @@ namespace PagoAgilFrba.Model
 
        }
 
-       public void setEstado(Boolean estado) {
+       public void setEstado(Int16 estado) {
 
            this.estado = estado;
 
