@@ -42,12 +42,19 @@ Direccion_Sucursal nvarchar(50),
 Estado_Sucursal int
 )
 
+create table qepd.Forma_Pago(
+IdForma_Pago int IDENTITY(1,1) PRIMARY KEY,
+Descripcion_Pago nvarchar(255),
+)
+
 create table qepd.Pago(
 Nro_Pago numeric PRIMARY KEY,
 Fecha_Cobro_Pago datetime,
 IdSucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
-Total_Pago numeric
+Total_Pago numeric,
+Tipo_pago int FOREIGN KEY REFERENCES QEPD.Forma_Pago(IdForma_Pago)
 )
+
 
 create table qepd.Rendicion(
 IdRendicion numeric PRIMARY KEY,
@@ -57,15 +64,11 @@ Fecha_Rendicion datetime,
 create table qepd.Renglon_Rendicion(
 IdRenglon_Rendicion int IDENTITY(1,1) PRIMARY KEY,
 Nro_Pago numeric FOREIGN KEY REFERENCES QEPD.Pago(Nro_Pago),
-Monto_Pago numeric FOREIGN KEY REFERENCES QEPD.Pago(Nro_Pago),
+Monto_Pago numeric,
 IdRendicion numeric FOREIGN KEY REFERENCES QEPD.Rendicion(IdRendicion)
 )
 
-create table qepd.Forma_Pago(
-IdForma_Pago int IDENTITY(1,1) PRIMARY KEY,
-Descripcion_Pago nvarchar(255),
-Nro_Pago numeric FOREIGN KEY REFERENCES QEPD.Pago(Nro_Pago)
-)
+
 
 create table qepd.Factura(
 Nro_Factura numeric PRIMARY KEY,
@@ -85,7 +88,7 @@ Nro_Factura numeric FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
 )
 
 create table qepd.Funcionalidad(
-IdFuncinalidad int IDENTITY(1,1) PRIMARY KEY,
+IdFuncionalidad int IDENTITY(1,1) PRIMARY KEY,
 Nombre_Funcionalidad nvarchar(255)
 )
 
@@ -97,8 +100,8 @@ Estado_Rol int
 
 create table qepd.FuncionalidadPorRol(
 IdRol int FOREIGN KEY REFERENCES QEPD.Rol(IdRol),
-IdFuncinalidad int FOREIGN KEY REFERENCES QEPD.Funcionalidad(IdFuncinalidad),
-CONSTRAINT IdFuncionalidadPorRol PRIMARY KEY(IdFuncinalidad,IdRol)
+IdFuncionalidad int FOREIGN KEY REFERENCES QEPD.Funcionalidad(IdFuncionalidad),
+CONSTRAINT IdFuncionalidadPorRol PRIMARY KEY(IdFuncionalidad,IdRol)
 )
 
 create table qepd.Usuario(
@@ -113,4 +116,10 @@ create table qepd.UsuarioPorSucursal(
 IdUsuario int FOREIGN KEY REFERENCES QEPD.Usuario(IdUsuario),
 CP_Sucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
 CONSTRAINT IdFuncionalidadPorRol PRIMARY KEY(IdUsuario,CP_Sucursal)
+)
+
+create table qepd.RolPorUsuario(
+IdRol int FOREIGN KEY REFERENCES QEPD.Rol(IdRol),
+IdUsuario int FOREIGN KEY REFERENCES QEPD.Usuario(IdUsuario),
+CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
 )
