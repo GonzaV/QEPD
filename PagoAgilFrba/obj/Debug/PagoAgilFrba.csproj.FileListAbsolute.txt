@@ -23,3 +23,16 @@ C:\Users\Mauricio\Documents\Facu\gdd\tp_gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgil
 C:\Users\Mauricio\Documents\Facu\gdd\tp_gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades_admin.resources
 C:\Users\Mauricio\Documents\Facu\gdd\tp_gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Login.resources
 C:\Users\Mauricio\Documents\Facu\gdd\tp_gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.SeleccionRol.SeleccionRol.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.pdb
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csprojResolveAssemblyReference.cache
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Login.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.SeleccionRol.SeleccionRol.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades_admin.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Properties.Resources.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csproj.GenerateResource.Cache
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Seleccion_accion_abm_rol.resources

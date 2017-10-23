@@ -13,30 +13,32 @@ namespace PagoAgilFrba.Login.SeleccionRol
     public partial class SeleccionRol : Form
     {
 
+        public String rolSeleccionado;
         public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().obtenerRolesUsuario();
         
 
         public SeleccionRol()
         {
             InitializeComponent();
-            this.selectorDeRol.DataSource = listaDeRoles;
+            this.selectorDeRol.ValueMember = "Nombre";
             this.selectorDeRol.DisplayMember = "Nombre";
-            //this.selectorDeRol.ValueMember = "id";
+            this.selectorDeRol.DataSource = listaDeRoles;
             this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void selectorDeRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
+            ComboBox selectorDeRol = (ComboBox)sender;
+            this.rolSeleccionado = (String)selectorDeRol.SelectedValue;
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void boton_aceptar_rol_Click(object sender, EventArgs e)
         {
             this.Hide();
+            Model.Repo_usuario.getInstancia().getUsuario().setRolActivo(rolSeleccionado);
             new Seleccion_funcionalidades().ShowDialog();
+            System.Diagnostics.Debug.WriteLine(rolSeleccionado);
             this.Close();
         }
     }

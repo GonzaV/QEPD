@@ -1,6 +1,6 @@
 ﻿namespace PagoAgilFrba.ABM_Rol
 {
-    partial class Form1
+    partial class Seleccion_accion_abm_rol
     {
         /// <summary>
         /// Required designer variable.

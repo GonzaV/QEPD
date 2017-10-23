@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.ABM_Rol
 {
-    public partial class Form1 : Form
+    public partial class Seleccion_accion_abm_rol : Form
     {
-        public Form1()
+        public Seleccion_accion_abm_rol()
         {
             InitializeComponent();
         }

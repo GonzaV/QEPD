@@ -38,6 +38,17 @@ namespace PagoAgilFrba.Model
            }
        }
 
+       public Int32 Id//Este metodo es el que usa el selector para el id del rol luego de clickear su nombre,
+                        //quiza se pueda borrar el otro getter
+       {
+
+           get
+           {
+               return id;
+           }
+       }
+
+
        public Int32 getId()
         {
             return this.id;

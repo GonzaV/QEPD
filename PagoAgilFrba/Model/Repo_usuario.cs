@@ -8,7 +8,8 @@ namespace PagoAgilFrba.Model
 {
     class Repo_usuario
     {
-        public static Rol rolNuevo = new Rol("Rol Loco",4);
+        public static Rol rolLoco = new Rol("Rol Loco",4);
+        public static Rol rolAdmin = new Rol("Administrador", 1);
         public static List<Rol> listaDeRoles = new List<Rol>();
         public Usuario usuario_creado = new Model.Usuario("a", "a",listaDeRoles);
         public static Repo_usuario instancia;
@@ -20,9 +21,9 @@ namespace PagoAgilFrba.Model
                 return instancia;
             }
             else {
-               
                 instancia = new Repo_usuario();
-                listaDeRoles.Add(rolNuevo);
+                listaDeRoles.Add(rolLoco);
+                listaDeRoles.Add(rolAdmin);
                 return instancia;
             }
         }

@@ -16,5 +16,12 @@ namespace PagoAgilFrba.Login
         {
             InitializeComponent();
         }
+
+        private void boton_abm_rol_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Rol.Seleccion_accion_abm_rol().ShowDialog();
+            this.Close();
+        }
     }
 }
