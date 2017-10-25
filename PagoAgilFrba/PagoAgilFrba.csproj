@@ -89,6 +89,7 @@
     <Compile Include="Login\Seleccion_funcionalidades_admin.Designer.cs">
       <DependentUpon>Seleccion_funcionalidades_admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Encriptador.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
     <Compile Include="Model\Repo_usuario.cs" />
     <Compile Include="Model\Rol.cs" />
