@@ -43,5 +43,12 @@ namespace PagoAgilFrba.Login
         
         }
 
+        private void boton_abm_cliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Cliente.abm_cliente().ShowDialog();
+            this.Close();
+        }
+
     }
 }

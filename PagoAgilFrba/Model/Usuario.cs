@@ -29,6 +29,25 @@ namespace PagoAgilFrba.Model
 
         }
 
+        public Usuario ObjetoUsuario //Este metodo es el que usa el selector para seleccionar el objeto,
+                                    
+        {
+
+            get
+            {
+                return this;
+            }
+        }
+
+        public String Nombre //Este metodo es el que usa el selector para mostrar los nombres del objeto
+        {
+
+            get
+            {
+                return nombre + " " + "Id:" + id;
+            }
+        }
+
         public void setRolActivo(String rolActivo){
 
             this.rolActivo = rolActivo;

@@ -27,17 +27,20 @@ namespace PagoAgilFrba.Login
         private void aceptarLogin_Click(object sender, EventArgs e)
 
         {
-            this.Hide();
+           
             if (Model.Repo_usuario.getInstancia().obtenerNombreDeUsuarioLoggeado() == this.usuarioIngresado && Model.Repo_usuario.getInstancia().obtenerPasswordUsuario() == this.contraseñaIngresada)
             {
-                this.Close();
+
+                this.Hide();
                 new SeleccionRol.SeleccionRol().ShowDialog();
+                this.Close();
 
             }
             else { 
                 
                 //aca deberia tirar el label de que el usuario o contraseña son incorrectos
                 //mensaje_error.Text = "Usuario o contraseña incorrectos";
+                this.Hide();
                 MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 new Login().ShowDialog();
 

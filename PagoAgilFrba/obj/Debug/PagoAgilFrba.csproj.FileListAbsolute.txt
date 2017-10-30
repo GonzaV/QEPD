@@ -36,3 +36,7 @@ E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccio
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Properties.Resources.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csproj.GenerateResource.Cache
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Seleccion_accion_abm_rol.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.abm_cliente.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Crear_cliente.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.abm_empresa.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Crear_empresa.resources

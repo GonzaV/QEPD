@@ -20,10 +20,8 @@ namespace PagoAgilFrba.Login.SeleccionRol
         public SeleccionRol()
         {
             InitializeComponent();
-            this.selectorDeRol.ValueMember = "Nombre";
-            this.selectorDeRol.DisplayMember = "Nombre";
-            this.selectorDeRol.DataSource = listaDeRoles;
-            this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            configuarComboBox();
+
         }
 
         private void selectorDeRol_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,6 +38,13 @@ namespace PagoAgilFrba.Login.SeleccionRol
             new Seleccion_funcionalidades().ShowDialog();
             System.Diagnostics.Debug.WriteLine(rolSeleccionado);
             this.Close();
+        }
+
+        public void configuarComboBox(){
+            this.selectorDeRol.ValueMember = "Nombre";
+            this.selectorDeRol.DisplayMember = "Nombre";
+            this.selectorDeRol.DataSource = listaDeRoles;
+            this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

@@ -23,5 +23,14 @@ namespace PagoAgilFrba.Login
             new ABM_Rol.Seleccion_accion_abm_rol().ShowDialog();
             this.Close();
         }
+
+        private void button_abm_empresa_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Empresa.abm_empresa().ShowDialog();
+            this.Close();
+        }
+
+
     }
 }
