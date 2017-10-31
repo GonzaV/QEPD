@@ -1,5 +1,5 @@
-procedimiento del login
-procedimiento de seleccion de roles
+script
+--------
 procedimiento ABM clientes
 	procedimientos de los botones de ABM clientes
 
@@ -16,6 +16,12 @@ procedimiento ABM facturas
 	procedimientos de los botones de ABM facturas
 
 
-
+view
+--------
 Agregar view de funcionalidad ABM sucursal
 Botones para volver para atras
+
+modelo
+-------
+Agregar el atributo id a las clases
+
