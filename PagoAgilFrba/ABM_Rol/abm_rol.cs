@@ -8,29 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.Login
+namespace PagoAgilFrba.ABM_Rol
 {
-    public partial class Seleccion_funcionalidades_admin : Form
+    public partial class abm_rol : Form
     {
-        public Seleccion_funcionalidades_admin()
+        public abm_rol()
         {
             InitializeComponent();
         }
 
-        private void boton_abm_rol_Click(object sender, EventArgs e)
+        private void boton_crear_rol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ABM_Rol.abm_rol().ShowDialog();
+            new Crear_rol().ShowDialog();
             this.Close();
         }
 
-        private void button_abm_empresa_Click(object sender, EventArgs e)
+        private void boton_modificar_rol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ABM_Empresa.abm_empresa().ShowDialog();
+            new Modificar_rol().ShowDialog();
             this.Close();
         }
-
-
     }
 }

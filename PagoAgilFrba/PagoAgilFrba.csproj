@@ -71,6 +71,12 @@
     <Compile Include="ABM_Cliente\Crear_cliente.Designer.cs">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Cliente\Modificar_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Cliente\Modificar_cliente.Designer.cs">
+      <DependentUpon>Modificar_cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Empresa\abm_empresa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,11 +89,41 @@
     <Compile Include="ABM_Empresa\Crear_empresa.Designer.cs">
       <DependentUpon>Crear_empresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM_Rol\Seleccion_accion_abm_rol.cs">
+    <Compile Include="ABM_Empresa\Modificar_empresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM_Rol\Seleccion_accion_abm_rol.Designer.cs">
-      <DependentUpon>Seleccion_accion_abm_rol.cs</DependentUpon>
+    <Compile Include="ABM_Empresa\Modificar_empresa.Designer.cs">
+      <DependentUpon>Modificar_empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Rol\abm_rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Rol\abm_rol.Designer.cs">
+      <DependentUpon>abm_rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Rol\Agregar_funcionalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Rol\Agregar_funcionalidad.Designer.cs">
+      <DependentUpon>Agregar_funcionalidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Rol\Crear_rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Rol\Crear_rol.Designer.cs">
+      <DependentUpon>Crear_rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Rol\Modificar_rol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Rol\Modificar_rol.Designer.cs">
+      <DependentUpon>Modificar_rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Rol\Quitar_funcionalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Rol\Quitar_funcionalidad.Designer.cs">
+      <DependentUpon>Quitar_funcionalidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Seleccion_funcionalidades.cs">
       <SubType>Form</SubType>
@@ -126,14 +162,32 @@
     <EmbeddedResource Include="ABM_Cliente\Crear_cliente.resx">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Cliente\Modificar_cliente.resx">
+      <DependentUpon>Modificar_cliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Empresa\abm_empresa.resx">
       <DependentUpon>abm_empresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Empresa\Crear_empresa.resx">
       <DependentUpon>Crear_empresa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM_Rol\Seleccion_accion_abm_rol.resx">
-      <DependentUpon>Seleccion_accion_abm_rol.cs</DependentUpon>
+    <EmbeddedResource Include="ABM_Empresa\Modificar_empresa.resx">
+      <DependentUpon>Modificar_empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Rol\abm_rol.resx">
+      <DependentUpon>abm_rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Rol\Agregar_funcionalidad.resx">
+      <DependentUpon>Agregar_funcionalidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Rol\Crear_rol.resx">
+      <DependentUpon>Crear_rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Rol\Modificar_rol.resx">
+      <DependentUpon>Modificar_rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Rol\Quitar_funcionalidad.resx">
+      <DependentUpon>Quitar_funcionalidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

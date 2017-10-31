@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.ABM_Rol
+namespace PagoAgilFrba.ABM_Cliente
 {
-    public partial class Seleccion_accion_abm_rol : Form
+    public partial class Modificar_cliente : Form
     {
-        public Seleccion_accion_abm_rol()
+        public Modificar_cliente()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

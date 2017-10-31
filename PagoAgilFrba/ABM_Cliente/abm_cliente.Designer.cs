@@ -63,6 +63,7 @@
             this.boton_modificar_cliente.TabIndex = 2;
             this.boton_modificar_cliente.Text = "Modificar";
             this.boton_modificar_cliente.UseVisualStyleBackColor = true;
+            this.boton_modificar_cliente.Click += new System.EventHandler(this.boton_modificar_cliente_Click);
             // 
             // boton_eliminar_cliente
             // 

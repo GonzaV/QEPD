@@ -23,5 +23,12 @@ namespace PagoAgilFrba.ABM_Empresa
             new Crear_empresa().ShowDialog();
             this.Close();
         }
+
+        private void boton_modificar_empresa_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Modificar_empresa().ShowDialog();
+            this.Close();
+        }
     }
 }
