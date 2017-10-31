@@ -132,6 +132,7 @@ create table qepd.Renglon_Factura(
 IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
 Item_Monto_Factura numeric(18,2) NOT NULL,
 Item_Cant_Factura numeric(18,0) NOT NULL,
+Item_descripcion nvarchar(255) NOT NULL,
 Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
 )
 
@@ -202,7 +203,7 @@ CONSTRAINT IdRolPorFuncionalidad PRIMARY KEY(IdFuncionalidad,IdRol)
 
 create table qepd.Usuario(
 IdUsuario int IDENTITY(1,1) PRIMARY KEY,
-Nombre_Usuario nvarchar(255) NOT NULL,
+Nombre_Usuario nvarchar(255) NOT NULL UNIQUE,
 Pass_Usuario nvarchar(255) NOT NULL,
 Logs_Fallidos int DEFAULT 0,
 Estado_Usuario BIT DEFAULT 1
@@ -344,8 +345,45 @@ INSERT INTO QEPD.Funcionalidad(Nombre_Funcionalidad) VALUES ('Cobrar Factura')
 
 /* //////////////////////////////// HAY QUE DEFINIR LAS FUNCIONALIDADES QUE NECESITAMOS PARA EL MODELO */
 
-/* Carga Rol x Funcionalidad   ////////// tenemos que definir cuales vienen asignadas /*
+/* Carga Rol x Funcionalidad   ////////// tenemos que definir cuales vienen asignadas*/
 
-/* TODO  -- Carga Usuario // Carga Rol // Carga RolxUsuario
+/* TODO  -- Carga Usuario // Carga Rol // Carga RolxUsuario*/
 
+/*Login - boton Aceptar*/
+
+create procedure QEPD.getUsuarioPass
+@usuario nvarchar(255),
+@pass nvarchar(255)
+as
+select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass
+
+
+create procedure QEPD.getRoles
+@usuario nvarchar(255)
+as
+begin
+	select * 
+	from qepd.Usuario s 
+		join QEPD.RolPorUsuario rs
+			on rs.IdUsuario = s.IdUsuario
+		join QEPD.Rol r
+			on rs.IdRol = r.IdRol
+
+	where s.Nombre_Usuario = @usuario
+end
+
+/*Seleccion de rol - boton Aceptar*/
+
+create procedure QEPD.getFuncionalidades
+@rolId int
+as
+begin
+	select f.IdFuncionalidad, f.Nombre_Funcionalidad 
+	from Rol r
+		join RolPorFuncionalidad rf
+			on rf.IdRol = r.IdRol
+		join Funcionalidad f
+			on f.IdFuncionalidad = rf.IdFuncionalidad
+	where r.IdRol = @rolId
+end
 
