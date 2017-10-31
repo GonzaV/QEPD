@@ -1,0 +1,21 @@
+procedimiento del login
+procedimiento de seleccion de roles
+procedimiento ABM clientes
+	procedimientos de los botones de ABM clientes
+
+procedimiento ABM roles
+	procedimientos de los botones de ABM roles
+
+procedimiento ABM empresa
+	procedimientos de los botones de ABM empresa
+
+procedimiento ABM sucursal
+	procedimientos de los botones de ABM sucursal
+
+procedimiento ABM facturas
+	procedimientos de los botones de ABM facturas
+
+
+
+Agregar view de funcionalidad ABM sucursal
+Botones para volver para atras
