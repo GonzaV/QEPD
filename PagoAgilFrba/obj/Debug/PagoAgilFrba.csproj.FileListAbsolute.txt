@@ -49,3 +49,9 @@ E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Crear_
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Agregar_funcionalidad.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Modificar_rol.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Quitar_funcionalidad.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.abm_sucursal.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Crear_sucursal.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Modificar_sucursal.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Agregar_items.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Cobrar_facturas.resources

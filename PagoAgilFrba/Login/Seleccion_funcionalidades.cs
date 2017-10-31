@@ -50,5 +50,19 @@ namespace PagoAgilFrba.Login
             this.Close();
         }
 
+        private void boton_crear_y_cobrar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas().ShowDialog();
+            this.Close();
+        }
+
+        private void boton_cobrar_facturas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Facturas_y_RegistrosDePago.Cobrar_facturas().ShowDialog();
+            this.Close();
+        }
+
     }
 }

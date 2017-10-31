@@ -47,6 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -95,6 +97,24 @@
     <Compile Include="ABM_Empresa\Modificar_empresa.Designer.cs">
       <DependentUpon>Modificar_empresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Agregar_items.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Agregar_items.Designer.cs">
+      <DependentUpon>Agregar_items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Cobrar_facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Cobrar_facturas.Designer.cs">
+      <DependentUpon>Cobrar_facturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Crear_o_cobrar_facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\Crear_o_cobrar_facturas.Designer.cs">
+      <DependentUpon>Crear_o_cobrar_facturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Rol\abm_rol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +144,24 @@
     </Compile>
     <Compile Include="ABM_Rol\Quitar_funcionalidad.Designer.cs">
       <DependentUpon>Quitar_funcionalidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Sucursal\abm_sucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\abm_sucursal.Designer.cs">
+      <DependentUpon>abm_sucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Crear_sucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Crear_sucursal.Designer.cs">
+      <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Modificar_sucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Modificar_sucursal.Designer.cs">
+      <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Seleccion_funcionalidades.cs">
       <SubType>Form</SubType>
@@ -174,6 +212,15 @@
     <EmbeddedResource Include="ABM_Empresa\Modificar_empresa.resx">
       <DependentUpon>Modificar_empresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Facturas_y_RegistrosDePago\Agregar_items.resx">
+      <DependentUpon>Agregar_items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Facturas_y_RegistrosDePago\Cobrar_facturas.resx">
+      <DependentUpon>Cobrar_facturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Facturas_y_RegistrosDePago\Crear_o_cobrar_facturas.resx">
+      <DependentUpon>Crear_o_cobrar_facturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Rol\abm_rol.resx">
       <DependentUpon>abm_rol.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,6 +235,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Rol\Quitar_funcionalidad.resx">
       <DependentUpon>Quitar_funcionalidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\abm_sucursal.resx">
+      <DependentUpon>abm_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Crear_sucursal.resx">
+      <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Modificar_sucursal.resx">
+      <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -245,6 +301,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
