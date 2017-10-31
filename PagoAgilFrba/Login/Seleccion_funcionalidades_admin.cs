@@ -39,7 +39,10 @@ namespace PagoAgilFrba.Login
         
         }
 
-
+        private void boton_ejecutar_rendiciones_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rendiciones del día realizadas", "Rendiciones OK", MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
 
     }
 }
