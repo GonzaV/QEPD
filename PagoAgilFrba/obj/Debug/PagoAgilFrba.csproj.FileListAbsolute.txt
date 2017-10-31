@@ -40,3 +40,6 @@ E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.ab
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Crear_cliente.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.abm_empresa.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Crear_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
