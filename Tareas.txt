@@ -20,7 +20,6 @@ procedimiento de fechas de rendiciones
 
 view
 --------
-Agregar view de funcionalidad ABM sucursal
 Botones para volver para atras
 
 modelo

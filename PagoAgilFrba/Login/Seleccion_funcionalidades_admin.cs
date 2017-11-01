@@ -31,6 +31,18 @@ namespace PagoAgilFrba.Login
             this.Close();
         }
 
+        private void boton_abm_sucursales_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Sucursal.abm_sucursal().ShowDialog();
+            this.Close();
+        
+        }
+
+        private void boton_ejecutar_rendiciones_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rendiciones del día realizadas", "Rendiciones OK", MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
 
     }
 }
