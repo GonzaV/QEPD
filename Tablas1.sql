@@ -373,6 +373,7 @@ begin
 	where s.Nombre_Usuario = @usuario
 end
 
+/*-------------------------------------------------------*/
 go
 /*Seleccion de rol - boton Aceptar*/
 
@@ -396,10 +397,11 @@ create procedure qepd.getClientes
 as
 select * from Cliente
 
+/*-------------------------------------------------------*/
 go
 /*ABM cliente - boton crear*/
 
-create procedure qepd.modificarCliente
+create procedure qepd.newCliente
 @nombre nvarchar(255),
 @apellido nvarchar(255),
 @dni numeric,
@@ -424,7 +426,7 @@ end
 go
 /*ABM cliente - boton modificar*/
 
-create procedure qepd.newCliente
+create procedure qepd.modificarCliente
 @nombre nvarchar(255),
 @apellido nvarchar(255),
 @dni numeric,
@@ -447,6 +449,14 @@ begin
 	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction, @estado)
 end
 
+
+go
+/*ABM cliente - boton eliminar*/
+
+create procedure qepd.eliminarCliente
+@id int
+as
+delete from QEPD.Cliente where IdCliente = @id
 
 
 
