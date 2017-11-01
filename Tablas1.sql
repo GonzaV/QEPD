@@ -349,6 +349,7 @@ INSERT INTO QEPD.Funcionalidad(Nombre_Funcionalidad) VALUES ('Cobrar Factura')
 
 /* TODO  -- Carga Usuario // Carga Rol // Carga RolxUsuario*/
 
+go
 /*Login - boton Aceptar*/
 
 create procedure QEPD.getUsuarioPass
@@ -357,7 +358,7 @@ create procedure QEPD.getUsuarioPass
 as
 select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass
 
-
+go
 create procedure QEPD.getRoles
 @usuario nvarchar(255)
 as
@@ -372,6 +373,7 @@ begin
 	where s.Nombre_Usuario = @usuario
 end
 
+go
 /*Seleccion de rol - boton Aceptar*/
 
 create procedure QEPD.getFuncionalidades
@@ -387,12 +389,14 @@ begin
 	where r.IdRol = @rolId
 end
 
+go
 /*Seleccion de rol - boton Aceptar*/
 
 create procedure qepd.getClientes
 as
 select * from Cliente
 
+go
 /*Creacion cliente - boton crear*/
 
 create procedure qepd.newCliente
