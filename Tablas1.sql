@@ -397,7 +397,32 @@ as
 select * from Cliente
 
 go
-/*Creacion cliente - boton crear*/
+/*ABM cliente - boton crear*/
+
+create procedure qepd.modificarCliente
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric,
+@mail nvarchar(255),
+@telefono numeric(18,0),
+@fnacimiento datetime,
+@direccion nvarchar(255),
+@cp nvarchar(255)
+as
+begin
+	declare @direction int
+
+	insert into QEPD.Domicilio
+	values (@direccion,@cp)
+
+	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
+
+	insert into QEPD.Cliente (Dni_Cliente, Nombre_Cliente,Apellido_Cliente,Email_Cliente,Fecha_Nac_Cliente,Telefono_Cliente,IdDomicilio)
+	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction)
+end
+
+go
+/*ABM cliente - boton modificar*/
 
 create procedure qepd.newCliente
 @nombre nvarchar(255),
@@ -425,6 +450,19 @@ end
 
 
 
-/*
 
+
+
+/*
+CREATE TABLE QEPD.Cliente(
+IdCliente int IDENTITY(1,1) PRIMARY KEY,
+Dni_Cliente numeric NOT NULL,
+Nombre_Cliente nvarchar(255) NOT NULL,
+Apellido_Cliente nvarchar(255)  NOT NULL,
+Email_Cliente nvarchar(255) NOT NULL,
+Fecha_Nac_Cliente datetime NOT NULL,
+Telefono_Cliente numeric(18,0) NULL, 
+IdDomicilio int FOREIGN KEY REFERENCES QEPD.Domicilio(IdDomicilio),
+Estado_Cliente BIT DEFAULT 1  /* todos los clientes arrancan como activos ? */
+);
 */

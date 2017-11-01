@@ -21,6 +21,7 @@ procedimiento de fechas de rendiciones
 view
 --------
 Botones para volver para atras
+Validaciones
 
 modelo
 -------

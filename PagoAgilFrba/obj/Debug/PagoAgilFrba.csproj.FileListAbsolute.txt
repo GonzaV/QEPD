@@ -55,3 +55,6 @@ E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.M
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Agregar_items.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Cobrar_facturas.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
