@@ -2,77 +2,85 @@ USE GD2C2017
 GO
 
 
-/*  Se eliminan objetos preexistentes, //////////////////////// acá encontre 2 formas de eliminar, tirar un IF exist pero igual ahi vas a comparar si existe el objeto en la tabla, Algunos post en foros en internet plantean que es mas performante el IF EXIST, otros dicen que es similar. El atributo U hace referencia a que es un User Table. P para stored procedures, TR triggers, etc , habria que investigar con cual nos quedamos  */
+/*  Se eliminan objetos preexistentes*/
+
+
+/* //////////////////////// acá encontre 2 formas de eliminar, tirar un IF exist pero igual ahi vas a comparar si existe el objeto en la 
+tabla, Algunos post en foros en internet plantean que es mas performante el IF EXIST, otros dicen que es similar.
+ El atributo U hace referencia a que es un User Table. P para stored procedures, TR triggers, etc , 
+ habria que investigar con cual nos quedamos  */
 
 
 
 /*//////////////////////// TO DO - Verificar si los drops estan en el orden correcto*/
 
 IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL    
- DROP TABLE QEPD.RolPorUsuario;
+	DROP TABLE QEPD.RolPorUsuario;
 
 IF OBJECT_ID('QEPD.UsuarioPorSucursal','U') IS NOT NULL     
-DROP TABLE QEPD.UsuarioPorSucursal;
+	DROP TABLE QEPD.UsuarioPorSucursal;
 
 IF OBJECT_ID('QEPD.Usuario','U') IS NOT NULL   
- DROP TABLE QEPD.Usuario;
+	DROP TABLE QEPD.Usuario;
 
 IF OBJECT_ID('QEPD.RolPorFuncionalidad','U') IS NOT NULL   
-  DROP TABLE QEPD.RolPorFuncionalidad;
+	DROP TABLE QEPD.RolPorFuncionalidad;
 
 IF OBJECT_ID('QEPD.Rol','U') IS NOT NULL   
-  DROP TABLE QEPD.Rol;
+	DROP TABLE QEPD.Rol;
 
 IF OBJECT_ID('QEPD.Funcionalidad','U') IS NOT NULL    
- DROP TABLE QEPD.Funcionalidad;
+	DROP TABLE QEPD.Funcionalidad;
 
- IF OBJECT_ID('QEPD.Renglon_Rendicion','U') IS NOT NULL   
-  DROP TABLE QEPD.Renglon_Rendicion;
+IF OBJECT_ID('QEPD.Renglon_Rendicion','U') IS NOT NULL   
+	DROP TABLE QEPD.Renglon_Rendicion;
 
 IF OBJECT_ID('QEPD.Rendicion','U') IS NOT NULL  
-   DROP TABLE QEPD.Rendicion;
+	DROP TABLE QEPD.Rendicion;
 
 IF OBJECT_ID('QEPD.Renglon_Factura','U') IS NOT NULL   
-  DROP TABLE QEPD.Renglon_Factura;
+	DROP TABLE QEPD.Renglon_Factura;
 
 IF OBJECT_ID('QEPD.Renglon_Pago','U') IS NOT NULL   
-  DROP TABLE QEPD.Renglon_Pago;
+	DROP TABLE QEPD.Renglon_Pago;
 
 IF OBJECT_ID('QEPD.Factura','U') IS NOT NULL    
- DROP TABLE QEPD.Factura;
+	DROP TABLE QEPD.Factura;
 
 IF OBJECT_ID('QEPD.Devolucion','U') IS NOT NULL    
- DROP TABLE QEPD.Devolucion;
+	DROP TABLE QEPD.Devolucion;
 
 IF OBJECT_ID('QEPD.Pago','U') IS NOT NULL    
- DROP TABLE QEPD.Pago;
+	DROP TABLE QEPD.Pago;
 
 IF OBJECT_ID('QEPD.Forma_Pago','U') IS NOT NULL    
- DROP TABLE QEPD.Forma_Pago;
+	DROP TABLE QEPD.Forma_Pago;
 
 IF OBJECT_ID('QEPD.Sucursal','U') IS NOT NULL   
-  DROP TABLE QEPD.Sucursal;
+	DROP TABLE QEPD.Sucursal;
 
 IF OBJECT_ID('QEPD.Empresa','U') IS NOT NULL   
-  DROP TABLE QEPD.Empresa;
+	DROP TABLE QEPD.Empresa;
 
 IF OBJECT_ID('QEPD.Rubro','U') IS NOT NULL  
-   DROP TABLE QEPD.Rubro;
+	DROP TABLE QEPD.Rubro;
 
 IF OBJECT_ID('QEPD.Cliente','U') IS NOT NULL   
-  DROP TABLE QEPD.Cliente;
+	DROP TABLE QEPD.Cliente;
 
 IF OBJECT_ID('QEPD.Domicilio','U') IS NOT NULL  
-   DROP TABLE QEPD.Domicilio;
+	DROP TABLE QEPD.Domicilio;
 
-
-/*//////////////////////// Se crea schema, lo dejo comentado porque me tira error porque ya lo tengo creado 
+IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
+    DROP SCHEMA QEPD
 
 GO
 
-CREATE SCHEMA QEPD AUTHORIZATION gd
-*/
+/* Se crea schema */ 
 
+CREATE SCHEMA QEPD AUTHORIZATION gd
+
+GO
 
 /* Se crean las tablas */
 
@@ -164,9 +172,9 @@ IdRendicion numeric(18,0) PRIMARY KEY NOT NULL,
 IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
 Cantidad_Facturas numeric(18,0) NULL, /*caculable*/
 Fecha_Rendicion datetime NOT NULL,
-porcentaje_comision numeric(18,0) NOT NULL,
+porcentaje_comision numeric(18,2) DEFAULT 0.1,
 importe_comision numeric(18,2) NULL, /* calcuable a partir de partir del total de facturas y porcentaje*/
-Total_Rendicion numeric(18,2) NULL /*caculable*/
+Total_Rendicion numeric(18,2) NULL 
 )
 
 create table qepd.Renglon_Rendicion(
@@ -232,7 +240,7 @@ CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
 /********************** Migración de  tablas **************************/
 
 
-/* Migracion domicilio, ////////////////////////como lo planteamos tenemos que levantarlo para Cliente y para Empresa*/ 
+/* Migracion domicilio */ 
 
 
 INSERT INTO QEPD.Domicilio(Direccion,Cod_Postal)
@@ -244,20 +252,14 @@ UNION ALL
            FROM gd_esquema.Maestra e
            WHERE e.Empresa_Direccion IS NOT NULL
 
-/* Migracion Tabla Cliente */
+/* Migracion  Cliente */
 
-/*////////////////////////hay que ver como agregarle el numero de telefono porque es un dato que hay que inventar, con un randomize o algo asi, le estoy seteando a estado 1, hay que definir eso*/
-
-
-
-INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente,Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
-			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido], m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
+INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente,Telefono_Cliente, Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
+			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido],FLOOR(RAND(CHECKSUM(NEWID()))*(99999999-1000000)+100000), m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
 			FROM gd_esquema.Maestra m, QEPD.Domicilio c
 			WHERE m.[Cliente-Dni] IS NOT NULL AND c.Direccion = m.Cliente_Direccion
 
-/* Migracion Rubro //////////////////////// Agregue la columna Nro_Rubro en QEPD.RUBRO para poder matchearlo despues con la empresa */
-
-
+/* Migracion Rubro */
 
 INSERT INTO QEPD.Rubro(Nro_Rubro,Descripcion_Rubro)
 			SELECT DISTINCT Empresa_Rubro, Rubro_Descripcion
@@ -266,8 +268,6 @@ INSERT INTO QEPD.Rubro(Nro_Rubro,Descripcion_Rubro)
 
 /* Migracion Empresa */
 
-
-
 INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
 			SELECT DISTINCT m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.IdRubro
 			FROM gd_esquema.Maestra m, QEPD.Domicilio d, QEPD.Rubro r
@@ -275,7 +275,6 @@ INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
 
 
 /* Migracion Sucursal */
-
 
 INSERT INTO QEPD.Sucursal(CP_Sucursal,Nombre_Sucursal,Direccion_Sucursal)
 			SELECT DISTINCT Sucursal_Codigo_Postal, Sucursal_Nombre, Sucursal_Dirección
@@ -313,43 +312,85 @@ INSERT INTO QEPD.Pago(Nro_Pago,Fecha_Cobro_Pago, CodigoPostal_Sucursal, Total_Pa
 			FROM gd_esquema.Maestra m, QEPD.Sucursal s, QEPD.Forma_Pago fp
 			WHERE m.Pago_nro IS NOT NULL AND m.Sucursal_Codigo_Postal = s.CP_Sucursal AND m.FormaPagoDescripcion = fp.Descripcion_Pago
 
-
-
 /* Migracion Renglon Pago */
 
 INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa) 
 		SELECT DISTINCT f.Nro_Factura, p.Nro_Pago, e.IdEmpresa
 		FROM QEPD.Factura f, QEPD.Pago p, QEPD.Empresa e
 		WHERE p.Nro_Pago IS NOT NULL 
-/* ////////////////////////aca creo que tire cualquiera porque no estaria matcheando condiciones bien en la cabeza */
 
-/* Migracion Rendicion */ /* ////////////////////////TO DO 
+/* Migracion Rendicion */ 
 
-INSERT INTO QEPD.Rendicion(IdRendicion, IdEmpresa, Fecha_Rendicion, 
+INSERT INTO QEPD.Rendicion(IdRendicion, IdEmpresa,Fecha_Rendicion,Total_Rendicion)
+		SELECT tb.Rendicion_Nro, e.IdEmpresa, tb.Rendicion_Fecha, tb.ItemRendicion_nro
+		FROM gd_esquema.Maestra tb, QEPD.Empresa e 
+		WHERE tb.Rendicion_Nro IS NOT NULL
 
-*/
+/* Migracion Renglon Rendicion */
 
-/* Migracion Rol */
+INSERT INTO QEPD.Renglon_Rendicion(Nro_Pago,Monto_Pago,IdRendicion)
+		SELECT p.Nro_Pago, tb.Total ,r.IdRendicion
+		FROM gd_esquema.Maestra tb, QEPD.Pago p, QEPD.Rendicion r
+		WHERE Rendicion_Nro IS NOT NULL
 
-INSERT INTO QEPD.Rol(Nombre_Rol) VALUES ('Administrador')
+/* Carga Rol */
 
-INSERT INTO QEPD.Rol(Nombre_Rol) VALUES ('Cobrador')
+INSERT INTO QEPD.Rol(Nombre_Rol) VALUES ('Administrador') /* 1 */
 
-
+INSERT INTO QEPD.Rol(Nombre_Rol) VALUES ('Cobrador') /* 2 */
 
 /* Carga Funcionalidades */
 
-INSERT INTO QEPD.Funcionalidad(Nombre_Funcionalidad) VALUES ('Rendir Facturas')
+INSERT INTO QEPD.Funcionalidad(Nombre_Funcionalidad) 
+		VALUES	('ABM Cliente'),  /* 1 */
+				('ABM Factura'), /* 2 */
+				('Cobrar Factura'),  /* 3 */
+				('ABM Rol'), /* 4 */
+				('ABM Empresa'), /* 5*/
+				('ABM Sucursal'), /* 6*/
+				('Rendir Pago'), /* 7 */
+				('Devolver Pago') /* 8*/
 
-INSERT INTO QEPD.Funcionalidad(Nombre_Funcionalidad) VALUES ('Cobrar Factura')
 
-/* //////////////////////////////// HAY QUE DEFINIR LAS FUNCIONALIDADES QUE NECESITAMOS PARA EL MODELO */
+/* Carga RolxFuncionalidad */
 
-/* Carga Rol x Funcionalidad   ////////// tenemos que definir cuales vienen asignadas*/
+INSERT INTO QEPD.RolPorFuncionalidad(IdRol,IdFuncionalidad)
+	VALUES	(1,2),
+			(1,3),
+			(1,4),
+			(1,5),
+			(1,6),
+			(1,7),
+			(1,8),
+			(2,1),
+			(2,2),
+			(2,3),
+			(2,8)
 
-/* TODO  -- Carga Usuario // Carga Rol // Carga RolxUsuario*/
+/* Usuario */
+
+INSERT INTO QEPD.Usuario(Nombre_Usuario,Pass_Usuario)
+		VALUES ('admin','e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('Gonza', '05607a38d929755d5c4466d72c9b9ba8261b6be94c6fd5477503c83ed8d50f09'),
+		('Jesus', 'a54e71f0e17f5aaf7946e66ab42cf3b1fd4e61d60581736c9f0eb1c3f794eb7c')
+
+
+/* Carga RolxUsuario */
+
+INSERT INTO QEPD.RolPorUsuario(IdRol,IdUsuario)
+		VALUES (1,1),
+				(2,2),
+				(2,3)
+
+INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
+		VALUES	(1,(select CP_Sucursal FROM QEPD.Sucursal)),
+				(2,(select CP_Sucursal FROM QEPD.Sucursal)),
+				(3,(select CP_Sucursal FROM QEPD.Sucursal))
+
+
 
 /*Login - boton Aceptar*/
+GO
 
 create procedure QEPD.getUsuarioPass
 @usuario nvarchar(255),
@@ -357,7 +398,7 @@ create procedure QEPD.getUsuarioPass
 as
 select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass
 
-
+GO 
 create procedure QEPD.getRoles
 @usuario nvarchar(255)
 as
@@ -373,7 +414,7 @@ begin
 end
 
 /*Seleccion de rol - boton Aceptar*/
-
+go
 create procedure QEPD.getFuncionalidades
 @rolId int
 as
