@@ -387,3 +387,38 @@ begin
 	where r.IdRol = @rolId
 end
 
+/*Seleccion de rol - boton Aceptar*/
+
+create procedure qepd.getClientes
+as
+select * from Cliente
+
+/*Creacion cliente - boton crear*/
+create procedure qepd.newCliente
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric,
+@mail nvarchar(255),
+@telefono numeric(18,0),
+@f.nacimiento datetime
+as
+begin
+	insert into QEPD.Cliente
+	values (@dni, @nombre, @apellido, @email) 
+end
+
+
+
+
+/*CREATE TABLE QEPD.Cliente(
+IdCliente int IDENTITY(1,1) PRIMARY KEY,
+Dni_Cliente numeric NOT NULL,
+Nombre_Cliente nvarchar(255) NOT NULL,
+Apellido_Cliente nvarchar(255)  NOT NULL,
+Email_Cliente nvarchar(255) NOT NULL,
+Fecha_Nac_Cliente datetime NOT NULL,
+Telefono_Cliente numeric(18,0) NULL, 
+IdDomicilio int FOREIGN KEY REFERENCES QEPD.Domicilio(IdDomicilio),
+Estado_Cliente BIT DEFAULT 1  /* todos los clientes arrancan como activos ? */
+);
+*/

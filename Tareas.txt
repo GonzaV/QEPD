@@ -15,6 +15,8 @@ procedimiento ABM sucursal
 procedimiento ABM facturas
 	procedimientos de los botones de ABM facturas
 
+procedimiento de fechas de rendiciones
+
 
 view
 --------
@@ -24,4 +26,5 @@ Botones para volver para atras
 modelo
 -------
 Agregar el atributo id a las clases
+Agregar el atributo estado a las clases
 
