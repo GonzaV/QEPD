@@ -389,8 +389,8 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 
 
 
+go
 /*Login - boton Aceptar*/
-GO
 
 create procedure QEPD.getUsuarioPass
 @usuario nvarchar(255),
@@ -398,7 +398,7 @@ create procedure QEPD.getUsuarioPass
 as
 select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass
 
-GO 
+go
 create procedure QEPD.getRoles
 @usuario nvarchar(255)
 as
@@ -413,6 +413,8 @@ begin
 	where s.Nombre_Usuario = @usuario
 end
 
+/*-------------------------------------------------------*/
+go
 /*Seleccion de rol - boton Aceptar*/
 go
 create procedure QEPD.getFuncionalidades
@@ -427,4 +429,73 @@ begin
 			on f.IdFuncionalidad = rf.IdFuncionalidad
 	where r.IdRol = @rolId
 end
+
+go
+/*Seleccion de rol - boton Aceptar*/
+
+create procedure qepd.getClientes
+as
+select * from Cliente
+
+/*-------------------------------------------------------*/
+go
+/*ABM cliente - boton crear*/
+
+create procedure qepd.newCliente
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric,
+@mail nvarchar(255),
+@telefono numeric(18,0),
+@fnacimiento datetime,
+@direccion nvarchar(255),
+@cp nvarchar(255)
+as
+begin
+	declare @direction int
+
+	insert into QEPD.Domicilio
+	values (@direccion,@cp)
+
+	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
+
+	insert into QEPD.Cliente (Dni_Cliente, Nombre_Cliente,Apellido_Cliente,Email_Cliente,Fecha_Nac_Cliente,Telefono_Cliente,IdDomicilio)
+	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction)
+end
+
+go
+/*ABM cliente - boton modificar*/
+
+create procedure qepd.modificarCliente
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni numeric,
+@mail nvarchar(255),
+@telefono numeric(18,0),
+@fnacimiento datetime,
+@estado bit,
+@direccion nvarchar(255),
+@cp nvarchar(255)
+as
+begin
+	declare @direction int
+
+	insert into QEPD.Domicilio
+	values (@direccion,@cp)
+
+	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
+
+	insert into QEPD.Cliente
+	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction, @estado)
+end
+
+
+go
+/*ABM cliente - boton eliminar*/
+
+create procedure qepd.eliminarCliente
+@id int
+as
+delete from QEPD.Cliente where IdCliente = @id
+
 
