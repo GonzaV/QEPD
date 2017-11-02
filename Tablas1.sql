@@ -518,7 +518,8 @@ end
 
 
 go
-create procedure qepd.modificarCliente
+create procedure qepd.modificarCliente /*el metodo del repo recibe un objeto cliente del cual sacamos su Id*/
+@idCliente int,
 @nombre nvarchar(255),
 @apellido nvarchar(255),
 @dni numeric,
@@ -537,8 +538,8 @@ begin
 
 	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
 
-	insert into QEPD.Cliente
-	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction, @estado)
+	update QEPD.Cliente set Dni_Cliente = @dni, Nombre_Cliente = @nombre, Apellido_Cliente = @apellido, Email_Cliente = @mail, Fecha_Nac_Cliente = @fnacimiento, Telefono_Cliente = @telefono, IdDomicilio = @direction where IdCliente = @idCliente
+	
 end
 
 
