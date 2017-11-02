@@ -2,20 +2,7 @@ script
 --------
 procedures crear, modificar, y eliminar roles
 
-procedimiento ABM clientes
-	procedimientos de los botones de ABM clientes
-
-procedimiento ABM roles
-	procedimientos de los botones de ABM roles
-
-procedimiento ABM empresa
-	procedimientos de los botones de ABM empresa
-
-procedimiento ABM sucursal
-	procedimientos de los botones de ABM sucursal
-
-procedimiento ABM facturas
-	procedimientos de los botones de ABM facturas
+procedimiento de todos los repos menos usuario y cliente
 
 procedimiento de fechas de rendiciones
 
@@ -26,6 +13,8 @@ Que pasa cuando se supera 4 log fallidos, trigger o if??
 
 view
 --------
+Rendiciones
+Devoluciones
 Botones para volver para atras
 Validaciones
 
@@ -33,4 +22,5 @@ modelo
 -------
 Agregar el atributo id a las clases
 Agregar el atributo estado a las clases
+Cuando se muestran los roles, empresas, clientes, etc... en selectores, se deben mostrar solo aquellos que tengan estado = 1, se tiene que filtrar la lista de objetos por esta condicion
 
