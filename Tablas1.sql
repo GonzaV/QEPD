@@ -393,23 +393,33 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 
 /*-------------------Los dividi Por Repositorios----------------------*/
 
-go
+
 /*Repo Usuarios*/
 
+go
 create procedure QEPD.validarUsuario
-@usuario nvarchar(255),
+@usuarioNombre nvarchar(255),
 @pass nvarchar(255)
 as
 begin
-if (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass)
+if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
 	return 1
-else 
+else
+	update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1  
 	return 0
 end
 
+
+go
+create procedure qepd.getUsuario
+@usuarioNombre nvarchar(255)
+as
+select * from QEPD.Usuario s where s.Nombre_Usuario = @usuarioNombre
+
+
 go
 create procedure QEPD.getRoles
-@usuario nvarchar(255)
+@IdUsuario nvarchar(255)
 as
 begin
 	select * 
@@ -419,10 +429,9 @@ begin
 		join QEPD.Rol r
 			on rs.IdRol = r.IdRol
 
-	where s.Nombre_Usuario = @usuario
+	where s.IdUsuario = @IdUsuario
 end
 
-/*Seleccion de rol - boton Aceptar*/
 go
 create procedure QEPD.getFuncionalidades
 @rolId int
