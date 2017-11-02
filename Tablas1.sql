@@ -389,14 +389,23 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 
 
 
-go
-/*Login - boton Aceptar*/
+/***********************************************************************Procedures*****************************************************************************************************************/
 
-create procedure QEPD.getUsuarioPass
+/*-------------------Los dividi Por Repositorios----------------------*/
+
+go
+/*Repo Usuarios*/
+
+create procedure QEPD.validarUsuario
 @usuario nvarchar(255),
 @pass nvarchar(255)
 as
-select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass
+begin
+if (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuario and s.Pass_Usuario = @pass)
+	return 1
+else 
+	return 0
+end
 
 go
 create procedure QEPD.getRoles
@@ -413,8 +422,6 @@ begin
 	where s.Nombre_Usuario = @usuario
 end
 
-/*-------------------------------------------------------*/
-go
 /*Seleccion de rol - boton Aceptar*/
 go
 create procedure QEPD.getFuncionalidades
@@ -430,6 +437,7 @@ begin
 	where r.IdRol = @rolId
 end
 
+
 go
 /*Seleccion de rol - boton Aceptar*/
 
@@ -437,7 +445,7 @@ create procedure qepd.getClientes
 as
 select * from Cliente
 
-/*-------------------------------------------------------*/
+
 go
 /*ABM cliente - boton crear*/
 
@@ -462,6 +470,7 @@ begin
 	insert into QEPD.Cliente (Dni_Cliente, Nombre_Cliente,Apellido_Cliente,Email_Cliente,Fecha_Nac_Cliente,Telefono_Cliente,IdDomicilio)
 	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction)
 end
+
 
 go
 /*ABM cliente - boton modificar*/
@@ -490,6 +499,7 @@ begin
 end
 
 
+
 go
 /*ABM cliente - boton eliminar*/
 
@@ -497,5 +507,6 @@ create procedure qepd.eliminarCliente
 @id int
 as
 delete from QEPD.Cliente where IdCliente = @id
+
 
 
