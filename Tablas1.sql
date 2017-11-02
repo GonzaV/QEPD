@@ -414,6 +414,15 @@ else
 	end
 end
 
+go
+create procedure qepd.bloquearUsuario /*En el metodo validar usuario del controller, no solo se llama al metodo validarUsuario del repo, sino tambien
+										existira un metodo del repo que se llamara bloquear usuario que usara este procedure
+										En el codigo del metodo validar usuario del CONTROLLER, valida el usuario, y puede hacerlo hasta 4 veces
+										si llego a la cuarta, el metodo del controller, llama a bloquearUsuario del repo, y este usa este procedure*/
+@usuarioNombre nvarchar(255)
+as
+update QEPD.Usuario set Estado_Usuario = 0 where Nombre_Usuario =  @usuarioNombre
+
 
 go
 create procedure qepd.getUsuario
@@ -423,7 +432,7 @@ select * from QEPD.Usuario s where s.Nombre_Usuario = @usuarioNombre
 
 
 go
-create procedure QEPD.getRoles
+create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuario*/
 @IdUsuario nvarchar(255)
 as
 begin
@@ -438,7 +447,7 @@ begin
 end
 
 go
-create procedure QEPD.getFuncionalidades
+create procedure QEPD.getFuncionalidades /*cuando necesites una lista de funcionalidades de un rol*/
 @rolId int
 as
 begin
@@ -451,18 +460,40 @@ begin
 	where r.IdRol = @rolId
 end
 
+go
+create procedure qepd.getRol /*cundo necesites solo UN rol*/ /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol.
+															Con el nombre del rol, busco el mismo en la lista de roles del usuario que pase por parametro y obtengo ese rol(objeto) que busque (Filter por nombre a nivel objetos)
+															Teniendo este objeto rol, saco su ID
+															Paso el ID a este procedure*/
+@rolId int
+as
+select * from QEPD.Rol r where r.IdRol = @rolId
 
 go
-/*Seleccion de rol - boton Aceptar*/
+create procedure qepd.getFuncionalidad /*cundo necesites solo UNA Funcionalidad*/ /*En el metodo del repo, por parametro recibe un OBJETO Rol, y el Nombre de un Funcionalidad.
+																				   Con el nombre de la Funcionalidad, busco la misma en la lista de Funcionalidades de la lista del Rol que pase por parametro y obtengo esa funcionalidad(objeto) que busque (Filter por nombre a nivel objetos)
+																				   Teniendo este objeto rol, saco su ID
+																				   Paso el ID a este procedure*/
+@IdFuncionalidad int
+as
+select * from QEPD.Funcionalidad f where f.IdFuncionalidad = @IdFuncionalidad
 
+
+/*Repo Clientes*/
+
+go
 create procedure qepd.getClientes
 as
 select * from Cliente
 
+go
+create procedure qepd.getCliente
+@clienteNombre nvarchar(255)
+as
+select * from QEPD.Cliente c where c.Nombre_Cliente = @clienteNombre
+
 
 go
-/*ABM cliente - boton crear*/
-
 create procedure qepd.newCliente
 @nombre nvarchar(255),
 @apellido nvarchar(255),
@@ -487,9 +518,8 @@ end
 
 
 go
-/*ABM cliente - boton modificar*/
-
-create procedure qepd.modificarCliente
+create procedure qepd.modificarCliente /*el metodo del repo recibe un objeto cliente del cual sacamos su Id*/
+@idCliente int,
 @nombre nvarchar(255),
 @apellido nvarchar(255),
 @dni numeric,
@@ -508,19 +538,17 @@ begin
 
 	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
 
-	insert into QEPD.Cliente
-	values (@dni, @nombre, @apellido, @mail, @fnacimiento, @telefono, @direction, @estado)
+	update QEPD.Cliente set Dni_Cliente = @dni, Nombre_Cliente = @nombre, Apellido_Cliente = @apellido, Email_Cliente = @mail, Fecha_Nac_Cliente = @fnacimiento, Telefono_Cliente = @telefono, IdDomicilio = @direction where IdCliente = @idCliente
+	
 end
 
 
 
 go
-/*ABM cliente - boton eliminar*/
-
 create procedure qepd.eliminarCliente
-@id int
+@idCliente int
 as
-delete from QEPD.Cliente where IdCliente = @id
+update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
 
 

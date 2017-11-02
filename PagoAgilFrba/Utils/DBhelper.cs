@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Data.CommandType;
 using System.Configuration;
 using System.Data;
 
@@ -20,7 +19,8 @@ namespace PagoAgilFrba.Utils
 
             if (instancia == null) {
 
-                return new DBhelper();
+                instancia = new DBhelper();
+                return instancia;
             
             }
 
@@ -58,7 +58,7 @@ namespace PagoAgilFrba.Utils
 
         public DataTable obtenerTabla(SqlCommand cmd){
 
-            SqlDataReader reader = new SqlDataReader();
+            SqlDataReader reader;
             DataTable tabla = new DataTable();
 
             reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
