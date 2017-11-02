@@ -403,10 +403,15 @@ create procedure QEPD.validarUsuario
 as
 begin
 if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
-	return 1
+	begin
+		update QEPD.Usuario set Logs_Fallidos = 0 
+		return 1
+	end
 else
-	update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1  
-	return 0
+	begin
+		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1  
+		return 0
+	end
 end
 
 
