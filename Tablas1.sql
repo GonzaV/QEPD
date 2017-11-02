@@ -394,7 +394,23 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 /*-------------------Los dividi Por Repositorios----------------------*/
 
 
+
 /*Repo Usuarios*/
+
+/*
+-validarUsuario
+-bloquearUsuario
+-getUsuario
+-getRoles
+-getFuncionalidades
+-getRol
+-getFuncionalidad
+-----crearRol
+-modificarRol
+-----eliminarRol
+-agregarFuncionalidadaARol
+-eleminarFuncionalidadARol
+*/
 
 go
 create procedure QEPD.validarUsuario
@@ -478,6 +494,46 @@ create procedure qepd.getFuncionalidad /*cundo necesites solo UNA Funcionalidad*
 as
 select * from QEPD.Funcionalidad f where f.IdFuncionalidad = @IdFuncionalidad
 
+go
+create procedure qepd.modificarRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol.
+								   Con el nombre del rol, busco el mismo en la lista de roles del usuario que pase por parametro y obtengo ese rol(objeto) que busque (Filter por nombre a nivel objetos)
+								   Teniendo este objeto rol, saco su ID
+								   Paso el ID a este procedure*/
+@rolId int,
+@rolNombre nvarchar(255)
+as
+update QEPD.Rol set Nombre_Rol = @rolNombre where IdRol = @rolId
+
+go
+
+
+/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos, estupido*/
+
+go
+create procedure qepd.agregarFuncionalidadaARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
+										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
+@rolId int,
+@nombreFuncionalidad nvarchar(255)
+as
+begin
+	declare @idFuncionalidad int
+	set @idFuncionalidad = (select f.IdFuncionalidad from QEPD.Funcionalidad f where f.Nombre_Funcionalidad = @nombreFuncionalidad)
+	insert into QEPD.RolPorFuncionalidad values (@rolId, @idFuncionalidad)
+end
+
+go
+create procedure qepd.eleminarFuncionalidadARol /*es para eliminar una funcionalidad de un rol, probablemente el ABM rol*/
+										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
+@rolId int,
+@nombreFuncionalidad nvarchar(255)
+as
+begin
+	declare @idFuncionalidad int
+	set @idFuncionalidad = (select f.IdFuncionalidad from QEPD.Funcionalidad f where f.Nombre_Funcionalidad = @nombreFuncionalidad)
+	delete from QEPD.RolPorFuncionalidad where IdRol = @rolId and IdFuncionalidad = @nombreFuncionalidad
+end
+
+
 
 /*Repo Clientes*/
 
@@ -507,8 +563,7 @@ as
 begin
 	declare @direction int
 
-	insert into QEPD.Domicilio
-	values (@direccion,@cp)
+	insert into QEPD.Domicilio values (@direccion,@cp)
 
 	set @direction = (select d.IdDomicilio from QEPD.Domicilio d where d.Cod_Postal = @cp and d.Direccion = @direccion)
 
@@ -541,7 +596,6 @@ begin
 	update QEPD.Cliente set Dni_Cliente = @dni, Nombre_Cliente = @nombre, Apellido_Cliente = @apellido, Email_Cliente = @mail, Fecha_Nac_Cliente = @fnacimiento, Telefono_Cliente = @telefono, IdDomicilio = @direction where IdCliente = @idCliente
 	
 end
-
 
 
 go
