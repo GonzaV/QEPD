@@ -34,7 +34,7 @@ namespace PagoAgilFrba.Utils
 
         public void crearConexion() {
 
-            conexion = new SqlConnection("tudirec");
+            conexion = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=prueba;User ID=sa;Password=gestiondedatos");
         
         }
 
