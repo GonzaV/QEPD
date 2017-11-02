@@ -546,9 +546,9 @@ end
 
 go
 create procedure qepd.eliminarCliente
-@id int
+@idCliente int
 as
-delete from QEPD.Cliente where IdCliente = @id
+update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
 
 
