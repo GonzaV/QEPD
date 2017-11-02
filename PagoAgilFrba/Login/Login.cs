@@ -16,6 +16,7 @@ namespace PagoAgilFrba.Login
 
         String contraseñaIngresada;
         String usuarioIngresado;
+        int valorValidacion = 0;
 
         public Login()
         {
@@ -27,24 +28,40 @@ namespace PagoAgilFrba.Login
         private void aceptarLogin_Click(object sender, EventArgs e)
 
         {
-           
-            if (Model.Repo_usuario.getInstancia().obtenerNombreDeUsuarioLoggeado() == this.usuarioIngresado && Model.Repo_usuario.getInstancia().obtenerPasswordUsuario() == this.contraseñaIngresada)
-            {
+            valorValidacion = validarUsuario();
+            if ( valorValidacion == 1)
+
+           {
 
                 this.Hide();
                 new SeleccionRol.SeleccionRol().ShowDialog();
                 this.Close();
+           }
 
-            }
-            else { 
-                
+           else { 
+              
+              //aca deberia tirar el label de que el usuario o contraseña son incorrectos
+               //mensaje_error.Text = "Usuario o contraseña incorrectos";
+               this.Hide();
+              MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               new Login().ShowDialog();
+
+           }
+
+
+ //           if (Model.Repo_usuario.getInstancia().obtenerNombreDeUsuarioCreado() == this.usuarioIngresado && Model.Repo_usuario.getInstancia().obtenerPasswordUsuarioCreado() == this.contraseñaIngresada)
+ //           {
+ //               this.Hide();
+  //              new SeleccionRol.SeleccionRol().ShowDialog();
+ //               this.Close();
+  //          }
+ //           else {               
                 //aca deberia tirar el label de que el usuario o contraseña son incorrectos
-                //mensaje_error.Text = "Usuario o contraseña incorrectos";
-                this.Hide();
-                MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                new Login().ShowDialog();
-
-            }
+  //              //mensaje_error.Text = "Usuario o contraseña incorrectos";
+   //             this.Hide();
+  //              MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+  //              new Login().ShowDialog();
+  //          }
             
             
         }
@@ -64,6 +81,14 @@ namespace PagoAgilFrba.Login
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public int validarUsuario() {
+
+            int valorValidacion = Model.Repo_usuario.getInstancia().validarUsuario(textBoxUsuario.Text,textBoxPassword.Text);
+
+            return valorValidacion;
+        
         }
 
      

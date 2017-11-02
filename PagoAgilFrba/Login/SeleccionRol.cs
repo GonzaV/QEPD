@@ -14,13 +14,13 @@ namespace PagoAgilFrba.Login.SeleccionRol
     {
 
         public String rolSeleccionado;
-        public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().obtenerRolesUsuario();
+        public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().obtenerRolesUsuarioCreado();
         
 
         public SeleccionRol()
         {
             InitializeComponent();
-            configuarComboBox();
+            //configuarComboBox();
 
         }
 
@@ -34,7 +34,7 @@ namespace PagoAgilFrba.Login.SeleccionRol
         private void boton_aceptar_rol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Model.Repo_usuario.getInstancia().getUsuario().setRolActivo(rolSeleccionado);
+            Model.Repo_usuario.getInstancia().getUsuario_creado().setRolActivo(rolSeleccionado);
             new Seleccion_funcionalidades().ShowDialog();
             System.Diagnostics.Debug.WriteLine(rolSeleccionado);
             this.Close();

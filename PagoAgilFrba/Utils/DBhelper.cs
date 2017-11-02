@@ -15,7 +15,7 @@ namespace PagoAgilFrba.Utils
         private static DBhelper instancia;
         private SqlConnection conexion;
 
-        static DBhelper getInstancia() {
+        public static DBhelper getInstancia() {
 
             if (instancia == null) {
 
@@ -66,6 +66,15 @@ namespace PagoAgilFrba.Utils
 
             return tabla;
 
+        }
+
+        public Object obtenerReader(SqlCommand cmd) {
+
+            Object resultado;
+            resultado = cmd.ExecuteScalar();
+
+            return resultado;
+        
         }
 
 
