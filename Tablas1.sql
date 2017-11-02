@@ -71,6 +71,51 @@ IF OBJECT_ID('QEPD.Cliente','U') IS NOT NULL
 IF OBJECT_ID('QEPD.Domicilio','U') IS NOT NULL  
 	DROP TABLE QEPD.Domicilio;
 
+IF OBJECT_ID('QEPD.validarUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.validarUsuario;
+
+IF OBJECT_ID('QEPD.bloquearUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.bloquearUsuario;
+
+IF OBJECT_ID('QEPD.getUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getUsuario;
+
+IF OBJECT_ID('QEPD.getRoles','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRoles;
+
+IF OBJECT_ID('QEPD.getFuncionalidades','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getFuncionalidades;
+
+IF OBJECT_ID('QEPD.getRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRol;
+
+IF OBJECT_ID('QEPD.getFuncionalidad','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getFuncionalidad;
+
+IF OBJECT_ID('QEPD.modificarRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarRol;
+
+IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
+
+IF OBJECT_ID('QEPD.eleminarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eleminarFuncionalidadARol;
+
+IF OBJECT_ID('QEPD.getCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getCliente;
+
+IF OBJECT_ID('QEPD.getClientes','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getClientes;
+
+IF OBJECT_ID('QEPD.newCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newCliente;
+
+IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarCliente;
+
+IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eliminarCliente;
+
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
 
@@ -510,7 +555,7 @@ go
 /*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos, estupido*/
 
 go
-create procedure qepd.agregarFuncionalidadaARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
+create procedure qepd.agregarFuncionalidadARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
 										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
 @rolId int,
 @nombreFuncionalidad nvarchar(255)
