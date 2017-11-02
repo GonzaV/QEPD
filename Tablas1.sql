@@ -441,7 +441,6 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 
 
 /*Repo Usuarios*/
-
 /*
 -validarUsuario
 -bloquearUsuario
@@ -453,7 +452,7 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 -----crearRol
 -modificarRol
 -----eliminarRol
--agregarFuncionalidadaARol
+-agregarFuncionalidadARol
 -eleminarFuncionalidadARol
 */
 
