@@ -40,14 +40,21 @@ namespace PagoAgilFrba.Model
 
         public int validarUsuario(String usuario, String contraseña) {
 
+            
             DBhelper.crearConexion();
 
-            SqlCommand cmd = DBhelper.crearCommand("validarUsuario");
-            cmd.Parameters.Add(usuario, contraseña);
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.validarUsuario");
+            cmd.Parameters.Add("@usuarioNombre", SqlDbType.NVarChar).Value = usuario;
+            cmd.Parameters.Add("@pass", SqlDbType.NVarChar).Value = Encriptador.getInstancia().encriptar(contraseña);
 
+            var valorDeRetorno = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            valorDeRetorno.Direction = ParameterDirection.ReturnValue;
+          
             DBhelper.abrirConexion();
 
-            return (int)DBhelper.obtenerReader(cmd);
+            DBhelper.obtenerRetornoProcedure(cmd);
+
+            return (int)valorDeRetorno.Value;
              
         }
 

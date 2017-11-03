@@ -381,10 +381,10 @@ INSERT INTO QEPD.Pago(Nro_Pago,Fecha_Cobro_Pago, CodigoPostal_Sucursal, Total_Pa
 
 /* Migracion Renglon Pago */
 
-INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa) 
+/*INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa) 
 		SELECT DISTINCT f.Nro_Factura, p.Nro_Pago, e.IdEmpresa
 		FROM QEPD.Factura f, QEPD.Pago p, QEPD.Empresa e
-		WHERE p.Nro_Pago IS NOT NULL 
+		WHERE p.Nro_Pago IS NOT NULL */
 
 /* Migracion Rendicion */ 
 
@@ -395,10 +395,10 @@ INSERT INTO QEPD.Rendicion(IdRendicion, IdEmpresa,Fecha_Rendicion,Total_Rendicio
 
 /* Migracion Renglon Rendicion */
 
-INSERT INTO QEPD.Renglon_Rendicion(Nro_Pago,Monto_Pago,IdRendicion)
+/*INSERT INTO QEPD.Renglon_Rendicion(Nro_Pago,Monto_Pago,IdRendicion)
 		SELECT p.Nro_Pago, tb.Total ,r.IdRendicion
 		FROM gd_esquema.Maestra tb, QEPD.Pago p, QEPD.Rendicion r
-		WHERE Rendicion_Nro IS NOT NULL
+		WHERE Rendicion_Nro IS NOT NULL*/
 
 /* Carga Rol */
 
