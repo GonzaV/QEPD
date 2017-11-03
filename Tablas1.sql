@@ -12,7 +12,7 @@ tabla, Algunos post en foros en internet plantean que es mas performante el IF E
 
 
 
-/*//////////////////////// TO DO - Verificar si los drops estan en el orden correcto*/
+/* Se eliminan tablas preexistentes */
 
 IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL    
 	DROP TABLE QEPD.RolPorUsuario;
@@ -70,6 +70,28 @@ IF OBJECT_ID('QEPD.Cliente','U') IS NOT NULL
 
 IF OBJECT_ID('QEPD.Domicilio','U') IS NOT NULL  
 	DROP TABLE QEPD.Domicilio;
+
+IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorUsuario;
+
+IF OBJECT_ID('QEPD.UsuarioPorSucursal','U') IS NOT NULL  
+	DROP TABLE QEPD.UsuarioPorSucursal;
+
+IF OBJECT_ID('QEPD.RolPorFuncionalidad','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorFuncionalidad;
+
+IF OBJECT_ID('QEPD.Usuario','U') IS NOT NULL  
+	DROP TABLE QEPD..Usuario;
+
+IF OBJECT_ID('QEPD.Rol','U') IS NOT NULL  
+	DROP TABLE QEPD.UsuarioPorSucursal;
+
+IF OBJECT_ID('QEPD.Funcionalidad','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorFuncionalidad;
+
+
+
+/* SE DROPEAN PROCEDURES Y FUNCIONES */ 
 
 IF OBJECT_ID('QEPD.validarUsuario','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.validarUsuario;
@@ -185,7 +207,7 @@ create table qepd.Renglon_Factura(
 IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
 Item_Monto_Factura numeric(18,2) NOT NULL,
 Item_Cant_Factura numeric(18,0) NOT NULL,
-Item_descripcion nvarchar(255) NOT NULL,
+Item_descripcion nvarchar(255) NULL,
 Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
 )
 
@@ -299,8 +321,8 @@ UNION ALL
 
 /* Migracion  Cliente */
 
-INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente,Telefono_Cliente, Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
-			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido],FLOOR(RAND(CHECKSUM(NEWID()))*(99999999-1000000)+100000), m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
+INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente, Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
+			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido], m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
 			FROM gd_esquema.Maestra m, QEPD.Domicilio c
 			WHERE m.[Cliente-Dni] IS NOT NULL AND c.Direccion = m.Cliente_Direccion
 
@@ -367,7 +389,7 @@ INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa)
 /* Migracion Rendicion */ 
 
 INSERT INTO QEPD.Rendicion(IdRendicion, IdEmpresa,Fecha_Rendicion,Total_Rendicion)
-		SELECT tb.Rendicion_Nro, e.IdEmpresa, tb.Rendicion_Fecha, tb.ItemRendicion_nro
+		SELECT DISTINCT tb.Rendicion_Nro, e.IdEmpresa, tb.Rendicion_Fecha, tb.ItemRendicion_nro
 		FROM gd_esquema.Maestra tb, QEPD.Empresa e 
 		WHERE tb.Rendicion_Nro IS NOT NULL
 
