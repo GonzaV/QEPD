@@ -34,7 +34,7 @@ namespace PagoAgilFrba.Utils
 
         public void crearConexion() {
 
-            conexion = new SqlConnection(@"Data Source=DESKTOP-G6C3A2V\SQLSERVER2012;Initial Catalog=GD2C2017;User ID=gd;Password=gd2017");
+            conexion = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD2C2017;User ID=gd;Password=gd2017");
         
         }
 
