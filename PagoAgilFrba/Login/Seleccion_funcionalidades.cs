@@ -64,5 +64,12 @@ namespace PagoAgilFrba.Login
             this.Close();
         }
 
+        private void boton_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new SeleccionRol.SeleccionRol().ShowDialog();
+            this.Close();
+        }
+
     }
 }

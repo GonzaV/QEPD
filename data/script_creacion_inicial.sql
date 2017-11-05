@@ -138,9 +138,6 @@ IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarCliente;
 
-IF OBJECT_ID('QEPD.bloquearUsuario','P') IS NOT NULL  
-	DROP PROCEDURE QEPD.bloquearUsuario;
-
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
 
@@ -660,7 +657,6 @@ go
 create procedure qepd.getClientes
 as
 select * from Cliente
-order by Nombre_Cliente
 
 go
 create procedure qepd.getCliente

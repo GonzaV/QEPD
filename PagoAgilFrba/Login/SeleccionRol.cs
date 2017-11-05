@@ -46,5 +46,12 @@ namespace PagoAgilFrba.Login.SeleccionRol
             this.selectorDeRol.DataSource = listaDeRoles;
             this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
+        private void boton_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login().ShowDialog();
+            this.Close();
+        }
     }
 }
