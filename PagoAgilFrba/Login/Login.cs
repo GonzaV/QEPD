@@ -18,9 +18,10 @@ namespace PagoAgilFrba.Login
         String usuarioIngresado;
         int valorValidacion = 0;
         //public Model.Repo_usuario repo_usuarios = Model.Repo_usuario.getInstancia();
-        public const Int16 BLOQUEADO = 0;
-        public const Int32 MAXLOGSFALLIDOS = 4;
-
+        public const Int16 CONTRASEÑAINCORRECTA = 0;
+        public const Int16 CORRECTO = 1;
+        public const Int16 BLOQUEADO_INEXISTENTE = -1;
+        public const Int32 MAXLOGSFALLIDOS = 3;
 
         public Login()
         {
@@ -34,7 +35,7 @@ namespace PagoAgilFrba.Login
         {
             valorValidacion = validarUsuario();
 
-            if ( valorValidacion == 1)
+            if ( valorValidacion == CORRECTO)
 
            {
                 this.Hide();
@@ -45,10 +46,9 @@ namespace PagoAgilFrba.Login
 
            else {
 
-                if (valorValidacion == 0){
+                if (valorValidacion == CONTRASEÑAINCORRECTA){
 
               Model.Repo_usuario.getInstancia().getUsuario(textBoxUsuario.Text);
-              //Model.Repo_usuario.getInstancia().getUsuarioIngresado().sumarIntentoDeLogFallido();
 
               Console.WriteLine(Model.Repo_usuario.getInstancia().getUsuarioIngresado().getCantidadLogsFallidos());
               Console.WriteLine(Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario());
@@ -56,6 +56,17 @@ namespace PagoAgilFrba.Login
               controlarCantidadLogsFallidos();
 
            }
+                else {
+
+                    if (valorValidacion == BLOQUEADO_INEXISTENTE) {
+
+                        this.Hide();
+                        MessageBox.Show("Usuario bloqueado por exceder el límite de logs fallidos  o inexistente, consulte un administrador", "Usuario bloqueado o inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Login().ShowDialog();
+
+                    }
+                
+                }
 
            }
             
@@ -78,10 +89,8 @@ namespace PagoAgilFrba.Login
 
         }
 
-        public int validarUsuario() {
 
-            //if (Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario() <= 4)
-           // {
+        public int validarUsuario() {
 
             int valorValidacion = Model.Repo_usuario.getInstancia().validarUsuario(textBoxUsuario.Text, textBoxPassword.Text);
 
@@ -89,32 +98,6 @@ namespace PagoAgilFrba.Login
         
             }
 
-          /*  else {
-
-                if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getEstado() != 0)
-                {
-
-                    this.Hide();
-                    Model.Repo_usuario.getInstancia().bloquearUsuario();
-                    MessageBox.Show("Usuario bloqueado por exceder el límite de logs fallidos, consulte un administrador", "Usuario bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    return 0;
-
-                }
-                
-                else {
-                this.Hide();
-                MessageBox.Show("El usuario se encuentra bloqueado por exceder el límite de logs fallidos, consulte un administrador","Usuario bloqueado",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                this.Close();
-
-                return 0;
-
-                }
-
-            }
-
-
-        }*/
 
         public void controlarCantidadLogsFallidos() {
         
