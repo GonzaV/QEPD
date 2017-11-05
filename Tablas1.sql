@@ -480,13 +480,14 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 /*
 -validarUsuario
 -bloquearUsuario
+-reabilitarUsuario
 -getUsuario
 -getRoles
 -getFuncionalidades
 -getRol
 -getFuncionalidad
------crearRol
 -modificarRol
+-crearRol
 -----eliminarRol
 -agregarFuncionalidadARol
 -eleminarFuncionalidadARol
@@ -504,10 +505,13 @@ if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.N
 		return 1
 	end
 else
-	begin
-		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
-		return 0
-	end
+	if exists (select s.Nombre_Usuario from qepd.Usuario s WHERE s.Nombre_Usuario = @usuarioNombre)
+		begin
+			update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
+			return 0
+		end
+	else
+		return -1
 end
 
 go
@@ -520,7 +524,7 @@ as
 update QEPD.Usuario set Estado_Usuario = 0 where IdUsuario =  @usuarioId
 
 go
-create procedure qepd.bloquearUsuario /* Para rehabilitar un usuario previamente bloqueado */
+create procedure qepd.rehabilitarUsuario /* Para rehabilitar un usuario previamente bloqueado */
 @usuarioId int
 as
 update QEPD.Usuario set Estado_Usuario = 1 where IdUsuario =  @usuarioId
