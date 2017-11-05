@@ -51,7 +51,7 @@ namespace PagoAgilFrba.ABM_Cliente
         }
         private void button_crearCliente_Click(object sender, EventArgs e)
         {
-            Model.Repo_cliente.getInstancia().newCliente(
+                Model.Repo_cliente.getInstancia().newCliente(
                 textBox_nombre.Text,
                 textBox_apellido.Text,
                 Convert.ToInt32(textBox_dni.Text),
@@ -60,6 +60,8 @@ namespace PagoAgilFrba.ABM_Cliente
                 Convert.ToDateTime(textBox_fnacimiento.Text),
                 textBox_direccion.Text,
                 Convert.ToInt32(textBox_cp.Text));
+
+                MessageBox.Show("Cliente creado correctamente");
         }
 
         private void label2_Click(object sender, EventArgs e)
