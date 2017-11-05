@@ -27,7 +27,7 @@ namespace PagoAgilFrba.Model{
             {
                 instancia = new Repo_cliente();
 
-                return instancia;//?????????????
+                return instancia;
             }
         }
 
@@ -53,12 +53,20 @@ namespace PagoAgilFrba.Model{
             cmd.Parameters.Add("@fnacimiento", SqlDbType.DateTime).Value = fnacimiento;
             cmd.Parameters.Add("@direccion", SqlDbType.NVarChar).Value = direccion;
             cmd.Parameters.Add("@cp", SqlDbType.Int).Value = cp;
+            cmd.Parameters.Add("@mail", SqlDbType.NVarChar).Value = email;
+            cmd.Parameters.Add("@telefono", SqlDbType.Int).Value = telefono;
 
             DBhelper.abrirConexion();
 
             cmd.ExecuteNonQuery();
 
 
+        }
+
+        public void eliminarCliente(Int32 idCliente){
+            DBhelper.crearConexion();
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
+            cmd.Parameters.Add("@idCLiente", SqlDbType.NVarChar).Value = idCliente;
         }
 
     }

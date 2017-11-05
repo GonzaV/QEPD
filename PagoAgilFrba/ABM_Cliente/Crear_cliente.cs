@@ -49,18 +49,17 @@ namespace PagoAgilFrba.ABM_Cliente
             return true;
 
         }
-        //faltan pasar los Text de numeros a Int
         private void button_crearCliente_Click(object sender, EventArgs e)
         {
             Model.Repo_cliente.getInstancia().newCliente(
                 textBox_nombre.Text,
                 textBox_apellido.Text,
-                textBox_dni.Text,
+                Convert.ToInt32(textBox_dni.Text),
                 textBox_mail.Text,
-                textBox_telefono.Text,
-                textBox_fnacimiento.Text,
+                Convert.ToInt32(textBox_telefono.Text),
+                Convert.ToDateTime(textBox_fnacimiento.Text),
                 textBox_direccion.Text,
-                textBox_cp.Text);
+                Convert.ToInt32(textBox_cp.Text));
         }
 
         private void label2_Click(object sender, EventArgs e)
