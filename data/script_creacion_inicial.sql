@@ -499,13 +499,13 @@ create procedure QEPD.validarUsuario
 @pass nvarchar(255)
 as
 begin
-if exists (select s.Nombre_Usuario, s.Pass_Usuario, s.Estado_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass and s.Estado_Usuario = 1)
+if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
 	begin
 		update QEPD.Usuario set Logs_Fallidos = 0 WHERE Nombre_Usuario = @usuarioNombre
 		return 1
 	end
 else
-	if exists (select s.Nombre_Usuario, s.Estado_Usuario from qepd.Usuario s WHERE s.Nombre_Usuario = @usuarioNombre and s.Estado_Usuario = 1)
+	if exists (select s.Nombre_Usuario from qepd.Usuario s WHERE s.Nombre_Usuario = @usuarioNombre)
 		begin
 			update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
 			return 0
