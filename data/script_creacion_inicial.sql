@@ -539,7 +539,7 @@ select * from QEPD.Usuario s where s.Nombre_Usuario = @usuarioNombre
 
 go
 create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuario*/
-@IdUsuario nvarchar(255)
+@IdUsuario int
 as
 begin
 	select r.IdRol, Nombre_Rol, Estado_Rol 
@@ -656,7 +656,7 @@ end
 go
 create procedure qepd.getClientes
 as
-select * from Cliente
+select * from qepd.Cliente
 
 go
 create procedure qepd.getCliente

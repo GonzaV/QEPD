@@ -1,6 +1,6 @@
 script
 --------
-procedures crear, modificar, y eliminar roles
+procedures de eliminar roles
 
 procedimiento de todos los repos menos usuario y cliente
 
