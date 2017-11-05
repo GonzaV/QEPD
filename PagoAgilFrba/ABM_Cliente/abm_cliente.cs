@@ -13,7 +13,7 @@ namespace PagoAgilFrba.ABM_Cliente
     public partial class abm_cliente : Form
     {
 
-        public List<Model.Usuario> listaDeUsuarios = Model.Repo_usuario.getInstancia().getListaDeUsuarios();
+        
         public Model.Usuario usuarioSeleccionado;
 
         public abm_cliente()
@@ -34,7 +34,7 @@ namespace PagoAgilFrba.ABM_Cliente
 
             this.comboBox_clientes.ValueMember = "ObjetoUsuario";
             this.comboBox_clientes.DisplayMember = "Nombre";
-            this.comboBox_clientes.DataSource = listaDeUsuarios;
+            
             this.comboBox_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }

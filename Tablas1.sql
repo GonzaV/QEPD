@@ -500,12 +500,12 @@ as
 begin
 if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
 	begin
-		update QEPD.Usuario set Logs_Fallidos = 0 
+		update QEPD.Usuario set Logs_Fallidos = 0 WHERE Nombre_Usuario = @usuarioNombre
 		return 1
 	end
 else
 	begin
-		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1  
+		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
 		return 0
 	end
 end
@@ -515,9 +515,9 @@ create procedure qepd.bloquearUsuario /*En el metodo validar usuario del control
 										existira un metodo del repo que se llamara bloquear usuario que usara este procedure
 										En el codigo del metodo validar usuario del CONTROLLER, valida el usuario, y puede hacerlo hasta 4 veces
 										si llego a la cuarta, el metodo del controller, llama a bloquearUsuario del repo, y este usa este procedure*/
-@usuarioNombre nvarchar(255)
+@usuarioId int
 as
-update QEPD.Usuario set Estado_Usuario = 0 where Nombre_Usuario =  @usuarioNombre
+update QEPD.Usuario set Estado_Usuario = 0 where IdUsuario =  @usuarioId
 
 
 go
@@ -532,7 +532,7 @@ create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuar
 @IdUsuario nvarchar(255)
 as
 begin
-	select * 
+	select r.IdRol, Nombre_Rol, Estado_Rol 
 	from qepd.Usuario s 
 		join QEPD.RolPorUsuario rs
 			on rs.IdUsuario = s.IdUsuario
