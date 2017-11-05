@@ -33,6 +33,7 @@ namespace PagoAgilFrba.Login
 
         {
             valorValidacion = validarUsuario();
+
             if ( valorValidacion == 1)
 
            {
@@ -44,13 +45,19 @@ namespace PagoAgilFrba.Login
 
            else {
 
-              Model.Repo_usuario.getInstancia().getUsuarioIngresado().sumarIntentoDeLogFallido();
-              this.Hide();
-              MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              new Login().ShowDialog();
+                if (valorValidacion == 0){
+
+              Model.Repo_usuario.getInstancia().getUsuario(textBoxUsuario.Text);
+              //Model.Repo_usuario.getInstancia().getUsuarioIngresado().sumarIntentoDeLogFallido();
+
+              Console.WriteLine(Model.Repo_usuario.getInstancia().getUsuarioIngresado().getCantidadLogsFallidos());
+              Console.WriteLine(Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario());
+
+              controlarCantidadLogsFallidos();
 
            }
-            
+
+           }
             
         }
 
@@ -73,8 +80,8 @@ namespace PagoAgilFrba.Login
 
         public int validarUsuario() {
 
-            if (Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario() <= 4)
-            {
+            //if (Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario() <= 4)
+           // {
 
             int valorValidacion = Model.Repo_usuario.getInstancia().validarUsuario(textBoxUsuario.Text, textBoxPassword.Text);
 
@@ -82,7 +89,7 @@ namespace PagoAgilFrba.Login
         
             }
 
-            else {
+          /*  else {
 
                 if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getEstado() != 0)
                 {
@@ -107,8 +114,28 @@ namespace PagoAgilFrba.Login
             }
 
 
+        }*/
+
+        public void controlarCantidadLogsFallidos() {
+        
+        if (Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario() <= MAXLOGSFALLIDOS){
+
+            this.Hide();
+            MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            new Login().ShowDialog();
+        
         }
 
+        else {
+
+            this.Hide();
+            Model.Repo_usuario.getInstancia().bloquearUsuario();
+            MessageBox.Show("Usuario bloqueado por exceder el límite de logs fallidos, consulte un administrador", "Usuario bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            new Login().ShowDialog();
+        
+        }
+
+        }
 
     }
 }
