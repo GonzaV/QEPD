@@ -503,8 +503,34 @@ create procedure qepd.modificarRol /*En el metodo del repo, por parametro recibe
 as
 update QEPD.Rol set Nombre_Rol = @rolNombre where IdRol = @rolId
 
-go
 
+go
+create procedure qepd.newRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol
+							 Teniendo este objeto rol, saco su ID
+						     Paso el ID a este procedure*/
+@usuarioId int,
+@nombreRol int
+as
+begin
+	declare @usuario int
+	declare @rol int
+	set @usuario = (select u.IdUsuario from QEPD.Usuario u where u.IdUsuario = @usuarioId)
+	insert into QEPD.Rol (Nombre_Rol) values (@nombreRol)
+	set @rol = (select r.IdRol from QEPD.Rol r where r.Nombre_Rol = @nombreRol)
+	insert into QEPD.RolPorUsuario (IdRol,IdUsuario) values (@rol, @usuario)
+end
+/*
+create table qepd.Rol(
+IdRol int IDENTITY(1,1) PRIMARY KEY,
+Nombre_Rol nvarchar(255) NOT NULL,
+Estado_Rol BIT DEFAULT 1
+)
+create table qepd.RolPorUsuario(
+IdRol int FOREIGN KEY REFERENCES QEPD.Rol(IdRol),
+IdUsuario int FOREIGN KEY REFERENCES QEPD.Usuario(IdUsuario),
+CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
+)
+*/
 
 /*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos, estupido*/
 
