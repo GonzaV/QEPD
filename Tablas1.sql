@@ -159,7 +159,7 @@ Cod_Postal nvarchar(255) NOT NULL
 
 CREATE TABLE QEPD.Cliente(
 IdCliente int IDENTITY(1,1) PRIMARY KEY,
-Dni_Cliente numeric NOT NULL,
+Dni_Cliente numeric NOT NULL UNIQUE, /*el dni lo hice unique*/
 Nombre_Cliente nvarchar(255) NOT NULL,
 Apellido_Cliente nvarchar(255)  NOT NULL,
 Email_Cliente nvarchar(255) NOT NULL,
@@ -624,9 +624,10 @@ select * from Cliente
 
 go
 create procedure qepd.getCliente
-@clienteNombre nvarchar(255)
+@Dni_Cliente nvarchar(255) /*  */ 
 as
-select * from QEPD.Cliente c where c.Nombre_Cliente = @clienteNombre
+select * from QEPD.Cliente c where c.Nombre_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
+
 
 
 go
