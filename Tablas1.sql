@@ -138,6 +138,9 @@ IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarCliente;
 
+IF OBJECT_ID('QEPD.getRolesUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRolesUsuario;
+
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
 
@@ -486,7 +489,6 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 -getFuncionalidades
 -getRol
 -getFuncionalidad
--modificarRol
 -crearRol
 -----eliminarRol
 -agregarFuncionalidadARol
@@ -538,7 +540,7 @@ select * from QEPD.Usuario s where s.Nombre_Usuario = @usuarioNombre
 
 
 go
-create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuario*/
+create procedure QEPD.getRolesUsuario /*cuando necesites una lista de roles de un usuario*/
 @IdUsuario nvarchar(255)
 as
 begin
@@ -583,16 +585,6 @@ create procedure qepd.getFuncionalidad /*cundo necesites solo UNA Funcionalidad*
 @IdFuncionalidad int
 as
 select * from QEPD.Funcionalidad f where f.IdFuncionalidad = @IdFuncionalidad
-
-go
-create procedure qepd.modificarRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol.
-								   Con el nombre del rol, busco el mismo en la lista de roles del usuario que pase por parametro y obtengo ese rol(objeto) que busque (Filter por nombre a nivel objetos)
-								   Teniendo este objeto rol, saco su ID
-								   Paso el ID a este procedure*/
-@rolId int,
-@rolNombre nvarchar(255)
-as
-update QEPD.Rol set Nombre_Rol = @rolNombre where IdRol = @rolId
 
 
 go
@@ -722,4 +714,19 @@ as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
 
+/*Repo Roles*/
 
+go
+create procedure qepd.getRoles 
+
+as
+
+select * from QEPD.Rol
+
+go
+create procedure qepd.modificarRol 
+								    								   
+@rolId int,
+@rolNombreNuevo nvarchar(255)
+as
+update QEPD.Rol set Nombre_Rol = @rolNombreNuevo where IdRol = @rolId

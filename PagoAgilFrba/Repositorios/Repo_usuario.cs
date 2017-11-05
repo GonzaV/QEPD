@@ -91,20 +91,20 @@ namespace PagoAgilFrba.Model
             
             }
 
-            usuarioIngresado.setListaDeRoles(getRoles(usuarioIngresado.getId()));
+            usuarioIngresado.setListaDeRoles(getRolesUsuario(usuarioIngresado.getId()));
 
             return usuarioIngresado;
 
         }
 
-        public List<Model.Rol> getRoles(int idUsuario) {
+        public List<Model.Rol> getRolesUsuario(int idUsuario) {
 
             DataTable tablaRoles;
             List<Model.Rol> listaDeRoles = new List<Model.Rol>();
 
             DBhelper.crearConexion();
 
-            SqlCommand cmd = DBhelper.crearCommand("QEPD.getRoles");
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getRolesUsuario");
             cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = idUsuario;
 
             DBhelper.abrirConexion();
