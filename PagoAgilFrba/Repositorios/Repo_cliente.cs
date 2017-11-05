@@ -13,7 +13,7 @@ namespace PagoAgilFrba.Model{
         
         
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
-        public static List<Cliente> listaDeClientes = new List<Cliente>();
+        public List<Cliente> listaDeClientes = new List<Cliente>();
         public static Repo_cliente instancia;
 
         public static Repo_cliente getInstancia()
@@ -33,12 +33,38 @@ namespace PagoAgilFrba.Model{
 
 
 
-        public void getClientes(){
+        public List<Cliente> getClientes(){
+
+            DataTable tablaClientes;
+
+            List<Model.Cliente> listaDeRoles = new List<Model.Cliente>();
 
             DBhelper.crearConexion();
+
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getClientes");
+            
+            DBhelper.abrirConexion();
 
+            tablaClientes = DBhelper.obtenerTabla(cmd);
 
+            foreach (DataRow row in tablaClientes.Rows)
+            {
+
+                Model.Cliente cliente = new Cliente();
+
+                cliente.setNombre((String)row["Nombre_Cliente"]);
+                cliente.setApellido((String)row["Apellido_Cliente"]);
+                cliente.setEmail((String)row["Email_Cliente"]);
+                cliente.setFnacimiento((DateTime)row["Fecha_Nac_Cliente"]);
+                cliente.setId((Int32)row["IdCliente"]);
+                //cliente.setTelefono((Int32)row["Telefono_Cliente"]);  Problema de tipados
+                //cliente.setIdDomicilio((Int32)row["idDomicilio"]);
+                cliente.setEstado(Convert.ToInt16(row["Estado_Cliente"]));
+
+                listaDeClientes.Add(cliente);
+            }
+
+            return listaDeClientes;
  
         }
 
@@ -65,7 +91,7 @@ namespace PagoAgilFrba.Model{
 
         public void eliminarCliente(Int32 idCliente){
             DBhelper.crearConexion();
-            SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.eliminarCliente");
             cmd.Parameters.Add("@idCLiente", SqlDbType.NVarChar).Value = idCliente;
         }
 
