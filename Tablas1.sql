@@ -138,8 +138,13 @@ IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarCliente;
 
+<<<<<<< HEAD
 IF OBJECT_ID('QEPD.getRolesUsuario','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getRolesUsuario;
+=======
+IF OBJECT_ID('QEPD.bloquearUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.bloquearUsuario;
+>>>>>>> 00ad4391f1537ae54dd0924deb757116075b15b9
 
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
@@ -649,6 +654,7 @@ go
 create procedure qepd.getClientes
 as
 select * from Cliente
+order by Nombre_Cliente
 
 go
 create procedure qepd.getCliente
@@ -713,16 +719,26 @@ create procedure qepd.eliminarCliente
 as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
+go
+create procedure qepd.validarCliente
+@dniCliente numeric
+as
+if exists (select c.Dni_Cliente from qepd.Cliente c where c.Dni_Cliente = @dniCliente)
+	return 1
+else
+	return 0
+
+
 
 /*Repo Roles*/
 
 go
-create procedure qepd.getRoles 
+create procedure qepd.getRoles
 
 as
 
 select * from QEPD.Rol
-
+ 
 go
 create procedure qepd.modificarRol 
 								    								   

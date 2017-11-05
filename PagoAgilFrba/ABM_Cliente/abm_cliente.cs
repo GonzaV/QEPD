@@ -27,7 +27,7 @@ namespace PagoAgilFrba.ABM_Cliente
 
             ComboBox comboBox_clientes = (ComboBox)sender;
             this.clienteSeleccionado = (Model.Cliente)comboBox_clientes.SelectedValue;
-            
+            Model.Repo_cliente.getInstancia().setClienteSeleccionado(this.clienteSeleccionado);
         }
 
         public void configurarComboBox() {

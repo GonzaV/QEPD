@@ -499,13 +499,13 @@ create procedure QEPD.validarUsuario
 @pass nvarchar(255)
 as
 begin
-if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
+if exists (select s.Nombre_Usuario, s.Pass_Usuario, s.Estado_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass and s.Estado_Usuario = 1)
 	begin
 		update QEPD.Usuario set Logs_Fallidos = 0 WHERE Nombre_Usuario = @usuarioNombre
 		return 1
 	end
 else
-	if exists (select s.Nombre_Usuario from qepd.Usuario s WHERE s.Nombre_Usuario = @usuarioNombre)
+	if exists (select s.Nombre_Usuario, s.Estado_Usuario from qepd.Usuario s WHERE s.Nombre_Usuario = @usuarioNombre and s.Estado_Usuario = 1)
 		begin
 			update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
 			return 0
@@ -721,5 +721,12 @@ create procedure qepd.eliminarCliente
 as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
-
+go
+create procedure qepd.validarCliente
+@dniCliente numeric
+as
+if exists (select c.Dni_Cliente from qepd.Cliente c where c.Dni_Cliente = @dniCliente)
+	return 1
+else
+	return 0
 

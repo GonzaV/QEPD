@@ -15,6 +15,7 @@ namespace PagoAgilFrba.Model{
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
         public List<Cliente> listaDeClientes = new List<Cliente>();
         public static Repo_cliente instancia;
+        public Cliente clienteSeleccionado;
 
         public static Repo_cliente getInstancia()
         {
@@ -31,7 +32,17 @@ namespace PagoAgilFrba.Model{
             }
         }
 
+        public Cliente getClienteSeleccionado(){
 
+            return this.clienteSeleccionado;
+        
+        }
+        
+        public void setClienteSeleccionado(Cliente clienteSeleccionado){
+
+            this.clienteSeleccionado = clienteSeleccionado;
+        
+        }
 
         public List<Cliente> getClientes(){
 
@@ -47,8 +58,7 @@ namespace PagoAgilFrba.Model{
 
             tablaClientes = DBhelper.obtenerTabla(cmd);
 
-            foreach (DataRow row in tablaClientes.Rows)
-            {
+            foreach (DataRow row in tablaClientes.Rows){
 
                 Model.Cliente cliente = new Cliente();
 
@@ -69,7 +79,26 @@ namespace PagoAgilFrba.Model{
         }
 
 
-        public void newCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp){
+        public void newCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp)
+        {
+
+            DBhelper.crearConexion();
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
+            cmd.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = nombre;
+            cmd.Parameters.Add("@apellido", SqlDbType.NVarChar).Value = apellido;
+            cmd.Parameters.Add("@dni", SqlDbType.Int).Value = dni;
+            cmd.Parameters.Add("@fnacimiento", SqlDbType.DateTime).Value = fnacimiento;
+            cmd.Parameters.Add("@direccion", SqlDbType.NVarChar).Value = direccion;
+            cmd.Parameters.Add("@cp", SqlDbType.Int).Value = cp;
+            cmd.Parameters.Add("@mail", SqlDbType.NVarChar).Value = email;
+            cmd.Parameters.Add("@telefono", SqlDbType.Int).Value = telefono;
+
+            DBhelper.abrirConexion();
+
+            cmd.ExecuteNonQuery();
+        }
+        
+        public void modificarCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp){
 
             DBhelper.crearConexion();
             SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
@@ -88,6 +117,7 @@ namespace PagoAgilFrba.Model{
 
 
         }
+        
 
         public void eliminarCliente(Int32 idCliente){
             DBhelper.crearConexion();
@@ -95,5 +125,6 @@ namespace PagoAgilFrba.Model{
             cmd.Parameters.Add("@idCLiente", SqlDbType.NVarChar).Value = idCliente;
         }
 
+            
+        }
     }
-}
