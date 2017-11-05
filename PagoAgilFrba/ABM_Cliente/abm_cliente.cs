@@ -14,7 +14,7 @@ namespace PagoAgilFrba.ABM_Cliente
     {
 
         
-        public Model.Usuario usuarioSeleccionado;
+        public Model.Cliente clienteSeleccionado;
 
         public abm_cliente()
         {
@@ -26,15 +26,15 @@ namespace PagoAgilFrba.ABM_Cliente
         {
 
             ComboBox comboBox_clientes = (ComboBox)sender;
-            this.usuarioSeleccionado = (Model.Usuario)comboBox_clientes.SelectedValue;
+            this.clienteSeleccionado = (Model.Cliente)comboBox_clientes.SelectedValue;
             
         }
 
         public void configurarComboBox() {
 
-            this.comboBox_clientes.ValueMember = "ObjetoUsuario";
+            this.comboBox_clientes.ValueMember = "Objeto";
             this.comboBox_clientes.DisplayMember = "Nombre";
-            
+            this.comboBox_clientes.DataSource = Model.Repo_cliente.getInstancia().getClientes();
             this.comboBox_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
