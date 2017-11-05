@@ -17,6 +17,10 @@ namespace PagoAgilFrba.Login
         String contraseñaIngresada;
         String usuarioIngresado;
         int valorValidacion = 0;
+        //public Model.Repo_usuario repo_usuarios = Model.Repo_usuario.getInstancia();
+        public const Int16 BLOQUEADO = 0;
+        public const Int32 MAXLOGSFALLIDOS = 4;
+
 
         public Login()
         {
@@ -32,36 +36,20 @@ namespace PagoAgilFrba.Login
             if ( valorValidacion == 1)
 
            {
-
                 this.Hide();
+                Model.Repo_usuario.getInstancia().getUsuario(textBoxUsuario.Text);
                 new SeleccionRol.SeleccionRol().ShowDialog();
                 this.Close();
            }
 
-           else { 
-              
-              //aca deberia tirar el label de que el usuario o contraseña son incorrectos
-               //mensaje_error.Text = "Usuario o contraseña incorrectos";
-               this.Hide();
+           else {
+
+              Model.Repo_usuario.getInstancia().getUsuarioIngresado().sumarIntentoDeLogFallido();
+              this.Hide();
               MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               new Login().ShowDialog();
+              new Login().ShowDialog();
 
            }
-
-
- //           if (Model.Repo_usuario.getInstancia().obtenerNombreDeUsuarioCreado() == this.usuarioIngresado && Model.Repo_usuario.getInstancia().obtenerPasswordUsuarioCreado() == this.contraseñaIngresada)
- //           {
- //               this.Hide();
-  //              new SeleccionRol.SeleccionRol().ShowDialog();
- //               this.Close();
-  //          }
- //           else {               
-                //aca deberia tirar el label de que el usuario o contraseña son incorrectos
-  //              //mensaje_error.Text = "Usuario o contraseña incorrectos";
-   //             this.Hide();
-  //              MessageBox.Show("Contraseña o usuario incorrectos", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error);
-  //              new Login().ShowDialog();
-  //          }
             
             
         }
@@ -85,17 +73,41 @@ namespace PagoAgilFrba.Login
 
         public int validarUsuario() {
 
-            int valorValidacion = Model.Repo_usuario.getInstancia().validarUsuario(textBoxUsuario.Text,textBoxPassword.Text);
+            if (Model.Repo_usuario.getInstancia().getCantidadDeLogsFallidosUsuario() <= 4)
+            {
+
+            int valorValidacion = Model.Repo_usuario.getInstancia().validarUsuario(textBoxUsuario.Text, textBoxPassword.Text);
 
             return valorValidacion;
         
+            }
+
+            else {
+
+                if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getEstado() != 0)
+                {
+
+                    this.Hide();
+                    Model.Repo_usuario.getInstancia().bloquearUsuario();
+                    MessageBox.Show("Usuario bloqueado por exceder el límite de logs fallidos, consulte un administrador", "Usuario bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return 0;
+
+                }
+                
+                else {
+                this.Hide();
+                MessageBox.Show("El usuario se encuentra bloqueado por exceder el límite de logs fallidos, consulte un administrador","Usuario bloqueado",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                this.Close();
+
+                return 0;
+
+                }
+
+            }
+
+
         }
-
-     
-
-
-
-
 
 
     }

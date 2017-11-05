@@ -12,7 +12,7 @@ tabla, Algunos post en foros en internet plantean que es mas performante el IF E
 
 
 
-/*//////////////////////// TO DO - Verificar si los drops estan en el orden correcto*/
+/* Se eliminan tablas preexistentes */
 
 IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL    
 	DROP TABLE QEPD.RolPorUsuario;
@@ -71,6 +71,73 @@ IF OBJECT_ID('QEPD.Cliente','U') IS NOT NULL
 IF OBJECT_ID('QEPD.Domicilio','U') IS NOT NULL  
 	DROP TABLE QEPD.Domicilio;
 
+IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorUsuario;
+
+IF OBJECT_ID('QEPD.UsuarioPorSucursal','U') IS NOT NULL  
+	DROP TABLE QEPD.UsuarioPorSucursal;
+
+IF OBJECT_ID('QEPD.RolPorFuncionalidad','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorFuncionalidad;
+
+IF OBJECT_ID('QEPD.Usuario','U') IS NOT NULL  
+	DROP TABLE QEPD..Usuario;
+
+IF OBJECT_ID('QEPD.Rol','U') IS NOT NULL  
+	DROP TABLE QEPD.UsuarioPorSucursal;
+
+IF OBJECT_ID('QEPD.Funcionalidad','U') IS NOT NULL  
+	DROP TABLE QEPD.RolPorFuncionalidad;
+
+
+
+/* SE DROPEAN PROCEDURES Y FUNCIONES */ 
+
+IF OBJECT_ID('QEPD.validarUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.validarUsuario;
+
+IF OBJECT_ID('QEPD.bloquearUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.bloquearUsuario;
+
+IF OBJECT_ID('QEPD.getUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getUsuario;
+
+IF OBJECT_ID('QEPD.getRoles','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRoles;
+
+IF OBJECT_ID('QEPD.getFuncionalidades','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getFuncionalidades;
+
+IF OBJECT_ID('QEPD.getRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRol;
+
+IF OBJECT_ID('QEPD.getFuncionalidad','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getFuncionalidad;
+
+IF OBJECT_ID('QEPD.modificarRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarRol;
+
+IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
+
+IF OBJECT_ID('QEPD.eleminarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eleminarFuncionalidadARol;
+
+IF OBJECT_ID('QEPD.getCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getCliente;
+
+IF OBJECT_ID('QEPD.getClientes','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getClientes;
+
+IF OBJECT_ID('QEPD.newCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newCliente;
+
+IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarCliente;
+
+IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eliminarCliente;
+
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
 
@@ -92,7 +159,7 @@ Cod_Postal nvarchar(255) NOT NULL
 
 CREATE TABLE QEPD.Cliente(
 IdCliente int IDENTITY(1,1) PRIMARY KEY,
-Dni_Cliente numeric NOT NULL,
+Dni_Cliente numeric NOT NULL UNIQUE, /*el dni lo hice unique*/
 Nombre_Cliente nvarchar(255) NOT NULL,
 Apellido_Cliente nvarchar(255)  NOT NULL,
 Email_Cliente nvarchar(255) NOT NULL,
@@ -140,7 +207,7 @@ create table qepd.Renglon_Factura(
 IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
 Item_Monto_Factura numeric(18,2) NOT NULL,
 Item_Cant_Factura numeric(18,0) NOT NULL,
-Item_descripcion nvarchar(255) NOT NULL,
+Item_descripcion nvarchar(255) NULL,
 Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
 )
 
@@ -155,7 +222,7 @@ Fecha_Cobro_Pago datetime NULL,
 CodigoPostal_Sucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
 Total_Pago numeric(18,2) NULL,  /* Lo que paga el cliente, no calculado como la suma de las facturas que contiene*/
 Tipo_pago int FOREIGN KEY REFERENCES QEPD.Forma_Pago(IdForma_Pago),
-Estado_Pago BIT DEFAULT 0 /* Indica si el pago fue rendido o no? */
+Estado_Rendicion_Pago BIT DEFAULT 0 /* Indica si el pago fue rendido o no? */
 
 )
 
@@ -244,18 +311,18 @@ CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
 
 
 INSERT INTO QEPD.Domicilio(Direccion,Cod_Postal)
-           SELECT DISTINCT m.Cliente_Direccion, m.Cliente_Codigo_Postal
+           SELECT DISTINCT  m.Cliente_Direccion, m.Cliente_Codigo_Postal
            FROM gd_esquema.Maestra m
            WHERE m.Cliente_Direccion IS NOT NULL
 UNION ALL
-           SELECT DISTINCT e.Empresa_Direccion, e.Empresa_Direccion
+           SELECT DISTINCT  e.Empresa_Direccion, e.Empresa_Direccion
            FROM gd_esquema.Maestra e
            WHERE e.Empresa_Direccion IS NOT NULL
 
 /* Migracion  Cliente */
 
-INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente,Telefono_Cliente, Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
-			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido],FLOOR(RAND(CHECKSUM(NEWID()))*(99999999-1000000)+100000), m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
+INSERT INTO QEPD.Cliente(Dni_Cliente,Nombre_Cliente,Apellido_Cliente, Email_Cliente,Fecha_Nac_Cliente,IdDomicilio)
+			SELECT DISTINCT m.[Cliente-Dni], m.[Cliente-Nombre], m.[Cliente-Apellido], m.Cliente_Mail, m.[Cliente-Fecha_Nac], c.IdDomicilio
 			FROM gd_esquema.Maestra m, QEPD.Domicilio c
 			WHERE m.[Cliente-Dni] IS NOT NULL AND c.Direccion = m.Cliente_Direccion
 
@@ -312,26 +379,40 @@ INSERT INTO QEPD.Pago(Nro_Pago,Fecha_Cobro_Pago, CodigoPostal_Sucursal, Total_Pa
 			FROM gd_esquema.Maestra m, QEPD.Sucursal s, QEPD.Forma_Pago fp
 			WHERE m.Pago_nro IS NOT NULL AND m.Sucursal_Codigo_Postal = s.CP_Sucursal AND m.FormaPagoDescripcion = fp.Descripcion_Pago
 
-/* Migracion Renglon Pago */
+/* Migracion Renglon Pago  */ 
+
 
 INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa) 
-		SELECT DISTINCT f.Nro_Factura, p.Nro_Pago, e.IdEmpresa
-		FROM QEPD.Factura f, QEPD.Pago p, QEPD.Empresa e
-		WHERE p.Nro_Pago IS NOT NULL 
+		SELECT m.Nro_Factura, m.ItemPago_nro, e.IdEmpresa
+		FROM gd_esquema.Maestra m 
+		LEFT JOIN QEPD.Factura f
+		ON  f.Nro_Factura= m.Nro_Factura
+		LEFT JOIN QEPD.Pago p
+		ON m.ItemPago_nro = p.Nro_Pago
+		INNER JOIN QEPD.Empresa e
+		ON m.Empresa_Cuit = e.Cuit   
+		WHERE p.Nro_Pago IS NOT NULL  
+
 
 /* Migracion Rendicion */ 
 
 INSERT INTO QEPD.Rendicion(IdRendicion, IdEmpresa,Fecha_Rendicion,Total_Rendicion)
-		SELECT tb.Rendicion_Nro, e.IdEmpresa, tb.Rendicion_Fecha, tb.ItemRendicion_nro
+		SELECT DISTINCT tb.Rendicion_Nro, e.IdEmpresa, tb.Rendicion_Fecha, tb.ItemRendicion_Importe
 		FROM gd_esquema.Maestra tb, QEPD.Empresa e 
 		WHERE tb.Rendicion_Nro IS NOT NULL
 
-/* Migracion Renglon Rendicion */
+/* Migracion Renglon Rendicion  */
+
 
 INSERT INTO QEPD.Renglon_Rendicion(Nro_Pago,Monto_Pago,IdRendicion)
-		SELECT p.Nro_Pago, tb.Total ,r.IdRendicion
-		FROM gd_esquema.Maestra tb, QEPD.Pago p, QEPD.Rendicion r
+		SELECT  p.Nro_Pago, tb.Total ,r.IdRendicion
+		FROM gd_esquema.Maestra tb/*, QEPD.Pago p, QEPD.Rendicion r*/
+		LEFT JOIN QEPD.Pago p
+		ON  p.Nro_Pago = tb.Pago_nro
+		LEFT JOIN QEPD.Rendicion r
+		ON r.IdRendicion = tb.Rendicion_Nro
 		WHERE Rendicion_Nro IS NOT NULL
+
 
 /* Carga Rol */
 
@@ -419,12 +500,12 @@ as
 begin
 if exists (select s.Nombre_Usuario, s.Pass_Usuario from qepd.Usuario s where s.Nombre_Usuario = @usuarioNombre and s.Pass_Usuario = @pass)
 	begin
-		update QEPD.Usuario set Logs_Fallidos = 0 
+		update QEPD.Usuario set Logs_Fallidos = 0 WHERE Nombre_Usuario = @usuarioNombre
 		return 1
 	end
 else
 	begin
-		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1  
+		update QEPD.Usuario set Logs_Fallidos = Logs_Fallidos + 1 WHERE Nombre_Usuario = @usuarioNombre 
 		return 0
 	end
 end
@@ -434,9 +515,15 @@ create procedure qepd.bloquearUsuario /*En el metodo validar usuario del control
 										existira un metodo del repo que se llamara bloquear usuario que usara este procedure
 										En el codigo del metodo validar usuario del CONTROLLER, valida el usuario, y puede hacerlo hasta 4 veces
 										si llego a la cuarta, el metodo del controller, llama a bloquearUsuario del repo, y este usa este procedure*/
-@usuarioNombre nvarchar(255)
+@usuarioId int
 as
-update QEPD.Usuario set Estado_Usuario = 0 where Nombre_Usuario =  @usuarioNombre
+update QEPD.Usuario set Estado_Usuario = 0 where IdUsuario =  @usuarioId
+
+go
+create procedure qepd.bloquearUsuario /* Para rehabilitar un usuario previamente bloqueado */
+@usuarioId int
+as
+update QEPD.Usuario set Estado_Usuario = 1 where IdUsuario =  @usuarioId
 
 
 go
@@ -451,7 +538,7 @@ create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuar
 @IdUsuario nvarchar(255)
 as
 begin
-	select * 
+	select r.IdRol, Nombre_Rol, Estado_Rol 
 	from qepd.Usuario s 
 		join QEPD.RolPorUsuario rs
 			on rs.IdUsuario = s.IdUsuario
@@ -505,7 +592,7 @@ update QEPD.Rol set Nombre_Rol = @rolNombre where IdRol = @rolId
 
 
 go
-create procedure qepd.newRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol
+create procedure qepd.crearRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol
 							 Teniendo este objeto rol, saco su ID
 						     Paso el ID a este procedure*/
 @usuarioId int,
@@ -532,10 +619,10 @@ CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
 )
 */
 
-/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos, estupido*/
+/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos*/
 
 go
-create procedure qepd.agregarFuncionalidadaARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
+create procedure qepd.agregarFuncionalidadARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
 										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
 @rolId int,
 @nombreFuncionalidad nvarchar(255)
@@ -569,9 +656,10 @@ select * from Cliente
 
 go
 create procedure qepd.getCliente
-@clienteNombre nvarchar(255)
+@Dni_Cliente nvarchar(255) /*  */ 
 as
-select * from QEPD.Cliente c where c.Nombre_Cliente = @clienteNombre
+select * from QEPD.Cliente c where c.Nombre_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
+
 
 
 go

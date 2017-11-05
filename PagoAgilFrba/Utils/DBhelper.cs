@@ -34,7 +34,7 @@ namespace PagoAgilFrba.Utils
 
         public void crearConexion() {
 
-            conexion = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=prueba;User ID=sa;Password=gestiondedatos");
+            conexion = new SqlConnection(@"Data Source=localhost\SQLSERVER2012;Initial Catalog=GD2C2017;User ID=gd;Password=gd2017");
         
         }
 
@@ -68,14 +68,29 @@ namespace PagoAgilFrba.Utils
 
         }
 
-        public Object obtenerReader(SqlCommand cmd) {
+        public void obtenerRetornoProcedure(SqlCommand cmd) { //Cuando el procedure no retorna tabla
 
-            Object resultado;
-            resultado = cmd.ExecuteScalar();
-
-            return resultado;
-        
+           cmd.ExecuteNonQuery();
+            
         }
+
+        public void cerrarConexion() {
+
+            conexion.Close();
+
+        }
+
+      /*  public DataTable obtenerUnicoResultadoTabla(SqlCommand cmd) {
+
+            SqlDataReader reader;
+            DataTable tabla = new DataTable();
+
+            reader = cmd.ExecuteScalar();
+            tabla.Load(reader);
+
+            return tabla;
+        
+        }*/
 
 
 

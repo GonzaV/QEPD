@@ -29,7 +29,7 @@ namespace PagoAgilFrba.Login
 
         public void determinarHabilitacionFuncionesAdmin() {
 
-            if (Model.Repo_usuario.getInstancia().getUsuario_creado().getRolActivo() == "Administrador") {
+            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getNombre() == "Administrador") {
 
                 linkLabel1.Enabled = true;
             
@@ -61,6 +61,13 @@ namespace PagoAgilFrba.Login
         {
             this.Hide();
             new ABM_Facturas_y_RegistrosDePago.Cobrar_facturas().ShowDialog();
+            this.Close();
+        }
+
+        private void boton_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new SeleccionRol.SeleccionRol().ShowDialog();
             this.Close();
         }
 

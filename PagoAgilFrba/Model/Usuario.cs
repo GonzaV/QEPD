@@ -11,9 +11,10 @@ namespace PagoAgilFrba.Model
         public String nombre;
         public String password;
         public Int32 id;
-        public Boolean estado;
+        public Int16 estado;
         public List<Rol> listaDeRoles = new List<Rol>();
-        public String rolActivo;
+        public Rol rolActivo;
+        public Int32 cantidadLogsFallidos;
 
         public Usuario(String nombre, String password, List<Rol> listaDeRoles) {
 
@@ -23,7 +24,13 @@ namespace PagoAgilFrba.Model
         
         }
 
-        public String getRolActivo() {
+        public Usuario()
+        {
+
+
+        }
+
+        public Rol getRolActivo() {
 
             return this.rolActivo;
 
@@ -48,11 +55,44 @@ namespace PagoAgilFrba.Model
             }
         }
 
-        public void setRolActivo(String rolActivo){
+        public void setRolActivo(Rol rolActivo){
 
             this.rolActivo = rolActivo;
 
         }
+
+        public void setNombre(String nombre) {
+
+            this.nombre = nombre;
+        
+        }
+
+        public void setPassword(String psw)
+        {
+
+            this.password = psw;
+
+        }
+
+        public void setId(Int32 id)
+        {
+
+            this.id = id;
+
+        }
+
+        public Int32 getId() {
+
+            return this.id;
+        
+        }
+
+        public void setEstado(Int16 estado) {
+
+            this.estado = estado;
+        
+        }
+
 
         public String getNombre() {
 
@@ -71,6 +111,37 @@ namespace PagoAgilFrba.Model
             return this.listaDeRoles;
 
         }
+
+        public void setListaDeRoles(List<Rol> listaDeRoles) {
+
+            this.listaDeRoles = listaDeRoles;
+        
+        }
+
+        public void setCantidadLogsFallidos(int cantidad) {
+
+            cantidadLogsFallidos = cantidad;
+
+        }
+
+        public Int32 getCantidadLogsFallidos() {
+
+            return this.cantidadLogsFallidos;
+        
+        }
+
+        public void sumarIntentoDeLogFallido() {
+
+            cantidadLogsFallidos = cantidadLogsFallidos + 1;
+        
+        }
+
+        public Int16 getEstado() {
+
+            return estado;
+
+        }
+
 
     }
 }
