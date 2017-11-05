@@ -92,9 +92,9 @@ namespace PagoAgilFrba.Utils
         
         }*/
 
-
-
-
+        //AGREGO ESTO PARA SABER SI SE CREO ALGO EN LA TABLA
+        
+        
 
     }
 }

@@ -42,7 +42,7 @@
             this.comboBox_clientes.FormattingEnabled = true;
             this.comboBox_clientes.Location = new System.Drawing.Point(26, 63);
             this.comboBox_clientes.Name = "comboBox_clientes";
-            this.comboBox_clientes.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_clientes.Size = new System.Drawing.Size(210, 21);
             this.comboBox_clientes.TabIndex = 0;
             this.comboBox_clientes.SelectedIndexChanged += new System.EventHandler(this.comboBox_clientes_SelectedIndexChanged);
             // 
@@ -57,7 +57,7 @@
             // 
             // boton_modificar_cliente
             // 
-            this.boton_modificar_cliente.Location = new System.Drawing.Point(48, 110);
+            this.boton_modificar_cliente.Location = new System.Drawing.Point(26, 110);
             this.boton_modificar_cliente.Name = "boton_modificar_cliente";
             this.boton_modificar_cliente.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar_cliente.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // boton_eliminar_cliente
             // 
-            this.boton_eliminar_cliente.Location = new System.Drawing.Point(172, 110);
+            this.boton_eliminar_cliente.Location = new System.Drawing.Point(161, 110);
             this.boton_eliminar_cliente.Name = "boton_eliminar_cliente";
             this.boton_eliminar_cliente.Size = new System.Drawing.Size(75, 23);
             this.boton_eliminar_cliente.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             // boton_crear_cliente
             // 
-            this.boton_crear_cliente.Location = new System.Drawing.Point(111, 211);
+            this.boton_crear_cliente.Location = new System.Drawing.Point(26, 212);
             this.boton_crear_cliente.Name = "boton_crear_cliente";
             this.boton_crear_cliente.Size = new System.Drawing.Size(75, 23);
             this.boton_crear_cliente.TabIndex = 5;
@@ -96,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 63);
+            this.label2.Location = new System.Drawing.Point(259, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(205, 13);
             this.label2.TabIndex = 6;
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 261);
+            this.ClientSize = new System.Drawing.Size(470, 261);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.boton_crear_cliente);
             this.Controls.Add(this.label1);

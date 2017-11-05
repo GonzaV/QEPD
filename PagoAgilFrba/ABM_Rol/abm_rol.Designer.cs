@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox_roles = new System.Windows.Forms.ComboBox();
             this.boton_eliminar_rol = new System.Windows.Forms.Button();
             this.boton_modificar_rol = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,22 +45,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione un rol a modificar o eliminar:";
             // 
-            // comboBox1
+            // comboBox_roles
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Esto si se hace con un selector";
+            this.comboBox_roles.FormattingEnabled = true;
+            this.comboBox_roles.Location = new System.Drawing.Point(49, 55);
+            this.comboBox_roles.Name = "comboBox_roles";
+            this.comboBox_roles.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_roles.TabIndex = 1;
+            this.comboBox_roles.SelectedIndexChanged += new System.EventHandler(this.comboBox_roles_SelectedIndexChanged);
             // 
             // boton_eliminar_rol
             // 
@@ -85,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 182);
+            this.label3.Location = new System.Drawing.Point(13, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 5;
@@ -93,7 +84,7 @@
             // 
             // boton_crear_rol
             // 
-            this.boton_crear_rol.Location = new System.Drawing.Point(110, 215);
+            this.boton_crear_rol.Location = new System.Drawing.Point(75, 216);
             this.boton_crear_rol.Name = "boton_crear_rol";
             this.boton_crear_rol.Size = new System.Drawing.Size(75, 23);
             this.boton_crear_rol.TabIndex = 6;
@@ -105,13 +96,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 261);
+            this.ClientSize = new System.Drawing.Size(227, 261);
             this.Controls.Add(this.boton_crear_rol);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boton_modificar_rol);
             this.Controls.Add(this.boton_eliminar_rol);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox_roles);
             this.Controls.Add(this.label1);
             this.Name = "abm_rol";
             this.Text = "abm_rol";
@@ -123,8 +113,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox_roles;
         private System.Windows.Forms.Button boton_eliminar_rol;
         private System.Windows.Forms.Button boton_modificar_rol;
         private System.Windows.Forms.Label label3;
