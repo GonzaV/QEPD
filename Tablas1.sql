@@ -721,5 +721,12 @@ create procedure qepd.eliminarCliente
 as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
-
+go
+create procedure qepd.validarCliente
+@dniCliente numeric
+as
+if exists (select c.Dni_Cliente from qepd.Cliente c where c.Dni_Cliente = @dniCliente)
+	return 1
+else
+	return 0
 
