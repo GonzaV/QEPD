@@ -74,6 +74,18 @@ namespace PagoAgilFrba.Utils
             
         }
 
+      /*  public DataTable obtenerUnicoResultadoTabla(SqlCommand cmd) {
+
+            SqlDataReader reader;
+            DataTable tabla = new DataTable();
+
+            reader = cmd.ExecuteScalar();
+            tabla.Load(reader);
+
+            return tabla;
+        
+        }*/
+
 
 
 

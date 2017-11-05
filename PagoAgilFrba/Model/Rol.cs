@@ -22,6 +22,8 @@ namespace PagoAgilFrba.Model
 
         }
 
+       public Rol() { }
+
 
        public String getNombre()
        {

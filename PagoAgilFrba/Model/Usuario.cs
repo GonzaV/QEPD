@@ -23,6 +23,12 @@ namespace PagoAgilFrba.Model
         
         }
 
+        public Usuario()
+        {
+
+
+        }
+
         public String getRolActivo() {
 
             return this.rolActivo;
@@ -54,6 +60,39 @@ namespace PagoAgilFrba.Model
 
         }
 
+        public void setNombre(String nombre) {
+
+            this.nombre = nombre;
+        
+        }
+
+        public void setPassword(String psw)
+        {
+
+            this.password = psw;
+
+        }
+
+        public void setId(Int32 id)
+        {
+
+            this.id = id;
+
+        }
+
+        public Int32 getId() {
+
+            return this.id;
+        
+        }
+
+        public void setEstado(Boolean estado) {
+
+            this.estado = estado;
+        
+        }
+
+
         public String getNombre() {
 
             return this.nombre;
@@ -70,6 +109,12 @@ namespace PagoAgilFrba.Model
         
             return this.listaDeRoles;
 
+        }
+
+        public void setListaDeRoles(List<Rol> listaDeRoles) {
+
+            this.listaDeRoles = listaDeRoles;
+        
         }
 
     }

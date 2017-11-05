@@ -33,6 +33,7 @@ namespace PagoAgilFrba.Login
 
            {
                 this.Hide();
+                Model.Repo_usuario.getInstancia().getUsuario(textBoxUsuario.Text);
                 new SeleccionRol.SeleccionRol().ShowDialog();
                 this.Close();
            }

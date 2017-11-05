@@ -14,13 +14,13 @@ namespace PagoAgilFrba.Login.SeleccionRol
     {
 
         public String rolSeleccionado;
-        public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().obtenerRolesUsuarioCreado();
+        public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().usuarioIngresado.getListaDeRoles();
         
 
         public SeleccionRol()
         {
             InitializeComponent();
-            //configuarComboBox();
+            configuarComboBox();
 
         }
 

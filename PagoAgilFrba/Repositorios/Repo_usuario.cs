@@ -17,7 +17,7 @@ namespace PagoAgilFrba.Model
         public static Usuario usuario_creado = new Model.Usuario("a", "a",listaDeRoles);
         public static Repo_usuario instancia;
 
-        public Usuario usuarioIngresado {get; set;}
+        public Usuario usuarioIngresado = new Usuario();
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
 
         public static List<Usuario> listaDeUsuarios = new List<Usuario>();
@@ -54,9 +54,68 @@ namespace PagoAgilFrba.Model
 
             DBhelper.obtenerRetornoProcedure(cmd);
 
+            //DBhelper.cerrarConexion();
+
             return (int)valorDeRetorno.Value;
              
         }
+
+        public Model.Usuario getUsuario(String nombre) {
+
+            DataTable tablaUsuario;
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getUsuario");
+            cmd.Parameters.Add("@usuarioNombre", SqlDbType.NVarChar).Value = nombre;
+
+            DBhelper.abrirConexion();
+
+            tablaUsuario = DBhelper.obtenerTabla(cmd);
+
+            foreach (DataRow row in tablaUsuario.Rows) {
+
+                usuarioIngresado.setId((int)row["IdUsuario"]);
+                usuarioIngresado.setNombre((String)row["Nombre_Usuario"]);
+                usuarioIngresado.setEstado((Boolean)row["Estado_Usuario"]);
+            
+            }
+
+            usuarioIngresado.setListaDeRoles(getRoles(usuarioIngresado.getId()));
+
+            return usuarioIngresado;
+
+        }
+
+        public List<Model.Rol> getRoles(int idUsuario) {
+
+            DataTable tablaRoles;
+            List<Model.Rol> listaDeRoles = new List<Model.Rol>();
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getRoles");
+            cmd.Parameters.Add("@IdUsuario", SqlDbType.NVarChar).Value = idUsuario;
+
+            DBhelper.abrirConexion();
+
+            tablaRoles = DBhelper.obtenerTabla(cmd);
+
+            foreach (DataRow row in tablaRoles.Rows) {
+
+                Rol rol = new Rol();
+
+                rol.setNombre((String)row["Nombre_Rol"]);
+                rol.setId((Int32)row["IdRol"]);
+                rol.setEstado(Convert.ToInt16(row["Estado_Rol"]));
+                
+                listaDeRoles.Add(rol);
+            }
+
+            return listaDeRoles;
+
+        }
+
 
 
         public void agregarUsuarioALista(Usuario usuarioNuevo) {

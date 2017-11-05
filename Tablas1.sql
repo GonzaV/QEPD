@@ -532,7 +532,7 @@ create procedure QEPD.getRoles /*cuando necesites una lista de roles de un usuar
 @IdUsuario nvarchar(255)
 as
 begin
-	select * 
+	select r.IdRol, Nombre_Rol, Estado_Rol 
 	from qepd.Usuario s 
 		join QEPD.RolPorUsuario rs
 			on rs.IdUsuario = s.IdUsuario
