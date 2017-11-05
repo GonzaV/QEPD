@@ -5,13 +5,6 @@ GO
 /*  Se eliminan objetos preexistentes*/
 
 
-/* //////////////////////// acá encontre 2 formas de eliminar, tirar un IF exist pero igual ahi vas a comparar si existe el objeto en la 
-tabla, Algunos post en foros en internet plantean que es mas performante el IF EXIST, otros dicen que es similar.
- El atributo U hace referencia a que es un User Table. P para stored procedures, TR triggers, etc , 
- habria que investigar con cual nos quedamos  */
-
-
-
 /* Se eliminan tablas preexistentes */
 
 IF OBJECT_ID('QEPD.RolPorUsuario','U') IS NOT NULL    
@@ -96,6 +89,9 @@ IF OBJECT_ID('QEPD.Funcionalidad','U') IS NOT NULL
 IF OBJECT_ID('QEPD.validarUsuario','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.validarUsuario;
 
+IF OBJECT_ID('QEPD.rehabilitarUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.rehabilitarUsuario;
+
 IF OBJECT_ID('QEPD.bloquearUsuario','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.bloquearUsuario;
 
@@ -120,8 +116,8 @@ IF OBJECT_ID('QEPD.modificarRol','P') IS NOT NULL
 IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
 
-IF OBJECT_ID('QEPD.eleminarFuncionalidadARol','P') IS NOT NULL  
-	DROP PROCEDURE QEPD.eleminarFuncionalidadARol;
+IF OBJECT_ID('QEPD.eliminarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eliminarFuncionalidadARol;
 
 IF OBJECT_ID('QEPD.getCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getCliente;
@@ -138,13 +134,43 @@ IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarCliente;
 
+IF OBJECT_ID('QEPD.validarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.validarCliente;
+
 IF OBJECT_ID('QEPD.getRolesUsuario','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getRolesUsuario;
+
+IF OBJECT_ID('QEPD.getEmpresas','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getEmpresas;
+
+IF OBJECT_ID('QEPD.getEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getEmpresa;
+
+IF OBJECT_ID('QEPD.newEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newEmpresa;
+
+IF OBJECT_ID('QEPD.modificarEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarEmpresa;
+
+IF OBJECT_ID('QEPD.eliminarEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eliminarEmpresa;
+
+IF OBJECT_ID('QEPD.validarEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.validarEmpresa;
+
+IF OBJECT_ID('QEPD.CrearRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.CrearRol;
+	
+IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
+
 
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
     DROP SCHEMA QEPD
 
 GO
+
+
 
 /* Se crea schema */ 
 
@@ -157,7 +183,7 @@ GO
 CREATE TABLE QEPD.Domicilio(
 IdDomicilio int IDENTITY(1,1) PRIMARY KEY,
 Direccion nvarchar(255)  NOT NULL,
-Cod_Postal nvarchar(255) NOT NULL
+Cod_Postal nvarchar(255) NULL
 );
 
 CREATE TABLE QEPD.Cliente(
@@ -173,9 +199,9 @@ Estado_Cliente BIT DEFAULT 1  /* todos los clientes arrancan como activos ? */
 );
 
 create table qepd.Rubro(
-IdRubro numeric IDENTITY(1,1) PRIMARY KEY,
-Nro_Rubro numeric (18,0) NOT NULL,
-Descripcion_Rubro nvarchar(50) NOT NULL
+Nro_Rubro numeric (18,0) NOT NULL,  /* Se elimina idRubro dado que el Nro es unico y se puede utilizar como PK */
+Descripcion_Rubro nvarchar(50) NULL, /* Se setea NULL dado que al cargar la empresa solo definimos su Nro de Rubro,*/
+PRIMARY KEY (Nro_Rubro)            /*no se cuenta con ABM rubro para completar la descripcion del mismo */
 )
 
 create table qepd.Empresa(
@@ -183,7 +209,7 @@ IdEmpresa int IDENTITY(1,1) PRIMARY KEY,
 Nombre_Empresa nvarchar(255) NOT NULL,
 Cuit nvarchar(50) NOT NULL,
 IdDomicilio int FOREIGN KEY REFERENCES QEPD.Domicilio(IdDomicilio),
-IdRubro numeric FOREIGN KEY REFERENCES QEPD.Rubro(IdRubro),
+IdRubro numeric FOREIGN KEY REFERENCES QEPD.Rubro(Nro_Rubro),
 Estado_Empresa BIT DEFAULT 1
 )
 
@@ -300,13 +326,6 @@ CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
 )
 
 
-
-/*//////////////////////// Los procedure son para las acciones de las vistas según entendí, los invocamos con eso para que hagan lo que corresponda en las AMB por ej, entiendo que los functions que tienen retorno, seria para los valores estadisticos, o para devolver algun listado o tabla en la vista */
-
-
-
-
-
 /********************** Migración de  tablas **************************/
 
 
@@ -318,7 +337,7 @@ INSERT INTO QEPD.Domicilio(Direccion,Cod_Postal)
            FROM gd_esquema.Maestra m
            WHERE m.Cliente_Direccion IS NOT NULL
 UNION ALL
-           SELECT DISTINCT  e.Empresa_Direccion, e.Empresa_Direccion
+           SELECT DISTINCT  e.Empresa_Direccion, NULL
            FROM gd_esquema.Maestra e
            WHERE e.Empresa_Direccion IS NOT NULL
 
@@ -339,7 +358,7 @@ INSERT INTO QEPD.Rubro(Nro_Rubro,Descripcion_Rubro)
 /* Migracion Empresa */
 
 INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
-			SELECT DISTINCT m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.IdRubro
+			SELECT DISTINCT m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.Nro_Rubro
 			FROM gd_esquema.Maestra m, QEPD.Domicilio d, QEPD.Rubro r
 			WHERE  m.Empresa_Cuit IS NOT NULL AND m.Empresa_Direccion = d.Direccion AND m.Empresa_Rubro = r.Nro_Rubro
 
@@ -602,18 +621,6 @@ begin
 	set @rol = (select r.IdRol from QEPD.Rol r where r.Nombre_Rol = @nombreRol)
 	insert into QEPD.RolPorUsuario (IdRol,IdUsuario) values (@rol, @usuario)
 end
-/*
-create table qepd.Rol(
-IdRol int IDENTITY(1,1) PRIMARY KEY,
-Nombre_Rol nvarchar(255) NOT NULL,
-Estado_Rol BIT DEFAULT 1
-)
-create table qepd.RolPorUsuario(
-IdRol int FOREIGN KEY REFERENCES QEPD.Rol(IdRol),
-IdUsuario int FOREIGN KEY REFERENCES QEPD.Usuario(IdUsuario),
-CONSTRAINT IdRolPorUsuario PRIMARY KEY(idUsuario,IdRol)
-)
-*/
 
 /*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos*/
 
@@ -630,7 +637,7 @@ begin
 end
 
 go
-create procedure qepd.eleminarFuncionalidadARol /*es para eliminar una funcionalidad de un rol, probablemente el ABM rol*/
+create procedure qepd.eliminarFuncionalidadARol /*es para eliminar una funcionalidad de un rol, probablemente el ABM rol*/
 										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
 @rolId int,
 @nombreFuncionalidad nvarchar(255)
@@ -654,7 +661,7 @@ go
 create procedure qepd.getCliente
 @Dni_Cliente nvarchar(255) /*  */ 
 as
-select * from QEPD.Cliente c where c.Nombre_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
+select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
 
 
 
@@ -739,3 +746,96 @@ else
  @rolNombreNuevo nvarchar(255)
  as
  update QEPD.Rol set Nombre_Rol = @rolNombreNuevo where IdRol = @rolId
+
+ GO
+
+
+ /* Repo Empresas */
+
+CREATE PROCEDURE QEPD.getEmpresas /* Devuelve todas las empresas */
+AS
+SELECT * FROM QEPD.Empresa
+
+GO 
+
+CREATE PROCEDURE QEPD.getEmpresa /* Devuelve UNA empresa, buscandola por cuit x-xxxxxxx-x */
+@Cuit_Empresa nvarchar(50)
+AS
+	SELECT * FROM QEPD.Empresa e WHERE e.Cuit = @Cuit_Empresa
+
+GO
+
+CREATE PROCEDURE QEPD.newEmpresa /* Creo una empresa, rubro lo seteo por su descripcion */
+@Nombre_Empresa nvarchar(255),
+@Cuit_Empresa nvarchar(50),
+@Direccion_Empresa nvarchar(255),
+@descripcionRubro_Empresa nvarchar(50)
+
+AS
+	BEGIN
+		DECLARE @direction INT
+		DECLARE @rubro nvarchar(50)
+
+		IF NOT EXISTS(SELECT d.Direccion FROM QEPD.Domicilio d WHERE d.Direccion = @Direccion_Empresa) /* VALIDACION DIRECCION EXISTENTE */
+			INSERT INTO QEPD.Domicilio(Direccion) VALUES (@Direccion_Empresa)
+			
+		SET @direction = (SELECT dom.IdDomicilio FROM QEPD.Domicilio dom WHERE dom.Direccion = @Direccion_Empresa)
+		
+		 
+		IF NOT EXISTS (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa)/* VALIDACION RUBRO EXISTENTE */ 
+			INSERT INTO QEPD.Rubro VALUES ((SELECT max(ru.Nro_Rubro) +1 FROM QEPD.Rubro ru), @descripcionRubro_Empresa)
+
+		SET @rubro = (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa)
+		
+		INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
+			VALUES (@Nombre_Empresa,@Cuit_Empresa,@direction,@rubro)
+	END
+
+GO
+
+CREATE PROCEDURE QEPD.modificarEmpresa /* el metodo del repo recibe un objeto cliente del cual sacamos su id */
+@idEmpresa int,
+@Nombre_Empresa nvarchar(255),
+@Cuit_Empresa nvarchar(50),
+@Direccion_Empresa nvarchar(255),
+@descripcionRubro_Empresa nvarchar(50),
+@estado bit
+AS
+	BEGIN
+		DECLARE @direction INT
+		DECLARE @rubro nvarchar(50)
+		
+		IF NOT EXISTS(SELECT d.Direccion FROM QEPD.Domicilio d WHERE d.Direccion = @Direccion_Empresa) /* VALIDACION DIRECCION EXISTENTE */
+		INSERT INTO QEPD.Domicilio(Direccion) VALUES (@Direccion_Empresa) /* Agrego domicilio a tabla domicilio */ 
+		/* Obtengo el id del domicilio */	
+		SET @direction = (SELECT dom.IdDomicilio FROM QEPD.Domicilio dom WHERE dom.Direccion = @Direccion_Empresa)
+		
+
+		IF NOT EXISTS (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa)/* VALIDACION RUBRO EXISTENTE */ 
+			INSERT INTO QEPD.Rubro VALUES ((SELECT max(ru.Nro_Rubro) +1 FROM QEPD.Rubro ru), @descripcionRubro_Empresa)
+		/* obtengo el rubroId para cargar */
+		SET @rubro = (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa) 
+		
+		UPDATE QEPD.Empresa SET Nombre_Empresa = @Nombre_Empresa, Cuit = @Cuit_Empresa, IdDomicilio = @direction, IdRubro = @rubro 
+		WHERE IdEmpresa = @idEmpresa 
+	END
+
+GO
+
+CREATE PROCEDURE QEPD.eliminarEmpresa /* recibo el id de la empresa a eliminar */
+@idEmpresa int
+AS
+	UPDATE QEPD.Empresa SET Estado_Empresa = 0 WHERE IdEmpresa = @idEmpresa
+
+GO
+
+
+CREATE PROCEDURE QEPD.validarEmpresa /* Valida si existe la empresa por el cuit ingresado x-xxxxxxx-x */
+@cuitEmpresa nvarchar(55)
+AS
+	IF EXISTS( SELECT e.Cuit FROM QEPD.Empresa e WHERE e.Cuit = @cuitEmpresa)
+		RETURN 1
+	ELSE
+		RETURN 0
+
+GO
