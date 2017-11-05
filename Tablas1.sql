@@ -587,7 +587,7 @@ update QEPD.Rol set Nombre_Rol = @rolNombre where IdRol = @rolId
 go
 
 
-/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos, estupido*/
+/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos*/
 
 go
 create procedure qepd.agregarFuncionalidadARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/

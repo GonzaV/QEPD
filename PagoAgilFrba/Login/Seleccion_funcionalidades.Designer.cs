@@ -35,6 +35,7 @@
             this.boton_crear_y_cobrar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.boton_cobrar_facturas = new System.Windows.Forms.Button();
+            this.boton_volver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -108,11 +109,22 @@
             this.boton_cobrar_facturas.UseVisualStyleBackColor = true;
             this.boton_cobrar_facturas.Click += new System.EventHandler(this.boton_cobrar_facturas_Click);
             // 
+            // boton_volver
+            // 
+            this.boton_volver.Location = new System.Drawing.Point(15, 271);
+            this.boton_volver.Name = "boton_volver";
+            this.boton_volver.Size = new System.Drawing.Size(75, 23);
+            this.boton_volver.TabIndex = 8;
+            this.boton_volver.Text = "Volver";
+            this.boton_volver.UseVisualStyleBackColor = true;
+            this.boton_volver.Click += new System.EventHandler(this.boton_volver_Click);
+            // 
             // Seleccion_funcionalidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 293);
+            this.ClientSize = new System.Drawing.Size(490, 313);
+            this.Controls.Add(this.boton_volver);
             this.Controls.Add(this.boton_cobrar_facturas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boton_crear_y_cobrar);
@@ -137,5 +149,6 @@
         private System.Windows.Forms.Button boton_crear_y_cobrar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button boton_cobrar_facturas;
+        private System.Windows.Forms.Button boton_volver;
     }
 }
