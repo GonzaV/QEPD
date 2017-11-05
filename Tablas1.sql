@@ -519,6 +519,12 @@ create procedure qepd.bloquearUsuario /*En el metodo validar usuario del control
 as
 update QEPD.Usuario set Estado_Usuario = 0 where IdUsuario =  @usuarioId
 
+go
+create procedure qepd.bloquearUsuario /* Para rehabilitar un usuario previamente bloqueado */
+@usuarioId int
+as
+update QEPD.Usuario set Estado_Usuario = 1 where IdUsuario =  @usuarioId
+
 
 go
 create procedure qepd.getUsuario
