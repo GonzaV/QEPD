@@ -11,17 +11,11 @@ namespace PagoAgilFrba.Model
 {
     class Repo_usuario
     {
-        public static Rol rolLoco = new Rol("Rol Loco",4);
-        public static Rol rolAdmin = new Rol("Administrador", 1);
+        
         public static List<Rol> listaDeRoles = new List<Rol>();
-        public static Usuario usuario_creado = new Model.Usuario("a", "a",listaDeRoles);
         public static Repo_usuario instancia;
-
         public Usuario usuarioIngresado = new Usuario();
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
-
-        public static List<Usuario> listaDeUsuarios = new List<Usuario>();
-        
 
         public static Repo_usuario getInstancia() {
 
@@ -31,9 +25,6 @@ namespace PagoAgilFrba.Model
             }
             else {
                 instancia = new Repo_usuario();
-                listaDeRoles.Add(rolLoco);
-                listaDeRoles.Add(rolAdmin);
-                listaDeUsuarios.Add(usuario_creado);
                 return instancia;
             }
         }
@@ -54,11 +45,29 @@ namespace PagoAgilFrba.Model
 
             DBhelper.obtenerRetornoProcedure(cmd);
 
-            //DBhelper.cerrarConexion();
+            DBhelper.cerrarConexion();
 
             return (int)valorDeRetorno.Value;
              
         }
+
+
+        public void bloquearUsuario() {
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.bloquearUsuario");
+            cmd.Parameters.Add("@usuarioId", SqlDbType.NVarChar).Value = usuarioIngresado.getId();
+
+            DBhelper.abrirConexion();
+
+            DBhelper.obtenerRetornoProcedure(cmd);
+
+            DBhelper.cerrarConexion();
+            Console.WriteLine("Bloquie");
+
+        }
+
 
         public Model.Usuario getUsuario(String nombre) {
 
@@ -78,6 +87,7 @@ namespace PagoAgilFrba.Model
                 usuarioIngresado.setId((int)row["IdUsuario"]);
                 usuarioIngresado.setNombre((String)row["Nombre_Usuario"]);
                 usuarioIngresado.setEstado(Convert.ToInt16(row["Estado_Usuario"]));
+                usuarioIngresado.setCantidadLogsFallidos((Int32)row["Logs_Fallidos"]); 
             
             }
 
@@ -117,49 +127,19 @@ namespace PagoAgilFrba.Model
         }
 
 
+        public Usuario getUsuarioIngresado() {
 
-        public void agregarUsuarioALista(Usuario usuarioNuevo) {
+            return usuarioIngresado;
 
-            listaDeUsuarios.Add(usuarioNuevo);
+        }
+
+        public Int32 getCantidadDeLogsFallidosUsuario() {
+
+            return usuarioIngresado.getCantidadLogsFallidos();
         
         }
 
-        public void setUsuario_creado(Usuario usuario)
-        {
-            usuario_creado = usuario;
-        }
 
-        public Usuario getUsuario_creado() {
-
-            return usuario_creado;
-        
-        }
-
-        public String obtenerNombreDeUsuarioCreado(){
-
-            return usuario_creado.getNombre();
-
-        }
-
-        public String obtenerPasswordUsuarioCreado() {
-
-            return usuario_creado.getPassword();
-
-        }
-
-        public List<Model.Rol> obtenerRolesUsuarioCreado() { 
-        
-            return usuario_creado.getListaDeRoles();
-        
-        }
-
-        public List<Model.Usuario> getListaDeUsuarios()
-        {
-
-            return listaDeUsuarios;
-
-        }
-
-    }
+}
 
 }

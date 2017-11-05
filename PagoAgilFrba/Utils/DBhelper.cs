@@ -74,6 +74,12 @@ namespace PagoAgilFrba.Utils
             
         }
 
+        public void cerrarConexion() {
+
+            conexion.Close();
+
+        }
+
       /*  public DataTable obtenerUnicoResultadoTabla(SqlCommand cmd) {
 
             SqlDataReader reader;

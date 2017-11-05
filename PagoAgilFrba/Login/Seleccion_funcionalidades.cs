@@ -29,7 +29,7 @@ namespace PagoAgilFrba.Login
 
         public void determinarHabilitacionFuncionesAdmin() {
 
-            if (Model.Repo_usuario.getInstancia().getUsuario_creado().getRolActivo() == "Administrador") {
+            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getNombre() == "Administrador") {
 
                 linkLabel1.Enabled = true;
             

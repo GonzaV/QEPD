@@ -30,6 +30,7 @@ namespace PagoAgilFrba.Model
            return this.nombre;
        }
 
+
        public string Nombre //Este metodo es el que usa el selector para mostrar los nombres del objeto,
                             //quiza se pueda borrar el otro getter
        {
@@ -39,6 +40,18 @@ namespace PagoAgilFrba.Model
                return nombre;
            }
        }
+
+
+       public Rol Objeto
+
+       {
+
+           get
+           {
+               return this;
+           }
+       }
+
 
        public Int32 Id//Este metodo es el que usa el selector para el id del rol luego de clickear su nombre,
                         //quiza se pueda borrar el otro getter

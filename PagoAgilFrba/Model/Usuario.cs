@@ -13,7 +13,8 @@ namespace PagoAgilFrba.Model
         public Int32 id;
         public Int16 estado;
         public List<Rol> listaDeRoles = new List<Rol>();
-        public String rolActivo;
+        public Rol rolActivo;
+        public Int32 cantidadLogsFallidos;
 
         public Usuario(String nombre, String password, List<Rol> listaDeRoles) {
 
@@ -29,7 +30,7 @@ namespace PagoAgilFrba.Model
 
         }
 
-        public String getRolActivo() {
+        public Rol getRolActivo() {
 
             return this.rolActivo;
 
@@ -54,7 +55,7 @@ namespace PagoAgilFrba.Model
             }
         }
 
-        public void setRolActivo(String rolActivo){
+        public void setRolActivo(Rol rolActivo){
 
             this.rolActivo = rolActivo;
 
@@ -116,6 +117,31 @@ namespace PagoAgilFrba.Model
             this.listaDeRoles = listaDeRoles;
         
         }
+
+        public void setCantidadLogsFallidos(int cantidad) {
+
+            cantidadLogsFallidos = cantidad;
+
+        }
+
+        public Int32 getCantidadLogsFallidos() {
+
+            return this.cantidadLogsFallidos;
+        
+        }
+
+        public void sumarIntentoDeLogFallido() {
+
+            cantidadLogsFallidos = cantidadLogsFallidos + 1;
+        
+        }
+
+        public Int16 getEstado() {
+
+            return estado;
+
+        }
+
 
     }
 }
