@@ -11,7 +11,7 @@ namespace PagoAgilFrba.Model
         public String nombre;
         public String password;
         public Int32 id;
-        public Boolean estado;
+        public Int16 estado;
         public List<Rol> listaDeRoles = new List<Rol>();
         public String rolActivo;
 
@@ -86,7 +86,7 @@ namespace PagoAgilFrba.Model
         
         }
 
-        public void setEstado(Boolean estado) {
+        public void setEstado(Int16 estado) {
 
             this.estado = estado;
         

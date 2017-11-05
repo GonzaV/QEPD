@@ -77,7 +77,7 @@ namespace PagoAgilFrba.Model
 
                 usuarioIngresado.setId((int)row["IdUsuario"]);
                 usuarioIngresado.setNombre((String)row["Nombre_Usuario"]);
-                usuarioIngresado.setEstado((Boolean)row["Estado_Usuario"]);
+                usuarioIngresado.setEstado(Convert.ToInt16(row["Estado_Usuario"]));
             
             }
 
