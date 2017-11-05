@@ -37,6 +37,7 @@ namespace PagoAgilFrba.Model{
 
             DBhelper.crearConexion();
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getClientes");
+            
 
 
  
@@ -65,7 +66,7 @@ namespace PagoAgilFrba.Model{
 
         public void eliminarCliente(Int32 idCliente){
             DBhelper.crearConexion();
-            SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.eliminarCliente");
             cmd.Parameters.Add("@idCLiente", SqlDbType.NVarChar).Value = idCliente;
         }
 
