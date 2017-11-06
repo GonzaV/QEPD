@@ -134,6 +134,9 @@ IF OBJECT_ID('QEPD.modificarCliente','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarCliente;
 
+IF OBJECT_ID('QEPD.habilitarCliente','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.habilitarCliente;
+
 IF OBJECT_ID('QEPD.validarCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.validarCliente;
 
@@ -154,6 +157,9 @@ IF OBJECT_ID('QEPD.modificarEmpresa','P') IS NOT NULL
 
 IF OBJECT_ID('QEPD.eliminarEmpresa','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarEmpresa;
+
+IF OBJECT_ID('QEPD.habilitarEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.habilitarEmpresa;
 
 IF OBJECT_ID('QEPD.validarEmpresa','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.validarEmpresa;
@@ -720,6 +726,13 @@ create procedure qepd.eliminarCliente
 as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
+GO
+
+CREATE PROCEDURE  QEPD.habilitarCliente /* recibo el dni*/
+@dniCliente numeric(18,0)
+as
+update QEPD.Cliente set Estado_Cliente = 0 where Dni_Cliente = @dniCliente
+
 go
 create procedure qepd.validarCliente
 @dniCliente numeric
@@ -826,6 +839,13 @@ CREATE PROCEDURE QEPD.eliminarEmpresa /* recibo el id de la empresa a eliminar *
 @idEmpresa int
 AS
 	UPDATE QEPD.Empresa SET Estado_Empresa = 0 WHERE IdEmpresa = @idEmpresa
+
+GO
+
+CREATE PROCEDURE QEPD.habilitarEmpresa /* recibo el cuit de la empresa x-xxxxxx-x nvarchar */
+@cuitEmpresa nvarchar(50)
+AS
+	UPDATE QEPD.Empresa SET Estado_Empresa = 0 WHERE Cuit = @cuitEmpresa
 
 GO
 
