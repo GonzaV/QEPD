@@ -113,6 +113,9 @@ IF OBJECT_ID('QEPD.getFuncionalidad','P') IS NOT NULL
 IF OBJECT_ID('QEPD.modificarRol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.modificarRol;
 
+IF OBJECT_ID('QEPD.eliminarRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.eliminarRol;
+
 IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
 
@@ -124,6 +127,9 @@ IF OBJECT_ID('QEPD.getCliente','P') IS NOT NULL
 
 IF OBJECT_ID('QEPD.getClientes','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getClientes;
+
+IF OBJECT_ID('QEPD.getClientesActivos','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getClientesActivos;
 
 IF OBJECT_ID('QEPD.newCliente','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.newCliente;
@@ -146,6 +152,9 @@ IF OBJECT_ID('QEPD.getRolesUsuario','P') IS NOT NULL
 IF OBJECT_ID('QEPD.getEmpresas','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getEmpresas;
 
+IF OBJECT_ID('QEPD.getEmpresasActivas','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getEmpresasActivas;
+
 IF OBJECT_ID('QEPD.getEmpresa','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getEmpresa;
 
@@ -167,8 +176,17 @@ IF OBJECT_ID('QEPD.validarEmpresa','P') IS NOT NULL
 IF OBJECT_ID('QEPD.CrearRol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.CrearRol;
 	
-IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
-	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
+IF OBJECT_ID('QEPD.getSucursales','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getSucursales;
+
+IF OBJECT_ID('QEPD.modificarSucursal','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.modificarSucursal;
+
+IF OBJECT_ID('QEPD.newSucursal ','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newSucursal;
+
+
+/* Se dropea schema */ 
 
 
 IF EXISTS (SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'QEPD')
@@ -201,7 +219,7 @@ Email_Cliente nvarchar(255) NOT NULL,
 Fecha_Nac_Cliente datetime NOT NULL,
 Telefono_Cliente numeric(18,0) NULL, 
 IdDomicilio int FOREIGN KEY REFERENCES QEPD.Domicilio(IdDomicilio),
-Estado_Cliente BIT DEFAULT 1  /* todos los clientes arrancan como activos ? */
+Estado_Cliente BIT DEFAULT 1 
 );
 
 create table qepd.Rubro(
@@ -516,8 +534,9 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 -getFuncionalidad
 -modificarRol
 -crearRol
------eliminarRol
--agregarFuncionalidadARol
+-----eliminarRol -- hecho masomenos, estoy dando de baja el usuario directo y no pegandole a la tabla rolxUsuario, 
+                     creo que esta mal, avisame y lo discutimos yisus
+
 -eleminarFuncionalidadARol
 */
 
@@ -669,6 +688,13 @@ create procedure qepd.getCliente
 as
 select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
 
+GO
+
+CREATE PROCEDURE QEPD.getClientesActivos
+AS
+SELECT * FROM QEPD.CLIENTE WHERE IdCliente =1
+
+GO
 
 
 go
@@ -751,17 +777,34 @@ else
  as
  
  select * from QEPD.Rol
- 
- go
+
+GO 
+
  create procedure qepd.modificarRol 
  								    								   
  @rolId int,
  @rolNombreNuevo nvarchar(255)
  as
  update QEPD.Rol set Nombre_Rol = @rolNombreNuevo where IdRol = @rolId
+ /*
+ GO
+ 
+/* Se deberia hacer con un trigger ? */
+
+CREATE PROCEDURE QEPD.EliminarRol  /* le paso el nombre del rol, doy la baja logica de los usuarios que tienen ese rol, y baja logica de rol */
+@NombreRol nvarchar(255)
+AS
+	declare @idRolEliminado int
+
+	SET @idRolEliminado = (SELECT idRol FROM QEPD.Rol WHERE Nombre_Rol = @NombreRol)
+
+	UPDATE QEPD.Usuario set Estado_Usuario = 0 WHERE idUsuario = (SELECT IdUsuario FROM RolPorUsuario where IdRol = @idRolEliminado)
+
+	UPDATE QEPD.Rol set Estado_Rol = 0
+
+*/
 
  GO
-
 
  /* Repo Empresas */
 
@@ -771,6 +814,12 @@ SELECT * FROM QEPD.Empresa
 
 GO 
 
+CREATE PROCEDURE QEPD.getEmpresasActivas /* Devuelve todas las empresas activas */
+AS
+SELECT * FROM QEPD.Empresa WHERE Estado_Empresa = 1
+
+GO
+
 CREATE PROCEDURE QEPD.getEmpresa /* Devuelve UNA empresa, buscandola por cuit x-xxxxxxx-x */
 @Cuit_Empresa nvarchar(50)
 AS
@@ -778,8 +827,8 @@ AS
 
 GO
 
-CREATE PROCEDURE QEPD.newEmpresa /* Creo una empresa, rubro lo seteo por su descripcion */
-@Nombre_Empresa nvarchar(255),
+CREATE PROCEDURE QEPD.newEmpresa /* Creo una empresa, rubro lo seteo por su descripcion, valido que no repita ni domicilio */
+@Nombre_Empresa nvarchar(255),          /* ni rubro de la empresa si ya existen en sus tablas*/
 @Cuit_Empresa nvarchar(50),
 @Direccion_Empresa nvarchar(255),
 @descripcionRubro_Empresa nvarchar(50)
@@ -859,3 +908,36 @@ AS
 		RETURN 0
 
 GO
+
+/* Repo Sucursal */
+
+CREATE PROCEDURE QEPD.getSucursales /* Devuelve todas las sucursales para el listado de ABM, donde el listado debe poder filtrar por cualquiera */
+AS                                           /* de sus campos (CP_Sucursal numeric(18,0) PRIMARY KEY, Nombre_Sucursal nvarchar(50) NOT NULL, */
+       SELECT * FROM QEPD.Sucursal          /*  Direccion_Sucursal nvarchar(50) NOT NULL, */
+	
+GO
+
+CREATE PROCEDURE QEPD.modificarSucursal 
+@CodPostal numeric(18,0),
+@SucursalNombre nvarchar(50),
+@SucursalDirecc nvarchar(50)
+
+AS
+	UPDATE QEPD.Sucursal set CP_Sucursal = @CodPostal, Nombre_Sucursal = @SucursalNombre, Direccion_Sucursal = @SucursalDirecc 
+
+
+GO
+
+CREATE PROCEDURE QEPD.newSucursal 
+@CodPostal numeric(18,0),
+@SucursalNombre nvarchar(50),
+@SucursalDirecc nvarchar(50)
+AS
+      
+
+	IF NOT EXISTS(SELECT s.CP_Sucursal FROM QEPD.Sucursal s WHERE s.CP_Sucursal = @CodPostal ) /* VALIDACION Sucursal existente */
+			INSERT INTO QEPD.Sucursal(CP_Sucursal,Nombre_Sucursal,Direccion_Sucursal) VALUES (@CodPostal,@SucursalNombre, @SucursalDirecc)
+		
+GO
+
+/* TO DO - Eliminar Sucursal */
