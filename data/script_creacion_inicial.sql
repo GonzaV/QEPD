@@ -179,6 +179,9 @@ IF OBJECT_ID('QEPD.CrearRol','P') IS NOT NULL
 IF OBJECT_ID('QEPD.getSucursales','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getSucursales;
 
+IF OBJECT_ID('QEPD.getSucursalesUsuario','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getSucursalesUsuario;
+
 IF OBJECT_ID('QEPD.modificarSucursal','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.modificarSucursal;
 
@@ -510,9 +513,9 @@ INSERT INTO QEPD.RolPorUsuario(IdRol,IdUsuario)
 				(2,3)
 
 INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
-		VALUES	(1,(select CP_Sucursal FROM QEPD.Sucursal)),
-				(2,(select CP_Sucursal FROM QEPD.Sucursal)),
-				(3,(select CP_Sucursal FROM QEPD.Sucursal))
+		VALUES	(1,7210),
+				(2,7210),
+				(3,7210)
 
 
 
@@ -855,7 +858,7 @@ AS
 
 GO
 
-CREATE PROCEDURE QEPD.modificarEmpresa /* el metodo del repo recibe un objeto cliente del cual sacamos su id */
+CREATE PROCEDURE QEPD.modificarEmpresa /* el metodo del repo recibe un objeto empresa del cual sacamos su id */
 @idEmpresa int,
 @Nombre_Empresa nvarchar(255),
 @Cuit_Empresa nvarchar(50),
@@ -917,13 +920,24 @@ AS                                           /* de sus campos (CP_Sucursal numer
 	
 GO
 
-CREATE PROCEDURE QEPD.modificarSucursal 
+CREATE PROCEDURE QEPD.getSucursalesUsuario /* Paso idUsuario , devuelve todas las sucursales en las cuales puede ingresar el usuario */
+@idUsuario int
+AS                                           
+       SELECT CP_Sucursal, Nombre_Sucursal FROM QEPD.Sucursal
+			WHERE CP_Sucursal = (SELECT us.CP_Sucursal FROM UsuarioPorSucursal us WHERE IdUsuario = @idUsuario)       
+	
+GO
+
+
+CREATE PROCEDURE QEPD.modificarSucursal /* el metodo del repo recibe un objeto sucursal del cual sacamos su id */
+@CodPostalDeSucursalAModificar numeric(18,0),
 @CodPostal numeric(18,0),
 @SucursalNombre nvarchar(50),
 @SucursalDirecc nvarchar(50)
 
 AS
 	UPDATE QEPD.Sucursal set CP_Sucursal = @CodPostal, Nombre_Sucursal = @SucursalNombre, Direccion_Sucursal = @SucursalDirecc 
+	WHERE CP_Sucursal = @CodPostalDeSucursalAModificar
 
 
 GO
