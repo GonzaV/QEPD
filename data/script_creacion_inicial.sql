@@ -254,9 +254,7 @@ Fecha_Venc_Factura datetime NOT NULL,
 IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
 IdCliente int FOREIGN KEY REFERENCES QEPD.Cliente(IdCliente),
 Total_Factura numeric(18,2) NOT NULL,
-/*//////////////////////// Siguiendo la logica que pago tiene un BIT para saber si fue rendido o no, aca no deberiamos tener un BIT
-para saber consultamos en la otra tabla ? */
-
+Pago_Estado bit default 1
 )
 
 create table qepd.Renglon_Factura(
@@ -322,7 +320,7 @@ Nombre_Funcionalidad nvarchar(255) NOT NULL
 
 create table qepd.Rol(
 IdRol int IDENTITY(1,1) PRIMARY KEY,
-Nombre_Rol nvarchar(255) NOT NULL,
+Nombre_Rol nvarchar(255) NOT NULL UNIQUE,
 Estado_Rol BIT DEFAULT 1
 )
 
@@ -531,19 +529,13 @@ INSERT INTO QEPD.UsuarioPorSucursal(IdUsuario,CP_Sucursal)
 -bloquearUsuario
 -reabilitarUsuario
 -getUsuario
--getRoles
--getFuncionalidades
--getRol
--getFuncionalidad
--modificarRol
--crearRol
------eliminarRol -- hecho masomenos, estoy dando de baja el usuario directo y no pegandole a la tabla rolxUsuario, 
-                     creo que esta mal, avisame y lo discutimos yisus
-
--eleminarFuncionalidadARol
+-getRolesUsuario
+-asignarRolUsuario
+-getFuncionalidadesDeUnRolDeUsuario
+-getFuncionalidadesDeTodosLosRolesDeUsuario
 */
 
-go
+GO
 create procedure QEPD.validarUsuario
 @usuarioNombre nvarchar(255),
 @pass nvarchar(255)
@@ -564,7 +556,8 @@ else
 		return -1
 end
 
-go
+
+GO
 create procedure qepd.bloquearUsuario /*En el metodo validar usuario del controller, no solo se llama al metodo validarUsuario del repo, sino tambien
 										existira un metodo del repo que se llamara bloquear usuario que usara este procedure
 										En el codigo del metodo validar usuario del CONTROLLER, valida el usuario, y puede hacerlo hasta 4 veces
@@ -573,21 +566,22 @@ create procedure qepd.bloquearUsuario /*En el metodo validar usuario del control
 as
 update QEPD.Usuario set Estado_Usuario = 0 where IdUsuario =  @usuarioId
 
-go
+
+GO
 create procedure qepd.rehabilitarUsuario /* Para rehabilitar un usuario previamente bloqueado */
 @usuarioId int
 as
 update QEPD.Usuario set Estado_Usuario = 1 where IdUsuario =  @usuarioId
 
 
-go
+GO
 create procedure qepd.getUsuario
 @usuarioNombre nvarchar(255)
 as
 select * from QEPD.Usuario s where s.Nombre_Usuario = @usuarioNombre
 
 
-go
+GO
 create procedure QEPD.getRolesUsuario /*cuando necesites una lista de roles de un usuario*/
 @IdUsuario int
 as
@@ -602,40 +596,9 @@ begin
 	where s.IdUsuario = @IdUsuario
 end
 
-go
-create procedure QEPD.getFuncionalidades /*cuando necesites una lista de funcionalidades de un rol*/
-@rolId int
-as
-begin
-	select f.IdFuncionalidad, f.Nombre_Funcionalidad 
-	from Rol r
-		join RolPorFuncionalidad rf
-			on rf.IdRol = r.IdRol
-		join Funcionalidad f
-			on f.IdFuncionalidad = rf.IdFuncionalidad
-	where r.IdRol = @rolId
-end
 
-go
-create procedure qepd.getRol /*cundo necesites solo UN rol*/ /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol.
-															Con el nombre del rol, busco el mismo en la lista de roles del usuario que pase por parametro y obtengo ese rol(objeto) que busque (Filter por nombre a nivel objetos)
-															Teniendo este objeto rol, saco su ID
-															Paso el ID a este procedure*/
-@rolId int
-as
-select * from QEPD.Rol r where r.IdRol = @rolId
-
-go
-create procedure qepd.getFuncionalidad /*cundo necesites solo UNA Funcionalidad*/ /*En el metodo del repo, por parametro recibe un OBJETO Rol, y el Nombre de un Funcionalidad.
-																				   Con el nombre de la Funcionalidad, busco la misma en la lista de Funcionalidades de la lista del Rol que pase por parametro y obtengo esa funcionalidad(objeto) que busque (Filter por nombre a nivel objetos)
-																				   Teniendo este objeto rol, saco su ID
-																				   Paso el ID a este procedure*/
-@IdFuncionalidad int
-as
-select * from QEPD.Funcionalidad f where f.IdFuncionalidad = @IdFuncionalidad
-
-go
-create procedure qepd.crearRol /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol
+GO
+create procedure qepd.asignarRolUsuario /*En el metodo del repo, por parametro recibe un OBJETO usuario, y el Nombre de un rol
 							 Teniendo este objeto rol, saco su ID
 						     Paso el ID a este procedure*/
 @usuarioId int,
@@ -650,32 +613,134 @@ begin
 	insert into QEPD.RolPorUsuario (IdRol,IdUsuario) values (@rol, @usuario)
 end
 
-/*No existe el eliminar funcionalidad, en todo caso queres eliminar un objeto funcionalidad de una lista de roles, y eso es a nivel objetos*/
+GO
+create procedure QEPD.getFuncionalidadesDeUnRolDeUsuario /*cuando necesites una lista de funcionalidades de un rol de un usuario*/
+@usuarioId int,
+@rolId int
+as
+begin
+	select f.IdFuncionalidad, f.Nombre_Funcionalidad 
+	from Usuario u
+		join RolPorUsuario ru
+			on ru.IdUsuario = u.IdUsuario
+		join Rol r
+			on r.IdRol = ru.IdRol
+		join RolPorFuncionalidad rf
+			on rf.IdRol = r.IdRol
+		join Funcionalidad f
+			on f.IdFuncionalidad = rf.IdFuncionalidad
+	where r.IdRol = @rolId and u.IdUsuario = @usuarioId
+end
 
-go
+
+GO
+create procedure QEPD.getFuncionalidadesDeTodosLosRolesDeUsuario /*cuando necesites una lista de funcionalidades de un usuario*/
+@usuarioId int
+as
+begin
+	select f.IdFuncionalidad, f.Nombre_Funcionalidad 
+	from Usuario u
+		join RolPorUsuario ru
+			on ru.IdUsuario = u.IdUsuario
+		join Rol r
+			on r.IdRol = ru.IdRol
+		join RolPorFuncionalidad rf
+			on rf.IdRol = r.IdRol
+		join Funcionalidad f
+			on f.IdFuncionalidad = rf.IdFuncionalidad
+	where u.IdUsuario = @usuarioId
+end
+
+
+
+/*Repo Roles*/
+
+/*
+-getRol
+-getRoles
+-modificarRol
+-eliminarRol (deberia ser trigger)
+-getFuncionalidadesDeUnRol
+-agregarFuncionalidadARol
+-eliminarFuncionalidadARol
+*/
+
+GO
+create procedure qepd.getRol
+@rolNombre nvarchar(255)
+as
+select * from QEPD.Rol r where r.Nombre_Rol = @rolNombre
+
+ 
+GO
+ create procedure qepd.getRoles   
+ as
+ select * from QEPD.Rol
+
+
+GO 
+ create procedure qepd.modificarRol 								    								   
+ @rolId int,
+ @rolNombreNuevo nvarchar(255)
+ as
+ update QEPD.Rol set Nombre_Rol = @rolNombreNuevo where IdRol = @rolId
+
+
+GO
+create procedure qepd.eliminarRol
+@rolId int
+as
+update qepd.Rol set Estado_Rol = '0' where IdRol = @rolId
+
+GO
+create procedure QEPD.getFuncionalidadesDeUnRol /*cuando necesites una lista de funcionalidades de un rol*/
+@rolId int
+as
+begin
+	select f.IdFuncionalidad, f.Nombre_Funcionalidad 
+	from Rol r
+		join RolPorFuncionalidad rf
+			on rf.IdRol = r.IdRol
+		join Funcionalidad f
+			on f.IdFuncionalidad = rf.IdFuncionalidad
+	where r.IdRol = @rolId
+end
+
+
+GO
 create procedure qepd.agregarFuncionalidadARol /*es para agregar una funcionalidad a un rol, probablemente el ABM rol*/
-										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
+										        /*el metodo del repo recibe un objeto rol del cual se obtiene su ID y ademas el id de una funcionalidad*/
 @rolId int,
-@nombreFuncionalidad nvarchar(255)
+@funcionalidadId int
 as
-begin
-	declare @idFuncionalidad int
-	set @idFuncionalidad = (select f.IdFuncionalidad from QEPD.Funcionalidad f where f.Nombre_Funcionalidad = @nombreFuncionalidad)
-	insert into QEPD.RolPorFuncionalidad values (@rolId, @idFuncionalidad)
-end
+	insert into QEPD.RolPorFuncionalidad values (@rolId, @funcionalidadId)
 
-go
+
+GO
 create procedure qepd.eliminarFuncionalidadARol /*es para eliminar una funcionalidad de un rol, probablemente el ABM rol*/
-										        /*el metodo del repo recibe un objeto rol del cual se ibtiene su ID y ademas el nombre de una funcionalidad*/
+										        /*el metodo del repo recibe un objeto rol del cual se obtiene su ID y ademas el id de una funcionalidad*/
 @rolId int,
+@funcionalidadId int
+as
+	delete from QEPD.RolPorFuncionalidad where IdRol = @rolId and IdFuncionalidad = @funcionalidadId
+
+
+/*Repo Funcionalidades*/
+/*
+-getFuncionalidad
+-getFuncionalidades
+*/
+
+GO
+create procedure qepd.getFuncionalidad /*cundo necesites solo UNA Funcionalidad*/
 @nombreFuncionalidad nvarchar(255)
 as
-begin
-	declare @idFuncionalidad int
-	set @idFuncionalidad = (select f.IdFuncionalidad from QEPD.Funcionalidad f where f.Nombre_Funcionalidad = @nombreFuncionalidad)
-	delete from QEPD.RolPorFuncionalidad where IdRol = @rolId and IdFuncionalidad = @nombreFuncionalidad
-end
+select * from QEPD.Funcionalidad f where f.Nombre_Funcionalidad = @nombreFuncionalidad
 
+GO
+create procedure qepd.getFuncionalidades
+as
+select * from qepd.Funcionalidad
 
 
 /*Repo Clientes*/
@@ -772,45 +837,11 @@ else
 	return 0
 
 
-/*Repo Roles*/
- 
- go
- create procedure qepd.getRoles 
-  		  
- as
- 
- select * from QEPD.Rol
-
-GO 
-
- create procedure qepd.modificarRol 
- 								    								   
- @rolId int,
- @rolNombreNuevo nvarchar(255)
- as
- update QEPD.Rol set Nombre_Rol = @rolNombreNuevo where IdRol = @rolId
- /*
- GO
- 
-/* Se deberia hacer con un trigger ? */
-
-CREATE PROCEDURE QEPD.EliminarRol  /* le paso el nombre del rol, doy la baja logica de los usuarios que tienen ese rol, y baja logica de rol */
-@NombreRol nvarchar(255)
-AS
-	declare @idRolEliminado int
-
-	SET @idRolEliminado = (SELECT idRol FROM QEPD.Rol WHERE Nombre_Rol = @NombreRol)
-
-	UPDATE QEPD.Usuario set Estado_Usuario = 0 WHERE idUsuario = (SELECT IdUsuario FROM RolPorUsuario where IdRol = @idRolEliminado)
-
-	UPDATE QEPD.Rol set Estado_Rol = 0
-
-*/
-
- GO
 
  /* Repo Empresas */
 
+
+GO
 CREATE PROCEDURE QEPD.getEmpresas /* Devuelve todas las empresas */
 AS
 SELECT * FROM QEPD.Empresa
@@ -955,3 +986,51 @@ AS
 GO
 
 /* TO DO - Eliminar Sucursal */
+
+
+/*Repo facturas*/
+
+go
+create procedure qepd.getFacturas
+as
+select * from qepd.Factura f
+
+go
+create procedure qepd.getFactura
+@idFactura numeric(18,0)
+as
+select * from QEPD.Factura f where f.Nro_Factura = @idFactura
+
+go
+create procedure qepd.getRenglonesFactura
+@idFactura numeric(18,0)
+as
+select * from qepd.Renglon_Factura r
+	join Factura f
+		on f.Nro_Factura = r.Nro_Factura
+where r.Nro_Factura = @idFactura
+
+go
+create procedure qepd.newFactura
+
+
+
+/*create table qepd.Factura(
+Nro_Factura numeric(18,0) PRIMARY KEY,
+FechaAlta_Factura datetime NOT NULL,
+Fecha_Venc_Factura datetime NOT NULL,
+IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
+IdCliente int FOREIGN KEY REFERENCES QEPD.Cliente(IdCliente),
+Total_Factura numeric(18,2) NOT NULL,
+/*//////////////////////// Siguiendo la logica que pago tiene un BIT para saber si fue rendido o no, aca no deberiamos tener un BIT
+para saber consultamos en la otra tabla ? */
+
+)
+
+create table qepd.Renglon_Factura(
+IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
+Item_Monto_Factura numeric(18,2) NOT NULL,
+Item_Cant_Factura numeric(18,0) NOT NULL,
+Item_descripcion nvarchar(255) NULL,
+Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
+)*/
