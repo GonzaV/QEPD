@@ -840,6 +840,7 @@ else
 
  /* Repo Empresas */
 
+/*Se tiene que poder buscar empresas por nombre*/
 
 GO
 CREATE PROCEDURE QEPD.getEmpresas /* Devuelve todas las empresas */
@@ -945,6 +946,10 @@ GO
 
 /* Repo Sucursal */
 
+/*getSucursalesUsuario va en repo usuario*/
+/*falta un get sucursal que reciba un nombre*/
+
+
 CREATE PROCEDURE QEPD.getSucursales /* Devuelve todas las sucursales para el listado de ABM, donde el listado debe poder filtrar por cualquiera */
 AS                                           /* de sus campos (CP_Sucursal numeric(18,0) PRIMARY KEY, Nombre_Sucursal nvarchar(50) NOT NULL, */
        SELECT * FROM QEPD.Sucursal          /*  Direccion_Sucursal nvarchar(50) NOT NULL, */
@@ -985,7 +990,7 @@ AS
 		
 GO
 
-/* TO DO - Eliminar Sucursal */
+--TO DO - Eliminar Sucursal
 
 
 /*Repo facturas*/
