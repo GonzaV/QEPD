@@ -994,19 +994,29 @@ GO
 
 
 /*Repo facturas*/
+/*
+getFacturas
+getFactura
+getRenglonesFactura
+newFactura
+newRenglonFactura
+getTotaldeFactura
+*/
 
-go
+GO
 create procedure qepd.getFacturas
 as
 select * from qepd.Factura f
 
-go
+
+GO
 create procedure qepd.getFactura
 @idFactura numeric(18,0)
 as
 select * from QEPD.Factura f where f.Nro_Factura = @idFactura
 
-go
+
+GO
 create procedure qepd.getRenglonesFactura
 @idFactura numeric(18,0)
 as
@@ -1015,8 +1025,40 @@ select * from qepd.Renglon_Factura r
 		on f.Nro_Factura = r.Nro_Factura
 where r.Nro_Factura = @idFactura
 
-go
+
+GO
 create procedure qepd.newFactura
+@nroFactura numeric(18,0),
+@fecha_vto datetime,
+@idEmpresa int,
+@idCliente int
+as
+begin
+insert into Factura values (
+@nroFactura, 
+GETDATE(), 
+@fecha_vto, 
+@idEmpresa, 
+@idCliente, 
+(select sum(r.Item_Cant_Factura*r.Item_Monto_Factura) from Renglon_Factura r where r.Nro_Factura = @nroFactura)
+)
+end
+
+
+GO
+create procedure qepd.newRenglonFactura
+@idFactura numeric(18,0),
+@monto numeric(18,2),
+@cantidad numeric(18,0),
+@descripcion nvarchar(255)
+as
+insert into Renglon_Factura values (@monto, @cantidad, @descripcion, @idFactura)
+
+GO
+create procedure qepd.getTotaldeFactura
+@idFactura numeric(18,0)
+as
+select sum(r.Item_Cant_Factura*r.Item_Monto_Factura) from Renglon_Factura r where r.Nro_Factura = @idFactura
 
 
 
