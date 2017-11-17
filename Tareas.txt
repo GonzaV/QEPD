@@ -8,8 +8,6 @@ procedimiento de fechas de rendiciones
 
 If object_id para procedures y triggers
 
-Que pasa cuando se supera 4 log fallidos, trigger o if??
-
 
 view
 --------
@@ -17,6 +15,7 @@ Rendiciones
 Devoluciones
 Botones para volver para atras
 Validaciones
+Modificar una factura
 
 modelo
 -------
