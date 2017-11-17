@@ -12,6 +12,9 @@ namespace PagoAgilFrba.Login
 {
     public partial class Seleccion_funcionalidades : Form
     {
+
+        const int IDADMIN = 1;
+
         public Seleccion_funcionalidades()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace PagoAgilFrba.Login
 
         public void determinarHabilitacionFuncionesAdmin() {
 
-            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getNombre() == "Administrador") {
+            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getId() == IDADMIN) {
 
                 linkLabel1.Enabled = true;
             

@@ -36,6 +36,7 @@
             this.boton_abm_sucursales = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.boton_ejecutar_rendiciones = new System.Windows.Forms.Button();
+            this.boton_volver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -116,11 +117,22 @@
             this.boton_ejecutar_rendiciones.UseVisualStyleBackColor = true;
             this.boton_ejecutar_rendiciones.Click += new System.EventHandler(this.boton_ejecutar_rendiciones_Click);
             // 
+            // boton_volver
+            // 
+            this.boton_volver.Location = new System.Drawing.Point(12, 412);
+            this.boton_volver.Name = "boton_volver";
+            this.boton_volver.Size = new System.Drawing.Size(75, 23);
+            this.boton_volver.TabIndex = 8;
+            this.boton_volver.Text = "Volver";
+            this.boton_volver.UseVisualStyleBackColor = true;
+            this.boton_volver.Click += new System.EventHandler(this.boton_volver_Click);
+            // 
             // Seleccion_funcionalidades_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 390);
+            this.ClientSize = new System.Drawing.Size(262, 447);
+            this.Controls.Add(this.boton_volver);
             this.Controls.Add(this.boton_ejecutar_rendiciones);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.boton_abm_sucursales);
@@ -147,5 +159,6 @@
         private System.Windows.Forms.Button boton_abm_sucursales;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button boton_ejecutar_rendiciones;
+        private System.Windows.Forms.Button boton_volver;
     }
 }

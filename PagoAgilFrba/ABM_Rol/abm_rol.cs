@@ -40,8 +40,9 @@ namespace PagoAgilFrba.ABM_Rol
 
         private void comboBox_roles_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ComboBox selectorDeRol = (ComboBox)sender;
-            this.rolSeleccionado = (Model.Rol)selectorDeRol.SelectedValue;
+            rolSeleccionado = (Model.Rol)selectorDeRol.SelectedValue;
 
         }
 

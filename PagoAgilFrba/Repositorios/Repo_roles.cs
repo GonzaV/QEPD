@@ -59,6 +59,22 @@ namespace PagoAgilFrba.Repositorios
 
         }
 
+        public void modificarNombreRol(String nuevoNombre) {
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.modificarRol");
+            cmd.Parameters.Add("@rolId", SqlDbType.Int).Value = rolSeleccionado.getId();
+            cmd.Parameters.Add("@rolNombre", SqlDbType.NVarChar).Value = nuevoNombre;
+
+            DBhelper.abrirConexion();
+
+            DBhelper.obtenerRetornoProcedure(cmd);
+
+            DBhelper.cerrarConexion();
+        
+        }
+
         public void setRolSeleccionado(Model.Rol rol) {
 
             this.rolSeleccionado = rol;

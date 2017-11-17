@@ -26,5 +26,12 @@ namespace PagoAgilFrba.ABM_Rol
         {
             new Quitar_funcionalidad().ShowDialog();
         }
+
+        private void boton_modificar_Click(object sender, EventArgs e)
+        {
+            Repositorios.Repo_roles.getInstancia().modificarNombreRol(textBox_nombre.Text);
+        }
+
+
     }
 }
