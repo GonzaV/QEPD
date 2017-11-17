@@ -1,18 +1,19 @@
 script
 --------
-procedures de eliminar roles
+procedures de eliminar sucursal trigger
 
-procedimiento de todos los repos menos usuario y cliente
+procedimiento de repo rendicion, devolucion y estadisticas
 
 procedimiento de fechas de rendiciones
 
-If object_id para procedures y triggers
+If object_id para procedures
 
 
 view
 --------
 Rendiciones
 Devoluciones
+forma de pago
 Botones para volver para atras
 Validaciones
 Modificar una factura

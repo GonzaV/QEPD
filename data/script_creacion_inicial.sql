@@ -271,7 +271,7 @@ Descripcion_Pago nvarchar(255) NOT NULL,
 )
 
 create table qepd.Pago(
-Nro_Pago numeric PRIMARY KEY,
+Nro_Pago numeric IDENTITY(1,1) PRIMARY KEY,
 Fecha_Cobro_Pago datetime NULL,
 CodigoPostal_Sucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
 Total_Pago numeric(18,2) NULL,  /* Lo que paga el cliente, no calculado como la suma de las facturas que contiene*/
@@ -421,13 +421,14 @@ INSERT INTO QEPD.Forma_Pago(Descripcion_Pago)
 
 /* Migracion Pago */
 
+set identity_insert qepd.pago on
 INSERT INTO QEPD.Pago(Nro_Pago,Fecha_Cobro_Pago, CodigoPostal_Sucursal, Total_Pago, Tipo_pago)
 			SELECT DISTINCT m.Pago_nro, m.Pago_Fecha, s.CP_Sucursal, m.Total, fp.IdForma_Pago
 			FROM gd_esquema.Maestra m, QEPD.Sucursal s, QEPD.Forma_Pago fp
 			WHERE m.Pago_nro IS NOT NULL AND m.Sucursal_Codigo_Postal = s.CP_Sucursal AND m.FormaPagoDescripcion = fp.Descripcion_Pago
+set identity_insert qepd.pago off
 
 /* Migracion Renglon Pago  */ 
-
 
 INSERT INTO QEPD.Renglon_Pago(Nro_Factura,Nro_Pago,IdEmpresa) 
 		SELECT m.Nro_Factura, m.ItemPago_nro, e.IdEmpresa
@@ -745,27 +746,26 @@ select * from qepd.Funcionalidad
 
 /*Repo Clientes*/
 
-go
+GO
 create procedure qepd.getClientes
 as
 select * from qepd.Cliente
 
-go
+
+GO
 create procedure qepd.getCliente
 @Dni_Cliente nvarchar(255) /*  */ 
 as
 select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
 
-GO
 
+GO
 CREATE PROCEDURE QEPD.getClientesActivos
 AS
 SELECT * FROM QEPD.CLIENTE WHERE IdCliente =1
 
+
 GO
-
-
-go
 create procedure qepd.newCliente
 @nombre nvarchar(255),
 @apellido nvarchar(255),
@@ -788,7 +788,7 @@ begin
 end
 
 
-go
+GO
 create procedure qepd.modificarCliente /*el metodo del repo recibe un objeto cliente del cual sacamos su Id*/
 @idCliente int,
 @nombre nvarchar(255),
@@ -814,20 +814,21 @@ begin
 end
 
 
-go
+GO
 create procedure qepd.eliminarCliente
 @idCliente int
 as
 update QEPD.Cliente set Estado_Cliente = 0 where IdCliente = @idCliente
 
-GO
 
+GO
 CREATE PROCEDURE  QEPD.habilitarCliente /* recibo el dni*/
 @dniCliente numeric(18,0)
 as
 update QEPD.Cliente set Estado_Cliente = 0 where Dni_Cliente = @dniCliente
 
-go
+
+GO
 create procedure qepd.validarCliente
 @dniCliente numeric
 as
@@ -998,6 +999,7 @@ GO
 getFacturas
 getFactura
 getRenglonesFactura
+getRenglonFactura
 newFactura
 newRenglonFactura
 getTotaldeFactura
@@ -1020,10 +1022,14 @@ GO
 create procedure qepd.getRenglonesFactura
 @idFactura numeric(18,0)
 as
-select * from qepd.Renglon_Factura r
-	join Factura f
-		on f.Nro_Factura = r.Nro_Factura
-where r.Nro_Factura = @idFactura
+select * from qepd.Renglon_Factura r where r.Nro_Factura = @idFactura
+
+
+GO
+create procedure qepd.getRenglonFactura
+@idRenglon int
+as
+select * from qepd.Renglon_Factura r where r.IdRenglon_Factura = @idRenglon
 
 
 GO
@@ -1034,7 +1040,7 @@ create procedure qepd.newFactura
 @idCliente int
 as
 begin
-insert into Factura values (
+insert into Factura (Nro_Factura,FechaAlta_Factura,Fecha_Venc_Factura,IdEmpresa, IdCliente, Total_Factura) values (
 @nroFactura, 
 GETDATE(), 
 @fecha_vto, 
@@ -1054,6 +1060,7 @@ create procedure qepd.newRenglonFactura
 as
 insert into Renglon_Factura values (@monto, @cantidad, @descripcion, @idFactura)
 
+
 GO
 create procedure qepd.getTotaldeFactura
 @idFactura numeric(18,0)
@@ -1062,22 +1069,72 @@ select sum(r.Item_Cant_Factura*r.Item_Monto_Factura) from Renglon_Factura r wher
 
 
 
-/*create table qepd.Factura(
-Nro_Factura numeric(18,0) PRIMARY KEY,
-FechaAlta_Factura datetime NOT NULL,
-Fecha_Venc_Factura datetime NOT NULL,
-IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
-IdCliente int FOREIGN KEY REFERENCES QEPD.Cliente(IdCliente),
-Total_Factura numeric(18,2) NOT NULL,
-/*//////////////////////// Siguiendo la logica que pago tiene un BIT para saber si fue rendido o no, aca no deberiamos tener un BIT
-para saber consultamos en la otra tabla ? */
+/*Repo Pagos*/
+/*
+getPago
+getPagos
+getRenglonesPago
+getRenglonPago
+newRenglonPago
+newPago
+getTotalValorFacturas
+*/
 
-)
+GO
+create procedure qepd.getPago
+@idPago numeric
+as
+select * from QEPD.Pago p where p.Nro_Pago = @idPago
 
-create table qepd.Renglon_Factura(
-IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
-Item_Monto_Factura numeric(18,2) NOT NULL,
-Item_Cant_Factura numeric(18,0) NOT NULL,
-Item_descripcion nvarchar(255) NULL,
-Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
-)*/
+
+GO
+create procedure qepd.getPagos
+as
+select * from qepd.Pago
+
+
+GO
+create procedure qepd.getRenglonesPago
+@idPago numeric
+as
+select * from QEPD.Renglon_Pago r where r.Nro_Pago = @idPago 
+
+
+GO
+create procedure qepd.getRenglonPago
+@idRenglon int
+as
+select * from qepd.Renglon_Pago r where r.IdRenglon_Pago = @idRenglon
+
+
+GO
+create procedure qepd.newRenglonPago
+@nroFactura numeric(18,0),
+@idEmpresa int
+as
+insert into qepd.Renglon_Pago (Nro_Factura, IdEmpresa) values(@nroFactura, @idEmpresa)
+
+
+GO
+create procedure qepd.newPago
+@cpSucursal numeric,
+@pagoTotal numeric(18,2),
+@tipoPago int
+as
+begin
+insert into qepd.Pago (Fecha_Cobro_Pago, CodigoPostal_Sucursal, Total_Pago, Tipo_pago)
+	values(GETDATE(), @cpSucursal, @pagoTotal, @tipoPago)
+end
+
+
+GO
+create procedure qepd.getTotalValorFacturas
+@idPago numeric
+as
+begin
+select sum(f.Total_Factura) 
+from qepd.Renglon_Pago r
+	join QEPD.Factura f
+		on f.Nro_Factura = r.Nro_Factura
+where r.Nro_Pago = @idPago
+end
