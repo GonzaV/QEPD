@@ -9,7 +9,7 @@ using System.Data;
 
 namespace PagoAgilFrba.Model{
 
-    class Repo_cliente{
+    public class Repo_cliente{
         
         
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
