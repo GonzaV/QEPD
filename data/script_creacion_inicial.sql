@@ -295,8 +295,8 @@ IdRendicion numeric(18,0) PRIMARY KEY NOT NULL,
 IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
 Cantidad_Facturas numeric(18,0) NULL, /*caculable*/
 Fecha_Rendicion datetime NOT NULL,
-porcentaje_comision numeric(18,2) DEFAULT 0.1,
-importe_comision numeric(18,2) NULL, /* calcuable a partir de partir del total de facturas y porcentaje*/
+Porrcentaje_Comision numeric(18,2) DEFAULT 0.1,
+Importe_Ccomision numeric(18,2) NULL, /* calcuable a partir de partir del total de facturas y porcentaje*/
 Total_Rendicion numeric(18,2) NULL 
 )
 
