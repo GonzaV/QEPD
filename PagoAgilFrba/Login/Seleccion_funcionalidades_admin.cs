@@ -54,12 +54,7 @@ namespace PagoAgilFrba.Login
             this.Close();
         }
 
-        private void button_devolucionRendiciones_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new Devoluciones.Form_devolucionRendicion().ShowDialog();
-            this.Close();
-        }
+      
 
     }
 }

@@ -77,7 +77,7 @@ namespace PagoAgilFrba.Login
         private void button_devolucionFacturas_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Devoluciones.Form_devolucionFactura().ShowDialog();
+            new Devoluciones.Form_devolucionPago().ShowDialog();
             this.Close();
         }
 

@@ -36,7 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.boton_cobrar_facturas = new System.Windows.Forms.Button();
             this.boton_volver = new System.Windows.Forms.Button();
-            this.button_devolucionFacturas = new System.Windows.Forms.Button();
+            this.button_devolucionPagos = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -121,15 +121,15 @@
             this.boton_volver.UseVisualStyleBackColor = true;
             this.boton_volver.Click += new System.EventHandler(this.boton_volver_Click);
             // 
-            // button_devolucionFacturas
+            // button_devolucionPagos
             // 
-            this.button_devolucionFacturas.Location = new System.Drawing.Point(183, 304);
-            this.button_devolucionFacturas.Name = "button_devolucionFacturas";
-            this.button_devolucionFacturas.Size = new System.Drawing.Size(130, 23);
-            this.button_devolucionFacturas.TabIndex = 10;
-            this.button_devolucionFacturas.Text = "Devolver facturas";
-            this.button_devolucionFacturas.UseVisualStyleBackColor = true;
-            this.button_devolucionFacturas.Click += new System.EventHandler(this.button_devolucionFacturas_Click);
+            this.button_devolucionPagos.Location = new System.Drawing.Point(183, 304);
+            this.button_devolucionPagos.Name = "button_devolucionPagos";
+            this.button_devolucionPagos.Size = new System.Drawing.Size(130, 23);
+            this.button_devolucionPagos.TabIndex = 10;
+            this.button_devolucionPagos.Text = "Devolver pagos";
+            this.button_devolucionPagos.UseVisualStyleBackColor = true;
+            this.button_devolucionPagos.Click += new System.EventHandler(this.button_devolucionFacturas_Click);
             // 
             // label4
             // 
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 387);
-            this.Controls.Add(this.button_devolucionFacturas);
+            this.Controls.Add(this.button_devolucionPagos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.boton_volver);
             this.Controls.Add(this.boton_cobrar_facturas);
@@ -173,7 +173,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button boton_cobrar_facturas;
         private System.Windows.Forms.Button boton_volver;
-        private System.Windows.Forms.Button button_devolucionFacturas;
+        private System.Windows.Forms.Button button_devolucionPagos;
         private System.Windows.Forms.Label label4;
     }
 }

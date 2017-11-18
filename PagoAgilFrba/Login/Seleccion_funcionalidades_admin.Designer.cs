@@ -37,8 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.boton_ejecutar_rendiciones = new System.Windows.Forms.Button();
             this.boton_volver = new System.Windows.Forms.Button();
-            this.label_devolucionDeRendiciones = new System.Windows.Forms.Label();
-            this.button_devolucionRendiciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -121,7 +119,7 @@
             // 
             // boton_volver
             // 
-            this.boton_volver.Location = new System.Drawing.Point(12, 484);
+            this.boton_volver.Location = new System.Drawing.Point(20, 399);
             this.boton_volver.Name = "boton_volver";
             this.boton_volver.Size = new System.Drawing.Size(75, 23);
             this.boton_volver.TabIndex = 8;
@@ -129,32 +127,11 @@
             this.boton_volver.UseVisualStyleBackColor = true;
             this.boton_volver.Click += new System.EventHandler(this.boton_volver_Click);
             // 
-            // label_devolucionDeRendiciones
-            // 
-            this.label_devolucionDeRendiciones.AutoSize = true;
-            this.label_devolucionDeRendiciones.Location = new System.Drawing.Point(20, 392);
-            this.label_devolucionDeRendiciones.Name = "label_devolucionDeRendiciones";
-            this.label_devolucionDeRendiciones.Size = new System.Drawing.Size(133, 13);
-            this.label_devolucionDeRendiciones.TabIndex = 9;
-            this.label_devolucionDeRendiciones.Text = "Devolucion de rendiciones";
-            // 
-            // button_devolucionRendiciones
-            // 
-            this.button_devolucionRendiciones.Location = new System.Drawing.Point(65, 435);
-            this.button_devolucionRendiciones.Name = "button_devolucionRendiciones";
-            this.button_devolucionRendiciones.Size = new System.Drawing.Size(125, 23);
-            this.button_devolucionRendiciones.TabIndex = 10;
-            this.button_devolucionRendiciones.Text = "Devuelva Rendiciones";
-            this.button_devolucionRendiciones.UseVisualStyleBackColor = true;
-            this.button_devolucionRendiciones.Click += new System.EventHandler(this.button_devolucionRendiciones_Click);
-            // 
             // Seleccion_funcionalidades_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 533);
-            this.Controls.Add(this.button_devolucionRendiciones);
-            this.Controls.Add(this.label_devolucionDeRendiciones);
+            this.ClientSize = new System.Drawing.Size(262, 445);
             this.Controls.Add(this.boton_volver);
             this.Controls.Add(this.boton_ejecutar_rendiciones);
             this.Controls.Add(this.label4);
@@ -183,7 +160,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button boton_ejecutar_rendiciones;
         private System.Windows.Forms.Button boton_volver;
-        private System.Windows.Forms.Label label_devolucionDeRendiciones;
-        private System.Windows.Forms.Button button_devolucionRendiciones;
     }
 }

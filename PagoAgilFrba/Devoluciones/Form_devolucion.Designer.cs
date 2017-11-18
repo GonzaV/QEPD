@@ -1,6 +1,6 @@
 ﻿namespace PagoAgilFrba.Devoluciones
 {
-    partial class Form_devolucionFactura
+    partial class Form_devolucionPago
     {
         /// <summary>
         /// Required designer variable.

@@ -149,12 +149,11 @@ D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Quitar_funcionalida
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.abm_sucursal.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Crear_sucursal.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Modificar_sucursal.resources
-D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionRendicion.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Login.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.SeleccionRol.SeleccionRol.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades_admin.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Properties.Resources.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csproj.GenerateResource.Cache
-D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionFactura.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Rendiciones.Form_rendicion.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionPago.resources

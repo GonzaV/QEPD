@@ -163,17 +163,11 @@
     <Compile Include="ABM_Sucursal\Modificar_sucursal.Designer.cs">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Devoluciones\Form_devolucionFactura.cs">
+    <Compile Include="Devoluciones\Form_devolucion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Devoluciones\Form_devolucionFactura.Designer.cs">
-      <DependentUpon>Form_devolucionFactura.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Devoluciones\Form_devolucionRendicion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Devoluciones\Form_devolucionRendicion.Designer.cs">
-      <DependentUpon>Form_devolucionRendicion.cs</DependentUpon>
+    <Compile Include="Devoluciones\Form_devolucion.Designer.cs">
+      <DependentUpon>Form_devolucion.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Seleccion_funcionalidades.cs">
       <SubType>Form</SubType>
@@ -268,11 +262,8 @@
     <EmbeddedResource Include="ABM_Sucursal\Modificar_sucursal.resx">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Devoluciones\Form_devolucionFactura.resx">
-      <DependentUpon>Form_devolucionFactura.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Devoluciones\Form_devolucionRendicion.resx">
-      <DependentUpon>Form_devolucionRendicion.cs</DependentUpon>
+    <EmbeddedResource Include="Devoluciones\Form_devolucion.resx">
+      <DependentUpon>Form_devolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
