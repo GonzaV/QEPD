@@ -1164,3 +1164,24 @@ Item_Cant_Factura numeric(18,0) NOT NULL,
 Item_descripcion nvarchar(255) NULL,
 Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura)
 )*/
+
+
+/*  */
+GO
+
+/* Repo devoluciones */
+/*
+CREATE PROCEDURE DevolverFactura
+@Motivo_Devolucion nvarchar(255),
+@Nro_Factura_Devolver numeric
+AS
+	BEGIN
+		UPDATE QEPD.Devolucion SET Motivo_Devolucion = @Motivo_Devolucion, 
+
+
+create table qepd.Devolucion(
+IdDevolucion int IDENTITY(1,1) PRIMARY KEY,
+Motivo_Devolucion nvarchar(255) NOT NULL,
+Nro_Pago numeric FOREIGN KEY REFERENCES QEPD.Pago(Nro_Pago)
+)
+*/
