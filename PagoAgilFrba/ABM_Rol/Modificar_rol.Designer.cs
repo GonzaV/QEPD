@@ -35,6 +35,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.boton_eliminar_funcionalidad = new System.Windows.Forms.Button();
             this.boton_modificar = new System.Windows.Forms.Button();
+            this.checkBox_habilitar = new System.Windows.Forms.CheckBox();
+            this.checkBox_inhabilitar = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -93,7 +96,7 @@
             // 
             // boton_modificar
             // 
-            this.boton_modificar.Location = new System.Drawing.Point(135, 218);
+            this.boton_modificar.Location = new System.Drawing.Point(135, 296);
             this.boton_modificar.Name = "boton_modificar";
             this.boton_modificar.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar.TabIndex = 6;
@@ -101,11 +104,43 @@
             this.boton_modificar.UseVisualStyleBackColor = true;
             this.boton_modificar.Click += new System.EventHandler(this.boton_modificar_Click);
             // 
+            // checkBox_habilitar
+            // 
+            this.checkBox_habilitar.AutoSize = true;
+            this.checkBox_habilitar.Location = new System.Drawing.Point(16, 245);
+            this.checkBox_habilitar.Name = "checkBox_habilitar";
+            this.checkBox_habilitar.Size = new System.Drawing.Size(64, 17);
+            this.checkBox_habilitar.TabIndex = 7;
+            this.checkBox_habilitar.Text = "Habilitar";
+            this.checkBox_habilitar.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_inhabilitar
+            // 
+            this.checkBox_inhabilitar.AutoSize = true;
+            this.checkBox_inhabilitar.Location = new System.Drawing.Point(135, 245);
+            this.checkBox_inhabilitar.Name = "checkBox_inhabilitar";
+            this.checkBox_inhabilitar.Size = new System.Drawing.Size(71, 17);
+            this.checkBox_inhabilitar.TabIndex = 8;
+            this.checkBox_inhabilitar.Text = "Inhabilitar";
+            this.checkBox_inhabilitar.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 210);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Habilite/Inhabilite el rol:";
+            // 
             // Modificar_rol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 261);
+            this.ClientSize = new System.Drawing.Size(232, 343);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.checkBox_inhabilitar);
+            this.Controls.Add(this.checkBox_habilitar);
             this.Controls.Add(this.boton_modificar);
             this.Controls.Add(this.boton_eliminar_funcionalidad);
             this.Controls.Add(this.label3);
@@ -129,5 +164,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button boton_eliminar_funcionalidad;
         private System.Windows.Forms.Button boton_modificar;
+        private System.Windows.Forms.CheckBox checkBox_habilitar;
+        private System.Windows.Forms.CheckBox checkBox_inhabilitar;
+        private System.Windows.Forms.Label label4;
     }
 }

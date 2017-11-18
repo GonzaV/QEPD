@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_roles = new System.Windows.Forms.ComboBox();
-            this.boton_eliminar_rol = new System.Windows.Forms.Button();
             this.boton_modificar_rol = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.boton_crear_rol = new System.Windows.Forms.Button();
@@ -48,24 +47,15 @@
             // comboBox_roles
             // 
             this.comboBox_roles.FormattingEnabled = true;
-            this.comboBox_roles.Location = new System.Drawing.Point(49, 55);
+            this.comboBox_roles.Location = new System.Drawing.Point(55, 56);
             this.comboBox_roles.Name = "comboBox_roles";
             this.comboBox_roles.Size = new System.Drawing.Size(121, 21);
             this.comboBox_roles.TabIndex = 1;
             this.comboBox_roles.SelectedIndexChanged += new System.EventHandler(this.comboBox_roles_SelectedIndexChanged);
             // 
-            // boton_eliminar_rol
-            // 
-            this.boton_eliminar_rol.Location = new System.Drawing.Point(130, 109);
-            this.boton_eliminar_rol.Name = "boton_eliminar_rol";
-            this.boton_eliminar_rol.Size = new System.Drawing.Size(75, 23);
-            this.boton_eliminar_rol.TabIndex = 3;
-            this.boton_eliminar_rol.Text = "Eliminar";
-            this.boton_eliminar_rol.UseVisualStyleBackColor = true;
-            // 
             // boton_modificar_rol
             // 
-            this.boton_modificar_rol.Location = new System.Drawing.Point(16, 109);
+            this.boton_modificar_rol.Location = new System.Drawing.Point(75, 114);
             this.boton_modificar_rol.Name = "boton_modificar_rol";
             this.boton_modificar_rol.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar_rol.TabIndex = 4;
@@ -96,11 +86,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(227, 261);
+            this.ClientSize = new System.Drawing.Size(225, 261);
             this.Controls.Add(this.boton_crear_rol);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boton_modificar_rol);
-            this.Controls.Add(this.boton_eliminar_rol);
             this.Controls.Add(this.comboBox_roles);
             this.Controls.Add(this.label1);
             this.Name = "abm_rol";
@@ -114,7 +103,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_roles;
-        private System.Windows.Forms.Button boton_eliminar_rol;
         private System.Windows.Forms.Button boton_modificar_rol;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button boton_crear_rol;

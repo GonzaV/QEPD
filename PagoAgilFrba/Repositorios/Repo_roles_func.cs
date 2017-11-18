@@ -96,7 +96,22 @@ namespace PagoAgilFrba.Repositorios
 
             SqlCommand cmd = DBhelper.crearCommand("QEPD.modificarRol");
             cmd.Parameters.Add("@rolId", SqlDbType.Int).Value = rolSeleccionado.getId();
-            cmd.Parameters.Add("@rolNombre", SqlDbType.NVarChar).Value = nuevoNombre;
+            cmd.Parameters.Add("@rolNombreNuevo", SqlDbType.NVarChar).Value = nuevoNombre;
+
+            DBhelper.abrirConexion();
+
+            DBhelper.obtenerRetornoProcedure(cmd);
+
+            DBhelper.cerrarConexion();
+        
+        }
+
+        public void inhabilitarRol() {
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.eliminarRol");
+            cmd.Parameters.Add("@rolId", SqlDbType.Int).Value = rolSeleccionado.getId();
 
             DBhelper.abrirConexion();
 
@@ -139,6 +154,12 @@ namespace PagoAgilFrba.Repositorios
         public void setRolSeleccionado(Model.Rol rol) {
 
             this.rolSeleccionado = rol;
+        
+        }
+
+        public Model.Rol getRolSeleccionado() {
+
+            return this.rolSeleccionado;
         
         }
 
