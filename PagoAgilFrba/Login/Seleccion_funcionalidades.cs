@@ -74,5 +74,12 @@ namespace PagoAgilFrba.Login
             this.Close();
         }
 
+        private void button_devolucionFacturas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Devoluciones.Form_devolucionFactura().ShowDialog();
+            this.Close();
+        }
+
     }
 }

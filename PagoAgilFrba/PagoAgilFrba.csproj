@@ -163,6 +163,18 @@
     <Compile Include="ABM_Sucursal\Modificar_sucursal.Designer.cs">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devoluciones\Form_devolucionFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Form_devolucionFactura.Designer.cs">
+      <DependentUpon>Form_devolucionFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devoluciones\Form_devolucionRendicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Form_devolucionRendicion.Designer.cs">
+      <DependentUpon>Form_devolucionRendicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Seleccion_funcionalidades.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +203,12 @@
     <Compile Include="Model\Domicilio.cs" />
     <Compile Include="Model\Encriptador.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
+    <Compile Include="Rendiciones\Form_rendicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rendiciones\Form_rendicion.Designer.cs">
+      <DependentUpon>Form_rendicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositorios\Repo_cliente.cs" />
     <Compile Include="Repositorios\Repo_roles_func.cs" />
     <Compile Include="Repositorios\Repo_usuario.cs" />
@@ -250,6 +268,12 @@
     <EmbeddedResource Include="ABM_Sucursal\Modificar_sucursal.resx">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Form_devolucionFactura.resx">
+      <DependentUpon>Form_devolucionFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Form_devolucionRendicion.resx">
+      <DependentUpon>Form_devolucionRendicion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +295,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Rendiciones\Form_rendicion.resx">
+      <DependentUpon>Form_rendicion.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
