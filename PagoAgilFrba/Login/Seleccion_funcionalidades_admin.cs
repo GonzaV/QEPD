@@ -41,8 +41,20 @@ namespace PagoAgilFrba.Login
 
         private void boton_ejecutar_rendiciones_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Rendiciones del día realizadas", "Rendiciones OK", MessageBoxButtons.OK, MessageBoxIcon.None);
+            //MessageBox.Show("Rendiciones del día realizadas", "Rendiciones OK", MessageBoxButtons.OK, MessageBoxIcon.None);
+            this.Hide();
+            new Rendiciones.Form_rendicion().ShowDialog();
+            this.Close();
         }
+
+        private void boton_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Seleccion_funcionalidades().ShowDialog();
+            this.Close();
+        }
+
+      
 
     }
 }

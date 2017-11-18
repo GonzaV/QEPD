@@ -12,6 +12,9 @@ namespace PagoAgilFrba.Login
 {
     public partial class Seleccion_funcionalidades : Form
     {
+
+        const int IDADMIN = 1;
+
         public Seleccion_funcionalidades()
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace PagoAgilFrba.Login
 
         public void determinarHabilitacionFuncionesAdmin() {
 
-            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getNombre() == "Administrador") {
+            if (Model.Repo_usuario.getInstancia().getUsuarioIngresado().getRolActivo().getId() == IDADMIN) {
 
                 linkLabel1.Enabled = true;
             
@@ -68,6 +71,13 @@ namespace PagoAgilFrba.Login
         {
             this.Hide();
             new SeleccionRol.SeleccionRol().ShowDialog();
+            this.Close();
+        }
+
+        private void button_devolucionFacturas_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Devoluciones.Form_devolucionPago().ShowDialog();
             this.Close();
         }
 

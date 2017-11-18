@@ -9,7 +9,7 @@ using System.Data;
 
 namespace PagoAgilFrba.Model
 {
-    class Repo_usuario
+    public class Repo_usuario
     {
         
         public static List<Rol> listaDeRoles = new List<Rol>();

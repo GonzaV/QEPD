@@ -33,15 +33,16 @@ namespace PagoAgilFrba.ABM_Rol
         private void boton_modificar_rol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Repositorios.Repo_roles.getInstancia().setRolSeleccionado(rolSeleccionado);
+            Repositorios.Repo_roles_func.getInstancia().setRolSeleccionado(rolSeleccionado);
             new Modificar_rol().ShowDialog();
             this.Close();
         }
 
         private void comboBox_roles_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ComboBox selectorDeRol = (ComboBox)sender;
-            this.rolSeleccionado = (Model.Rol)selectorDeRol.SelectedValue;
+            rolSeleccionado = (Model.Rol)selectorDeRol.SelectedValue;
 
         }
 
@@ -49,7 +50,7 @@ namespace PagoAgilFrba.ABM_Rol
 
             this.comboBox_roles.ValueMember = "Objeto";
             this.comboBox_roles.DisplayMember = "Nombre";
-            this.comboBox_roles.DataSource = Repositorios.Repo_roles.getInstancia().getRoles();
+            this.comboBox_roles.DataSource = Repositorios.Repo_roles_func.getInstancia().getRoles();
             this.comboBox_roles.DropDownStyle = ComboBoxStyle.DropDownList;
         
         }
