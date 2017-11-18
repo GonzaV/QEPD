@@ -68,5 +68,12 @@ namespace PagoAgilFrba.ABM_Cliente
         {
 
         }
+
+        private void button_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new abm_cliente().ShowDialog();
+            this.Close();
+        }
     }
 }

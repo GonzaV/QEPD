@@ -54,5 +54,12 @@ namespace PagoAgilFrba.ABM_Cliente
                 textBox_direccion.Text,
                 Convert.ToInt32(textBox_cp.Text));
         }
+
+        private void button_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Listado_seleccion_clientes().ShowDialog();
+            this.Close();
+        }
     }
 }

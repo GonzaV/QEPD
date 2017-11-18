@@ -160,3 +160,5 @@ D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucio
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources

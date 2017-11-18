@@ -67,11 +67,23 @@
     <Compile Include="ABM_Cliente\abm_cliente.Designer.cs">
       <DependentUpon>abm_cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Cliente\Baja_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Cliente\Baja_cliente.Designer.cs">
+      <DependentUpon>Baja_cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Cliente\Crear_cliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM_Cliente\Crear_cliente.Designer.cs">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Cliente\Listado_seleccion_clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Cliente\Listado_seleccion_clientes.Designer.cs">
+      <DependentUpon>Listado_seleccion_clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM_Cliente\Modificar_cliente.cs">
       <SubType>Form</SubType>
@@ -214,8 +226,14 @@
     <EmbeddedResource Include="ABM_Cliente\abm_cliente.resx">
       <DependentUpon>abm_cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Cliente\Baja_cliente.resx">
+      <DependentUpon>Baja_cliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Crear_cliente.resx">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Cliente\Listado_seleccion_clientes.resx">
+      <DependentUpon>Listado_seleccion_clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Modificar_cliente.resx">
       <DependentUpon>Modificar_cliente.cs</DependentUpon>
