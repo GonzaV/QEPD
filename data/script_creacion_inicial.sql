@@ -820,6 +820,13 @@ as
 update qepd.Rol set Estado_Rol = 0 where IdRol = @rolId
 
 GO
+
+CREATE PROCEDURE QEPD.habilitarRol
+@rolId int
+AS
+	UPDATE QEPD.Rol SET Estado_Rol = 1 WHERE IdRol = @rolId
+GO
+
 create procedure QEPD.getFuncionalidadesDeUnRol /*cuando necesites una lista de funcionalidades de un rol*/
 @rolId int
 as
