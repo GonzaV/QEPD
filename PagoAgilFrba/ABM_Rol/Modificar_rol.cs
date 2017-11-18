@@ -35,13 +35,8 @@ namespace PagoAgilFrba.ABM_Rol
         private void boton_modificar_Click(object sender, EventArgs e)
         {
             Repositorios.Repo_roles_func.getInstancia().modificarNombreRol(textBox_nombre.Text);
-            
-            if(checkBox_inhabilitar.Checked.ToString() == CHECKED)
-            {
-
-                Repositorios.Repo_roles_func.getInstancia().inhabilitarRol();
-
-            }
+            determinarHabilitacion();
+           
         }
 
         public void configurarCheckBoxes() {
@@ -55,6 +50,25 @@ namespace PagoAgilFrba.ABM_Rol
 
             else checkBox_inhabilitar.Enabled = false;
         
+        }
+
+        public void determinarHabilitacion(){
+
+
+             if(checkBox_inhabilitar.Checked.ToString() == CHECKED)
+            {
+                Repositorios.Repo_roles_func.getInstancia().inhabilitarRol();
+            }
+            else {
+
+                if (checkBox_habilitar.Checked.ToString() == CHECKED)
+                {
+                    Repositorios.Repo_roles_func.getInstancia().habilitarRol();
+                }
+            
+            
+            }
+
         }
 
     }

@@ -121,6 +121,22 @@ namespace PagoAgilFrba.Repositorios
         
         }
 
+        public void habilitarRol()
+        {
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.habilitarRol");
+            cmd.Parameters.Add("@rolId", SqlDbType.Int).Value = rolSeleccionado.getId();
+
+            DBhelper.abrirConexion();
+
+            DBhelper.obtenerRetornoProcedure(cmd);
+
+            DBhelper.cerrarConexion();
+
+        }
+
         public List<Model.Funcionalidad> getFuncionalidades()
         {
 
