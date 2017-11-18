@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.ABM_Empresa
 {
-    public partial class Modificar_empresa : Form
+    public partial class Baja_empresa : Form
     {
-        public Modificar_empresa()
+        public Baja_empresa()
         {
             InitializeComponent();
         }
 
-        private void boton_modificar_empresa_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_volver_Click(object sender, EventArgs e)
+        private void button_cancelarBaja_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Listado_seleccion_empresas().ShowDialog();
             this.Close();
         }
     }

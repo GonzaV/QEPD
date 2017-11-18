@@ -10,35 +10,32 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.ABM_Empresa
 {
-    public partial class abm_empresa : Form
+    public partial class Listado_seleccion_empresas : Form
     {
-        public abm_empresa()
+        public Listado_seleccion_empresas()
         {
             InitializeComponent();
         }
 
-        private void boton_crear_empresa_Click(object sender, EventArgs e)
+        private void button_Modificar_empresa_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Crear_empresa().ShowDialog();
+            new Modificar_empresa().ShowDialog();
             this.Close();
-        }
 
-        private void button_Listado_seleccion_empresas_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new Listado_seleccion_empresas().ShowDialog();
-            this.Close();
         }
 
         private void button_volver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Login.Seleccion_funcionalidades_admin().ShowDialog();
+            new abm_empresa().ShowDialog();
             this.Close();
         }
 
-       
+        private void button_Baja_empresa_Click(object sender, EventArgs e)
+        {
+            new Baja_empresa().ShowDialog();
+        }
 
         
     }

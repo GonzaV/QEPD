@@ -162,3 +162,5 @@ C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ex
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
