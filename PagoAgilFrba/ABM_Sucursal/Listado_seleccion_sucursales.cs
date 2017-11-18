@@ -10,33 +10,29 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.ABM_Sucursal
 {
-    public partial class abm_sucursal : Form
+    public partial class Listado_seleccion_sucursales : Form
     {
-        public abm_sucursal()
+        public Listado_seleccion_sucursales()
         {
             InitializeComponent();
         }
 
-        private void boton_crear_sucursal_Click(object sender, EventArgs e)
+        private void button_Modificar_cliente_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Crear_sucursal().ShowDialog();
+            new Modificar_sucursal().ShowDialog();
             this.Close();
         }
 
-     
-
-        private void button_Listado_seleccion_sucursales_Click(object sender, EventArgs e)
+        private void button_Baja_cliente_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new Listado_seleccion_sucursales().ShowDialog();
-            this.Close();
+            new Baja_sucursal().ShowDialog();
         }
 
         private void button_volver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Login.Seleccion_funcionalidades_admin().ShowDialog();
+            new abm_sucursal().ShowDialog();
             this.Close();
         }
     }

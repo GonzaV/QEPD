@@ -175,11 +175,23 @@
     <Compile Include="ABM_Sucursal\abm_sucursal.Designer.cs">
       <DependentUpon>abm_sucursal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Sucursal\Baja_sucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Baja_sucursal.Designer.cs">
+      <DependentUpon>Baja_sucursal.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Sucursal\Crear_sucursal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM_Sucursal\Crear_sucursal.Designer.cs">
       <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Listado_seleccion_sucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Listado_seleccion_sucursales.Designer.cs">
+      <DependentUpon>Listado_seleccion_sucursales.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM_Sucursal\Modificar_sucursal.cs">
       <SubType>Form</SubType>
@@ -292,8 +304,14 @@
     <EmbeddedResource Include="ABM_Sucursal\abm_sucursal.resx">
       <DependentUpon>abm_sucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Baja_sucursal.resx">
+      <DependentUpon>Baja_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Sucursal\Crear_sucursal.resx">
       <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Listado_seleccion_sucursales.resx">
+      <DependentUpon>Listado_seleccion_sucursales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Sucursal\Modificar_sucursal.resx">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>

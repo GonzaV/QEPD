@@ -33,9 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.boton_crear_sucursal = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -76,45 +77,53 @@
             // 
             // boton_crear_sucursal
             // 
-            this.boton_crear_sucursal.Location = new System.Drawing.Point(249, 200);
+            this.boton_crear_sucursal.Location = new System.Drawing.Point(207, 193);
             this.boton_crear_sucursal.Name = "boton_crear_sucursal";
             this.boton_crear_sucursal.Size = new System.Drawing.Size(75, 23);
             this.boton_crear_sucursal.TabIndex = 4;
             this.boton_crear_sucursal.Text = "Crear";
             this.boton_crear_sucursal.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // textBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(94, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
+            this.textBox1.Location = new System.Drawing.Point(94, 57);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 5;
             // 
-            // comboBox2
+            // textBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(94, 94);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
+            this.textBox2.Location = new System.Drawing.Point(94, 94);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 6;
             // 
-            // comboBox3
+            // textBox3
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(94, 133);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 7;
+            this.textBox3.Location = new System.Drawing.Point(94, 133);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 7;
+            // 
+            // button_cancelar
+            // 
+            this.button_cancelar.Location = new System.Drawing.Point(94, 193);
+            this.button_cancelar.Name = "button_cancelar";
+            this.button_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.button_cancelar.TabIndex = 8;
+            this.button_cancelar.Text = "Cancelar";
+            this.button_cancelar.UseVisualStyleBackColor = true;
+            this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
             // 
             // Crear_sucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 249);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.button_cancelar);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.boton_crear_sucursal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -122,6 +131,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Crear_sucursal";
             this.Text = "Crear_sucursal";
+            this.Load += new System.EventHandler(this.Crear_sucursal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,8 +144,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button boton_crear_sucursal;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button_cancelar;
     }
 }

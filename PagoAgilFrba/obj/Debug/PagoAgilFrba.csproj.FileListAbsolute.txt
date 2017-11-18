@@ -164,3 +164,5 @@ D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.re
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
 D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources
