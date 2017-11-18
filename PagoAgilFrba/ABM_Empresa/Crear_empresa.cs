@@ -16,5 +16,12 @@ namespace PagoAgilFrba.ABM_Empresa
         {
             InitializeComponent();
         }
+
+        private void button_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new abm_empresa().ShowDialog();
+            this.Close();
+        }
     }
 }

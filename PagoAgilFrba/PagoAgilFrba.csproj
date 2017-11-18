@@ -67,11 +67,23 @@
     <Compile Include="ABM_Cliente\abm_cliente.Designer.cs">
       <DependentUpon>abm_cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Cliente\Baja_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Cliente\Baja_cliente.Designer.cs">
+      <DependentUpon>Baja_cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Cliente\Crear_cliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM_Cliente\Crear_cliente.Designer.cs">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Cliente\Listado_seleccion_clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Cliente\Listado_seleccion_clientes.Designer.cs">
+      <DependentUpon>Listado_seleccion_clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM_Cliente\Modificar_cliente.cs">
       <SubType>Form</SubType>
@@ -85,11 +97,23 @@
     <Compile Include="ABM_Empresa\abm_empresa.Designer.cs">
       <DependentUpon>abm_empresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Empresa\Baja_empresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Empresa\Baja_empresa.Designer.cs">
+      <DependentUpon>Baja_empresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Empresa\Crear_empresa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM_Empresa\Crear_empresa.Designer.cs">
       <DependentUpon>Crear_empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Empresa\Listado_seleccion_empresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Empresa\Listado_seleccion_empresas.Designer.cs">
+      <DependentUpon>Listado_seleccion_empresas.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM_Empresa\Modificar_empresa.cs">
       <SubType>Form</SubType>
@@ -151,11 +175,23 @@
     <Compile Include="ABM_Sucursal\abm_sucursal.Designer.cs">
       <DependentUpon>abm_sucursal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Sucursal\Baja_sucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Baja_sucursal.Designer.cs">
+      <DependentUpon>Baja_sucursal.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Sucursal\Crear_sucursal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM_Sucursal\Crear_sucursal.Designer.cs">
       <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Listado_seleccion_sucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Sucursal\Listado_seleccion_sucursales.Designer.cs">
+      <DependentUpon>Listado_seleccion_sucursales.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM_Sucursal\Modificar_sucursal.cs">
       <SubType>Form</SubType>
@@ -214,8 +250,14 @@
     <EmbeddedResource Include="ABM_Cliente\abm_cliente.resx">
       <DependentUpon>abm_cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Cliente\Baja_cliente.resx">
+      <DependentUpon>Baja_cliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Crear_cliente.resx">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Cliente\Listado_seleccion_clientes.resx">
+      <DependentUpon>Listado_seleccion_clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Modificar_cliente.resx">
       <DependentUpon>Modificar_cliente.cs</DependentUpon>
@@ -223,8 +265,14 @@
     <EmbeddedResource Include="ABM_Empresa\abm_empresa.resx">
       <DependentUpon>abm_empresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Empresa\Baja_empresa.resx">
+      <DependentUpon>Baja_empresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Empresa\Crear_empresa.resx">
       <DependentUpon>Crear_empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Empresa\Listado_seleccion_empresas.resx">
+      <DependentUpon>Listado_seleccion_empresas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Empresa\Modificar_empresa.resx">
       <DependentUpon>Modificar_empresa.cs</DependentUpon>
@@ -256,8 +304,14 @@
     <EmbeddedResource Include="ABM_Sucursal\abm_sucursal.resx">
       <DependentUpon>abm_sucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Baja_sucursal.resx">
+      <DependentUpon>Baja_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM_Sucursal\Crear_sucursal.resx">
       <DependentUpon>Crear_sucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Sucursal\Listado_seleccion_sucursales.resx">
+      <DependentUpon>Listado_seleccion_sucursales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Sucursal\Modificar_sucursal.resx">
       <DependentUpon>Modificar_sucursal.cs</DependentUpon>

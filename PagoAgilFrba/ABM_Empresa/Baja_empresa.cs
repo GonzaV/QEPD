@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PagoAgilFrba.ABM_Sucursal
+namespace PagoAgilFrba.ABM_Empresa
 {
-    public partial class Modificar_sucursal : Form
+    public partial class Baja_empresa : Form
     {
-        public Modificar_sucursal()
+        public Baja_empresa()
         {
             InitializeComponent();
         }
 
-        private void button_cancelar_Click(object sender, EventArgs e)
+        private void button_cancelarBaja_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Listado_seleccion_sucursales().ShowDialog();
             this.Close();
         }
     }

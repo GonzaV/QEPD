@@ -36,6 +36,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.boton_modificar_sucursal = new System.Windows.Forms.Button();
+            this.button_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -97,18 +98,29 @@
             // 
             // boton_modificar_sucursal
             // 
-            this.boton_modificar_sucursal.Location = new System.Drawing.Point(106, 187);
+            this.boton_modificar_sucursal.Location = new System.Drawing.Point(166, 185);
             this.boton_modificar_sucursal.Name = "boton_modificar_sucursal";
             this.boton_modificar_sucursal.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar_sucursal.TabIndex = 7;
             this.boton_modificar_sucursal.Text = "Modificar";
             this.boton_modificar_sucursal.UseVisualStyleBackColor = true;
             // 
+            // button_cancelar
+            // 
+            this.button_cancelar.Location = new System.Drawing.Point(46, 185);
+            this.button_cancelar.Name = "button_cancelar";
+            this.button_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.button_cancelar.TabIndex = 8;
+            this.button_cancelar.Text = "Cancelar";
+            this.button_cancelar.UseVisualStyleBackColor = true;
+            this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
+            // 
             // Modificar_sucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 242);
+            this.Controls.Add(this.button_cancelar);
             this.Controls.Add(this.boton_modificar_sucursal);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button boton_modificar_sucursal;
+        private System.Windows.Forms.Button button_cancelar;
     }
 }

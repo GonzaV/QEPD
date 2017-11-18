@@ -49,6 +49,7 @@
             this.label_direccion = new System.Windows.Forms.Label();
             this.textBox_cp = new System.Windows.Forms.TextBox();
             this.label_cp = new System.Windows.Forms.Label();
+            this.button_volver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_crear_cliente
@@ -159,7 +160,7 @@
             // 
             // button_crearCliente
             // 
-            this.button_crearCliente.Location = new System.Drawing.Point(286, 339);
+            this.button_crearCliente.Location = new System.Drawing.Point(282, 363);
             this.button_crearCliente.Name = "button_crearCliente";
             this.button_crearCliente.Size = new System.Drawing.Size(75, 23);
             this.button_crearCliente.TabIndex = 13;
@@ -228,11 +229,22 @@
             this.label_cp.TabIndex = 18;
             this.label_cp.Text = "Código Postal";
             // 
+            // button_volver
+            // 
+            this.button_volver.Location = new System.Drawing.Point(48, 363);
+            this.button_volver.Name = "button_volver";
+            this.button_volver.Size = new System.Drawing.Size(75, 23);
+            this.button_volver.TabIndex = 20;
+            this.button_volver.Text = "Cancelar";
+            this.button_volver.UseVisualStyleBackColor = true;
+            this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
+            // 
             // Crear_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 398);
+            this.Controls.Add(this.button_volver);
             this.Controls.Add(this.textBox_cp);
             this.Controls.Add(this.label_cp);
             this.Controls.Add(this.textBox_direccion);
@@ -283,5 +295,6 @@
         private System.Windows.Forms.Label label_direccion;
         private System.Windows.Forms.TextBox textBox_cp;
         private System.Windows.Forms.Label label_cp;
+        private System.Windows.Forms.Button button_volver;
     }
 }
