@@ -399,7 +399,7 @@ Fecha_Cobro_Pago datetime NULL,
 CodigoPostal_Sucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
 Total_Pago numeric(18,2) NULL,  /* Lo que paga el cliente, no calculado como la suma de las facturas que contiene*/
 Tipo_pago int FOREIGN KEY REFERENCES QEPD.Forma_Pago(IdForma_Pago),
-Estado_Rendicion_Pago BIT DEFAULT 0 /* Indica si el pago fue rendido o no? */
+
 
 
 )
@@ -1416,11 +1416,14 @@ SELECT * FROM QEPD.Renglon_Pago WHERE IdEmpresa = @idEmpresa
 
 GO
 
-CREATE PROCEDURE QEPD.RendirEmpresa
-@EmpresaId int
-AS
-	BEGIN TRANSACTION
-	
+CREATE PROCEDURE QEPD.RendirEmpresa				/* 1-  Le paso el IDEmpresa  que obtengo del selector. */
+@EmpresaId int									/* 2-  Creo una rendicion vacia con empresa y fecha*/
+												/* 3-  Obtengo el ID de esa nueva rendicion que acabo de crear para la empresa x*/
+												/* 4-  Creo el cursor para poder ir cargando los renglones rendicion en base a los pagos*/	
+AS												/* 5-  Recorro el cursor y voy cargando los nuevos renglones de rendicion*/
+	BEGIN TRANSACTION							/* 6-  Cuando voy cargando un renglon, seteo el renglon de pago como rendido*/		
+												 /*7-  Ejecuto los procedures para completar de la row de rendicion los campos*/
+												/*Total_rendicion, Porcentaje Comision e Importe comision (por defecto 0.1)*/
 	DECLARE	@cantidadRenglones int
 	DECLARE @idRendicion numeric(18,0)
 	DECLARE @PORCENTAJERENDICION NUMERIC(18,2)
@@ -1443,13 +1446,15 @@ AS
 		INTO @Nro_Pago,	@MontoPago, @IdRendicion1								
 		WHILE @@FETCH_STATUS = 0
 			BEGIN
-				INSERT INTO QEPD.Renglon_Rendicion (IdRendicion,Nro_Pago,Monto_Pago) VALUES (@idRendicion,@Nro_Pago,@MontoPago)	
+				INSERT INTO QEPD.Renglon_Rendicion (IdRendicion,Nro_Pago,Monto_Pago) VALUES (@idRendicion,@Nro_Pago,@MontoPago)
+				UPDATE Renglon_Pago SET Estado_Rendicion_Pago = 1 WHERE Nro_Pago = @Nro_Pago	
 				FETCH NEXT FROM nwRenglones
 				INTO @Nro_Pago,	@MontoPago, @IdRendicion1
 			END
 		CLOSE nwRenglones
 		DEALLOCATE nwRenglones
 		END
+		
 		EXEC QEPD.getTotalValoresPagos @IdRendicion
 		EXEC QEPD.getCantidadFacturasRendicion @IdRendicion
 		EXEC QEPD.setPorcentajeComisionRendicion @porcentajerendicion
