@@ -233,6 +233,7 @@
     <Compile Include="Model\Domicilio.cs" />
     <Compile Include="Model\Encriptador.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
+    <Compile Include="Model\Rubro.cs" />
     <Compile Include="Rendiciones\Form_rendicion.cs">
       <SubType>Form</SubType>
     </Compile>
