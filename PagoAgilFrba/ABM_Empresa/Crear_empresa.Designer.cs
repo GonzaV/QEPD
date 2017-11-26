@@ -120,6 +120,7 @@
             this.comboBox_rubro.Name = "comboBox_rubro";
             this.comboBox_rubro.Size = new System.Drawing.Size(121, 21);
             this.comboBox_rubro.TabIndex = 8;
+            this.comboBox_rubro.SelectedIndexChanged += new System.EventHandler(this.comboBox_rubro_SelectedIndexChanged);
             // 
             // textBox_direccion
             // 

@@ -240,6 +240,7 @@
       <DependentUpon>Form_rendicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositorios\Repo_cliente.cs" />
+    <Compile Include="Repositorios\Repo_empresas.cs" />
     <Compile Include="Repositorios\Repo_roles_func.cs" />
     <Compile Include="Repositorios\Repo_usuario.cs" />
     <Compile Include="Model\Rol.cs" />
