@@ -242,8 +242,60 @@ IF OBJECT_ID('qepd.newRenglonFactura','P') IS NOT NULL
 IF OBJECT_ID('qepd.getTotaldeFactura','P') IS NOT NULL  
 	DROP PROCEDURE qepd.getTotaldeFactura
 
-IF OBJECT_ID('qepd.newFactura','P') IS NOT NULL  
+IF OBJECT_ID('qepd.newFactura','P') IS NOT NULL 
 	DROP PROCEDURE qepd.newFactura
+
+IF OBJECT_ID('QEPD.getRendiciones','P') IS NOT NULL   
+	DROP PROCEDURE QEPD.getRendiciones
+	
+IF OBJECT_ID('qepd.getRendicionesHistoricasxEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE qepd.getRendicionesHistoricasxEmpresa
+
+IF OBJECT_ID('QEPD.getEmpresasARendirHoy','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getEmpresasARendirHoy
+
+IF OBJECT_ID('QEPD.getRenglonesRendicion','P') IS NOT NULL 
+	DROP PROCEDURE QEPD.getRenglonesRendicion
+
+IF OBJECT_ID('QEPD.getRenglonRendicion','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRenglonRendicion
+
+IF OBJECT_ID('QEPD.getCantidadFacturasRendicion ','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getCantidadFacturasRendicion 
+
+IF OBJECT_ID('QEPD.newRendicion','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newRendicion
+
+IF OBJECT_ID('QEPD.getTotalValoresPagos','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getTotalValoresPagos
+
+IF OBJECT_ID('QEPD.getPago','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getPago
+
+IF OBJECT_ID('QEPD.getPagos','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getPagos
+
+IF OBJECT_ID('QEPD.getRenglonFactura','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRenglonFactura
+
+IF OBJECT_ID('QEPD.getRenglonPago','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRenglonPago
+
+IF OBJECT_ID('QEPD.getRenglonesPago','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRenglonesPago
+
+IF OBJECT_ID('QEPD.newRenglonPago','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newRenglonPago
+
+IF OBJECT_ID('QEPD.newPago','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newPago
+
+IF OBJECT_ID('QEPD.getTotalValorFacturas','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getTotalValorFacturas
+
+IF OBJECT_ID('QEPD.newRenglonRendicion','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.newRenglonRendicion
+	
 
 
 /* Se dropea schema */ 
@@ -292,6 +344,7 @@ create table qepd.Empresa(
 IdEmpresa int IDENTITY(1,1) PRIMARY KEY,
 Nombre_Empresa nvarchar(255) NOT NULL,
 Cuit nvarchar(50) NOT NULL,
+Fecha_Rendicion datetime NULL,
 IdDomicilio int FOREIGN KEY REFERENCES QEPD.Domicilio(IdDomicilio),
 IdRubro numeric FOREIGN KEY REFERENCES QEPD.Rubro(Nro_Rubro),
 Estado_Empresa BIT DEFAULT 1
@@ -315,7 +368,7 @@ Pago_Estado bit default 1
 )
 
 create table qepd.Renglon_Factura(
-IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, /*//////////////////////// corresponde autogenerada no ? */
+IdRenglon_Factura int IDENTITY(1,1) PRIMARY KEY, 
 Item_Monto_Factura numeric(18,2) NOT NULL,
 Item_Cant_Factura numeric(18,0) NOT NULL,
 Item_descripcion nvarchar(255) NULL,
@@ -350,8 +403,8 @@ IdRendicion numeric IDENTITY(1,1) PRIMARY KEY NOT NULL,
 IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
 Cantidad_Facturas numeric(18,0) NULL, /*caculable*/
 Fecha_Rendicion datetime NOT NULL,
-Porrcentaje_Comision numeric(18,2) DEFAULT 0.1,
-Importe_Ccomision numeric(18,2) NULL, /* calcuable a partir de partir del total de facturas y porcentaje*/
+Porcentaje_Comision numeric(18,2) DEFAULT 0.1,
+Importe_Comision numeric(18,2) NULL, /* calcuable a partir de partir del total de facturas y porcentaje*/
 Total_Rendicion numeric(18,2) NULL 
 )
 
@@ -440,13 +493,14 @@ INSERT INTO QEPD.Rubro(Nro_Rubro,Descripcion_Rubro)
 SET IDENTITY_INSERT  QEPD.Rubro OFF
 
 /* Migracion Empresa */
+SET ANSI_WARNINGS OFF ----- VER
 
-INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
-			SELECT DISTINCT m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.Nro_Rubro
+INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro,Fecha_Rendicion)
+			SELECT DISTINCT m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.Nro_Rubro, MAX(Rendicion_Fecha)
 			FROM gd_esquema.Maestra m, QEPD.Domicilio d, QEPD.Rubro r
 			WHERE  m.Empresa_Cuit IS NOT NULL AND m.Empresa_Direccion = d.Direccion AND m.Empresa_Rubro = r.Nro_Rubro
-
-
+			GROUP BY m.Empresa_Nombre, m.Empresa_Cuit, d.IdDomicilio, r.Nro_Rubro
+SET ANSI_WARNINGS ON
 /* Migracion Sucursal */
 
 INSERT INTO QEPD.Sucursal(CP_Sucursal,Nombre_Sucursal,Direccion_Sucursal)
@@ -763,7 +817,7 @@ GO
 create procedure qepd.eliminarRol
 @rolId int
 as
-update qepd.Rol set Estado_Rol = '0' where IdRol = @rolId
+update qepd.Rol set Estado_Rol = 0 where IdRol = @rolId
 
 GO
 create procedure QEPD.getFuncionalidadesDeUnRol /*cuando necesites una lista de funcionalidades de un rol*/
@@ -834,7 +888,7 @@ select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clien
 GO
 CREATE PROCEDURE QEPD.getClientesActivos
 AS
-SELECT * FROM QEPD.CLIENTE WHERE IdCliente =1
+SELECT * FROM QEPD.CLIENTE WHERE IdCliente = 1
 
 
 GO
@@ -897,7 +951,7 @@ GO
 CREATE PROCEDURE  QEPD.habilitarCliente /* recibo el dni*/
 @dniCliente numeric(18,0)
 as
-update QEPD.Cliente set Estado_Cliente = 0 where Dni_Cliente = @dniCliente
+update QEPD.Cliente set Estado_Cliente = 1 where Dni_Cliente = @dniCliente
 
 
 GO
@@ -962,8 +1016,8 @@ AS
 
 		SET @rubro = (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa)
 		
-		INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro)
-			VALUES (@Nombre_Empresa,@Cuit_Empresa,@direction,@rubro)
+		INSERT INTO QEPD.Empresa(Nombre_Empresa,Cuit,IdDomicilio,IdRubro,Fecha_Rendicion)
+			VALUES (@Nombre_Empresa,@Cuit_Empresa,@direction,@rubro,GETDATE())
 	END
 
 GO
@@ -974,6 +1028,7 @@ CREATE PROCEDURE QEPD.modificarEmpresa /* el metodo del repo recibe un objeto em
 @Cuit_Empresa nvarchar(50),
 @Direccion_Empresa nvarchar(255),
 @descripcionRubro_Empresa nvarchar(50),
+@Fecha_Rendicion datetime,
 @estado bit
 AS
 	BEGIN
@@ -991,7 +1046,7 @@ AS
 		/* obtengo el rubroId para cargar */
 		SET @rubro = (SELECT r.Nro_Rubro FROM QEPD.Rubro r WHERE r.Descripcion_Rubro = @descripcionRubro_Empresa) 
 		
-		UPDATE QEPD.Empresa SET Nombre_Empresa = @Nombre_Empresa, Cuit = @Cuit_Empresa, IdDomicilio = @direction, IdRubro = @rubro 
+		UPDATE QEPD.Empresa SET Nombre_Empresa = @Nombre_Empresa, Cuit = @Cuit_Empresa, IdDomicilio = @direction, IdRubro = @rubro, Fecha_Rendicion = @Fecha_Rendicion
 		WHERE IdEmpresa = @idEmpresa 
 	END
 
@@ -1007,7 +1062,7 @@ GO
 CREATE PROCEDURE QEPD.habilitarEmpresa /* recibo el cuit de la empresa x-xxxxxx-x nvarchar */
 @cuitEmpresa nvarchar(50)
 AS
-	UPDATE QEPD.Empresa SET Estado_Empresa = 0 WHERE Cuit = @cuitEmpresa
+	UPDATE QEPD.Empresa SET Estado_Empresa = 1 WHERE Cuit = @cuitEmpresa
 
 GO
 
@@ -1068,7 +1123,7 @@ GO
 CREATE PROCEDURE QEPD.EliminarSucursal /* Recibe IdSucursal */
 @CP_Sucursal numeric(18,0)
 AS 
-	UPDATE QEPD.Sucursal set Estado_Sucursal = '0' where CP_Sucursal = @CP_Sucursal
+	UPDATE QEPD.Sucursal set Estado_Sucursal = 0 where CP_Sucursal = @CP_Sucursal
 
 
 GO
@@ -1166,7 +1221,6 @@ create procedure qepd.getPago
 as
 select * from QEPD.Pago p where p.Nro_Pago = @idPago
 
-
 GO
 create procedure qepd.getPagos
 as
@@ -1175,7 +1229,7 @@ select * from qepd.Pago
 
 GO
 create procedure qepd.getRenglonesPago
-@idPago numeric
+@idPago numeric(18,0)
 as
 select * from QEPD.Renglon_Pago r where r.Nro_Pago = @idPago 
 
@@ -1218,3 +1272,103 @@ from qepd.Renglon_Pago r
 		on f.Nro_Factura = r.Nro_Factura
 where r.Nro_Pago = @idPago
 end
+
+GO
+
+/* Repo Rendiciones */ 
+
+/*
+getRendiciones
+getRendicionesHistoricasxEmpresa
+getEmpresasARendirHoy
+getRenglonesRendicion
+getRenglonRendicion
+newRenglonRendicion 
+getCantidadFacturasRendicion 
+newRendicion
+getTotalValoresPagos
+
+
+
+*/
+
+ 
+CREATE PROCEDURE QEPD.getRendiciones /* Toma todas las rendiciones */
+AS
+	SELECT * FROM QEPD.Rendicion 
+
+GO
+
+CREATE PROCEDURE QEPD.getRendicionesHistoricasxEmpresa /* Devuelve el historico de rendiciones por empresa con su ID */
+@idEmpresa int
+AS
+	SELECT * FROM QEPD.Rendicion r
+	WHERE IdEmpresa = @idEmpresa
+
+
+GO
+
+
+CREATE PROCEDURE QEPD.getEmpresasARendirHoy /* Devuelve empresas a rendir hoy */
+AS
+	SELECT * FROM QEPD.Empresa
+	WHERE Fecha_Rendicion = GETDATE()-30
+
+
+GO
+
+CREATE PROCEDURE QEPD.getRenglonesRendicion
+@idRendicion int
+AS
+SELECT * FROM QEPD.Renglon_Rendicion WHERE IdRendicion = @idRendicion
+
+GO
+
+CREATE PROCEDURE QEPD.getRenglonRendicion
+@idRenglonRend int
+AS
+SELECT * FROM QEPD.Renglon_Rendicion WHERE IdRenglon_Rendicion = @idRenglonRend
+
+GO
+
+CREATE PROCEDURE QEPD.newRenglonRendicion /* Inserto un nuevo renglon de rend, con el Nro de rendicion al que apunta */
+@idRendicion int,                       /* El nro de pago que va a ser cargado como renglon y el monto del mismo */
+@NroPago numeric(18,0),
+@MontoPago numeric(18,2)
+AS
+INSERT INTO QEPD.Renglon_Rendicion (IdRendicion,Nro_Pago,Monto_Pago) VALUES (@idRendicion,@NroPago,@MontoPago)
+	
+GO
+
+CREATE PROCEDURE QEPD.getCantidadFacturasRendicion /* devuelve cantidad de facturas por una determinada rendicion que le paso */
+@idRendicion numeric(18,0)
+AS
+	SELECT COUNT(idRendicion) FROM QEPD.Renglon_Rendicion WHERE IdRendicion = @idRendicion
+
+GO
+
+CREATE PROCEDURE QEPD.newRendicion /* seteo solo empresa y fecha, el resto tengo que calcularlo cuando termine de cargarle los renglones.*/ 
+@idEmpresa int
+-- Fecha rend getdate
+AS
+INSERT INTO QEPD.Rendicion(IdEmpresa, Fecha_Rendicion) VALUES (@idEmpresa,GETDATE())
+
+GO
+/*
+CREATE PROCEDURE getTotalValoresPagos
+@idRendicion numeric(18,0)
+AS
+	BEGIN
+		SELECT SUM(p.Total_Pago) FROM QEPD.Renglon_Rendicion rp
+			JOIN QEPD.Pago p
+				ON rp.Nro_Pago = p.Nro_Pago
+			where rp.IdRendicion = @idRendicion
+		END
+GO
+*/
+/* TO DO
+
+CREATE PROCEDURE RendirEmpresa 
+
+
+GO*/

@@ -9,7 +9,7 @@ using System.Data;
 
 namespace PagoAgilFrba.Utils
 {
-    class DBhelper
+    public class DBhelper
     {
 
         private static DBhelper instancia;

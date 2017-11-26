@@ -29,7 +29,7 @@ namespace PagoAgilFrba.ABM_Rol
 
         private void boton_modificar_Click(object sender, EventArgs e)
         {
-            Repositorios.Repo_roles.getInstancia().modificarNombreRol(textBox_nombre.Text);
+            Repositorios.Repo_roles_func.getInstancia().modificarNombreRol(textBox_nombre.Text);
         }
 
 

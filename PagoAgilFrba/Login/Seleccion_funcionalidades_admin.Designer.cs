@@ -119,7 +119,7 @@
             // 
             // boton_volver
             // 
-            this.boton_volver.Location = new System.Drawing.Point(12, 412);
+            this.boton_volver.Location = new System.Drawing.Point(20, 399);
             this.boton_volver.Name = "boton_volver";
             this.boton_volver.Size = new System.Drawing.Size(75, 23);
             this.boton_volver.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 447);
+            this.ClientSize = new System.Drawing.Size(262, 445);
             this.Controls.Add(this.boton_volver);
             this.Controls.Add(this.boton_ejecutar_rendiciones);
             this.Controls.Add(this.label4);

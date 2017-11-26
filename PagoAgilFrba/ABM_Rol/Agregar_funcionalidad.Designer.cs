@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.selector_de_funcionalidad = new System.Windows.Forms.ComboBox();
             this.boton_agregar_funcionalidad = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,13 +43,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Elija una funcionalidad a agregar:";
             // 
-            // comboBox1
+            // selector_de_funcionalidad
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 68);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.selector_de_funcionalidad.FormattingEnabled = true;
+            this.selector_de_funcionalidad.Location = new System.Drawing.Point(15, 68);
+            this.selector_de_funcionalidad.Name = "selector_de_funcionalidad";
+            this.selector_de_funcionalidad.Size = new System.Drawing.Size(121, 21);
+            this.selector_de_funcionalidad.TabIndex = 1;
+            this.selector_de_funcionalidad.SelectedIndexChanged += new System.EventHandler(this.selector_de_funcionalidad_SelectedIndexChanged);
             // 
             // boton_agregar_funcionalidad
             // 
@@ -77,7 +78,7 @@
             this.ClientSize = new System.Drawing.Size(284, 159);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.boton_agregar_funcionalidad);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.selector_de_funcionalidad);
             this.Controls.Add(this.label1);
             this.Name = "Agregar_funcionalidad";
             this.Text = "Agregar_funcionalidad";
@@ -89,7 +90,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox selector_de_funcionalidad;
         private System.Windows.Forms.Button boton_agregar_funcionalidad;
         private System.Windows.Forms.Button button1;
     }
