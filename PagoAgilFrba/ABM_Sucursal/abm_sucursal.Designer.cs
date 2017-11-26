@@ -29,62 +29,24 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.boton_crear_sucursal = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.button_Listado_seleccion_sucursales = new System.Windows.Forms.Button();
+            this.button_volver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 23);
+            this.label1.Location = new System.Drawing.Point(38, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(193, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione un rol a modificar o eliminar:";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 56);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(143, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Esto no se hace con un selector";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(16, 105);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(131, 105);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // boton_crear_sucursal
             // 
-            this.boton_crear_sucursal.Location = new System.Drawing.Point(66, 211);
+            this.boton_crear_sucursal.Location = new System.Drawing.Point(99, 51);
             this.boton_crear_sucursal.Name = "boton_crear_sucursal";
             this.boton_crear_sucursal.Size = new System.Drawing.Size(75, 24);
             this.boton_crear_sucursal.TabIndex = 5;
@@ -95,23 +57,41 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 167);
+            this.label3.Location = new System.Drawing.Point(72, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Cree una nueva sucursal:";
             // 
+            // button_Listado_seleccion_sucursales
+            // 
+            this.button_Listado_seleccion_sucursales.Location = new System.Drawing.Point(99, 138);
+            this.button_Listado_seleccion_sucursales.Name = "button_Listado_seleccion_sucursales";
+            this.button_Listado_seleccion_sucursales.Size = new System.Drawing.Size(75, 23);
+            this.button_Listado_seleccion_sucursales.TabIndex = 7;
+            this.button_Listado_seleccion_sucursales.Text = "Seleccionar";
+            this.button_Listado_seleccion_sucursales.UseVisualStyleBackColor = true;
+            this.button_Listado_seleccion_sucursales.Click += new System.EventHandler(this.button_Listado_seleccion_sucursales_Click);
+            // 
+            // button_volver
+            // 
+            this.button_volver.Location = new System.Drawing.Point(41, 173);
+            this.button_volver.Name = "button_volver";
+            this.button_volver.Size = new System.Drawing.Size(75, 23);
+            this.button_volver.TabIndex = 8;
+            this.button_volver.Text = "Volver";
+            this.button_volver.UseVisualStyleBackColor = true;
+            this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
+            // 
             // abm_sucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 261);
+            this.ClientSize = new System.Drawing.Size(278, 208);
+            this.Controls.Add(this.button_volver);
+            this.Controls.Add(this.button_Listado_seleccion_sucursales);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boton_crear_sucursal);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Name = "abm_sucursal";
             this.Text = "abm_sucursal";
@@ -123,11 +103,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button boton_crear_sucursal;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_Listado_seleccion_sucursales;
+        private System.Windows.Forms.Button button_volver;
     }
 }

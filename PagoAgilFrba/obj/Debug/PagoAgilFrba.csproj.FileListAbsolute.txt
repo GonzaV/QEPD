@@ -160,3 +160,20 @@ D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucio
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
 C:\Users\Guido\Desktop\GDD\TP CODIGO\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
+<<<<<<< HEAD
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionPago.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Rendiciones.Form_rendicion.resources
+=======
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources
+>>>>>>> fc1260570f0e0fccfd8f37fc51db499a11dba42e
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
+E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources

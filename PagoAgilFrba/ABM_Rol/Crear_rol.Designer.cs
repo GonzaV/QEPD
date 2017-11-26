@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_funcionalidades = new System.Windows.Forms.ComboBox();
             this.boton_agregar_funcionalidad = new System.Windows.Forms.Button();
             this.boton_crear_rol = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,12 +56,12 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre:";
             // 
-            // textBox1
+            // textBox_nombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox_nombre.Location = new System.Drawing.Point(103, 57);
+            this.textBox_nombre.Name = "textBox_nombre";
+            this.textBox_nombre.Size = new System.Drawing.Size(100, 20);
+            this.textBox_nombre.TabIndex = 2;
             // 
             // label3
             // 
@@ -72,13 +72,14 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Funcionalidad:";
             // 
-            // comboBox1
+            // comboBox_funcionalidades
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.comboBox_funcionalidades.FormattingEnabled = true;
+            this.comboBox_funcionalidades.Location = new System.Drawing.Point(103, 94);
+            this.comboBox_funcionalidades.Name = "comboBox_funcionalidades";
+            this.comboBox_funcionalidades.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_funcionalidades.TabIndex = 4;
+            this.comboBox_funcionalidades.SelectedIndexChanged += new System.EventHandler(this.comboBox_funcionalidades_SelectedIndexChanged);
             // 
             // boton_agregar_funcionalidad
             // 
@@ -116,9 +117,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.boton_crear_rol);
             this.Controls.Add(this.boton_agregar_funcionalidad);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox_funcionalidades);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_nombre);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Crear_rol";
@@ -132,9 +133,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_nombre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_funcionalidades;
         private System.Windows.Forms.Button boton_agregar_funcionalidad;
         private System.Windows.Forms.Button boton_crear_rol;
         private System.Windows.Forms.Label label4;

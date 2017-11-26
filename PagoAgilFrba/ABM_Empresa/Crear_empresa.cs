@@ -16,5 +16,26 @@ namespace PagoAgilFrba.ABM_Empresa
         {
             InitializeComponent();
         }
+
+        private void button_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new abm_empresa().ShowDialog();
+            this.Close();
+        }
+
+        private void comboBox_rubro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public void configuarComboBox()
+        {
+            this.comboBox_rubro.ValueMember = "Objeto";
+            this.comboBox_rubro.DisplayMember = "Nombre";
+            this.comboBox_rubro.DataSource = ;
+            this.comboBox_rubro.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
     }
 }

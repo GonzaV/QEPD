@@ -13,6 +13,7 @@ namespace PagoAgilFrba.Login.SeleccionRol
     public partial class SeleccionRol : Form
     {
 
+        public Int16 HABILITADO = 1;
         public Model.Rol rolSeleccionado;
         public List<Model.Rol> listaDeRoles = Model.Repo_usuario.getInstancia().usuarioIngresado.getListaDeRoles();
         
@@ -43,7 +44,7 @@ namespace PagoAgilFrba.Login.SeleccionRol
         public void configuarComboBox(){
             this.selectorDeRol.ValueMember = "Objeto";
             this.selectorDeRol.DisplayMember = "Nombre";
-            this.selectorDeRol.DataSource = listaDeRoles;
+            this.selectorDeRol.DataSource = listaDeRoles.Where(rol => rol.getEstado() == HABILITADO).ToList();
             this.selectorDeRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 

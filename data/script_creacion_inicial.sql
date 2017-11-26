@@ -116,6 +116,9 @@ IF OBJECT_ID('QEPD.modificarRol','P') IS NOT NULL
 IF OBJECT_ID('QEPD.eliminarRol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.eliminarRol;
 
+IF OBJECT_ID('QEPD.habilitarRol','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.habilitarRol;
+
 IF OBJECT_ID('QEPD.agregarFuncionalidadARol','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.agregarFuncionalidadARol;
 
@@ -295,8 +298,24 @@ IF OBJECT_ID('QEPD.getTotalValorFacturas','P') IS NOT NULL
 
 IF OBJECT_ID('QEPD.newRenglonRendicion','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.newRenglonRendicion
-	
 
+IF OBJECT_ID('QEPD.RendirEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.RendirEmpresa
+
+IF OBJECT_ID('QEPD.setPorcentajeComisionRendicion','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.setPorcentajeComisionRendicion
+
+IF OBJECT_ID('QEPD.getCantidadFacturasRendicion','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getCantidadFacturasRendicion
+
+IF OBJECT_ID('QEPD.PagosxEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.PagosxEmpresa
+
+IF OBJECT_ID('QEPD.getRubroEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRubroEmpresa
+
+IF OBJECT_ID('QEPD.getRubros','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRubros
 
 /* Se dropea schema */ 
 
@@ -386,7 +405,8 @@ Fecha_Cobro_Pago datetime NULL,
 CodigoPostal_Sucursal numeric FOREIGN KEY REFERENCES QEPD.Sucursal(CP_Sucursal),
 Total_Pago numeric(18,2) NULL,  /* Lo que paga el cliente, no calculado como la suma de las facturas que contiene*/
 Tipo_pago int FOREIGN KEY REFERENCES QEPD.Forma_Pago(IdForma_Pago),
-Estado_Rendicion_Pago BIT DEFAULT 0 /* Indica si el pago fue rendido o no? */
+
+
 
 )
 
@@ -395,7 +415,8 @@ create table qepd.Renglon_Pago(
 IdRenglon_Pago int IDENTITY(1,1) PRIMARY KEY,
 Nro_Factura numeric(18,0) FOREIGN KEY REFERENCES QEPD.Factura(Nro_Factura),
 Nro_Pago numeric(18,0) FOREIGN KEY REFERENCES QEPD.Pago(Nro_Pago),
-IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa)
+IdEmpresa int FOREIGN KEY REFERENCES QEPD.Empresa(IdEmpresa),
+Estado_Rendicion_Pago BIT DEFAULT 0 /* Indica si el pago fue rendido o no? */
 )
 
 create table qepd.Rendicion(
@@ -820,6 +841,13 @@ as
 update qepd.Rol set Estado_Rol = 0 where IdRol = @rolId
 
 GO
+
+CREATE PROCEDURE QEPD.habilitarRol
+@rolId int
+AS
+	UPDATE QEPD.Rol SET Estado_Rol = 1 WHERE IdRol = @rolId
+GO
+
 create procedure QEPD.getFuncionalidadesDeUnRol /*cuando necesites una lista de funcionalidades de un rol*/
 @rolId int
 as
@@ -1118,12 +1146,13 @@ AS
 		
 GO
 
---TO DO - Eliminar Sucursal /* TRIGGER ? */
+--TO DO - Eliminar Sucursal 
 
 CREATE PROCEDURE QEPD.EliminarSucursal /* Recibe IdSucursal */
 @CP_Sucursal numeric(18,0)
 AS 
 	UPDATE QEPD.Sucursal set Estado_Sucursal = 0 where CP_Sucursal = @CP_Sucursal
+	UPDATE QEPD.Usuario SET Estado_Usuario = 0  WHERE IdUsuario = (SELECT us.idUsuario FROM QEPD.UsuarioPorSucursal us WHERE us.CP_Sucursal = @CP_Sucursal)
 
 
 GO
@@ -1138,6 +1167,7 @@ getRenglonFactura
 newFactura
 newRenglonFactura
 getTotaldeFactura
+RendirEmpresa
 */
 
 GO
@@ -1284,9 +1314,10 @@ getEmpresasARendirHoy
 getRenglonesRendicion
 getRenglonRendicion
 newRenglonRendicion 
-getCantidadFacturasRendicion 
 newRendicion
+getCantidadFacturasRendicion 
 getTotalValoresPagos
+setPorcentajeComisionRendicion
 
 
 
@@ -1317,14 +1348,14 @@ AS
 
 GO
 
-CREATE PROCEDURE QEPD.getRenglonesRendicion
+CREATE PROCEDURE QEPD.getRenglonesRendicion /* devuelve los renglones de rendicion por idRendicion */
 @idRendicion int
 AS
 SELECT * FROM QEPD.Renglon_Rendicion WHERE IdRendicion = @idRendicion
 
 GO
 
-CREATE PROCEDURE QEPD.getRenglonRendicion
+CREATE PROCEDURE QEPD.getRenglonRendicion /* Devuelve un renglon de rendicion en base a su id */
 @idRenglonRend int
 AS
 SELECT * FROM QEPD.Renglon_Rendicion WHERE IdRenglon_Rendicion = @idRenglonRend
@@ -1332,7 +1363,7 @@ SELECT * FROM QEPD.Renglon_Rendicion WHERE IdRenglon_Rendicion = @idRenglonRend
 GO
 
 CREATE PROCEDURE QEPD.newRenglonRendicion /* Inserto un nuevo renglon de rend, con el Nro de rendicion al que apunta */
-@idRendicion int,                       /* El nro de pago que va a ser cargado como renglon y el monto del mismo */
+@idRendicion numeric(18,0),                       /* El nro de pago que va a ser cargado como renglon y el monto del mismo */
 @NroPago numeric(18,0),
 @MontoPago numeric(18,2)
 AS
@@ -1340,12 +1371,6 @@ INSERT INTO QEPD.Renglon_Rendicion (IdRendicion,Nro_Pago,Monto_Pago) VALUES (@id
 	
 GO
 
-CREATE PROCEDURE QEPD.getCantidadFacturasRendicion /* devuelve cantidad de facturas por una determinada rendicion que le paso */
-@idRendicion numeric(18,0)
-AS
-	SELECT COUNT(idRendicion) FROM QEPD.Renglon_Rendicion WHERE IdRendicion = @idRendicion
-
-GO
 
 CREATE PROCEDURE QEPD.newRendicion /* seteo solo empresa y fecha, el resto tengo que calcularlo cuando termine de cargarle los renglones.*/ 
 @idEmpresa int
@@ -1354,21 +1379,115 @@ AS
 INSERT INTO QEPD.Rendicion(IdEmpresa, Fecha_Rendicion) VALUES (@idEmpresa,GETDATE())
 
 GO
-/*
-CREATE PROCEDURE getTotalValoresPagos
+
+CREATE PROCEDURE QEPD.getCantidadFacturasRendicion
+@idRendicion numeric(18,0) /* devuelve cantidad de facturas por una determinada rendicion que le paso*/
+  AS                    /*  y carga en la rendicion el campo Cantidad Facturas*/
+
+	BEGIN
+
+	DECLARE @Cantidad numeric(18,0)
+	SET @Cantidad = (SELECT COUNT(rr.IdRendicion) FROM QEPD.Renglon_Rendicion rr WHERE rr.IdRendicion = @idRendicion)
+	UPDATE QEPD.Rendicion SET Cantidad_Facturas = @Cantidad WHERE IdRendicion = @idRendicion
+	
+	END
+
+GO
+
+CREATE PROCEDURE QEPD.getTotalValoresPagos /* Obtengo el total de la rendicion y se la cargo en la rendicion, a traves del id */
 @idRendicion numeric(18,0)
 AS
 	BEGIN
-		SELECT SUM(p.Total_Pago) FROM QEPD.Renglon_Rendicion rp
+	DECLARE @TotalRendicion numeric(18,2)
+	
+	 SET @TotalRendicion =(SELECT SUM(p.Total_Pago) FROM QEPD.Renglon_Rendicion rp
 			JOIN QEPD.Pago p
 				ON rp.Nro_Pago = p.Nro_Pago
-			where rp.IdRendicion = @idRendicion
+			where rp.IdRendicion = @idRendicion)
+
+	UPDATE QEPD.Rendicion SET Total_Rendicion = @TotalRendicion WHERE IdRendicion = @idRendicion
 		END
 GO
-*/
-/* TO DO
 
-CREATE PROCEDURE RendirEmpresa 
+CREATE PROCEDURE QEPD.setPorcentajeComisionRendicion
+@porcentaje numeric(18,2)
+AS
+	UPDATE QEPD.Rendicion SET Porcentaje_Comision = @porcentaje, Importe_Comision = @porcentaje*Total_Rendicion
+
+GO
+
+CREATE PROCEDURE QEPD.PagosxEmpresa 
+@idEmpresa int
+AS  
+SELECT * FROM QEPD.Renglon_Pago WHERE IdEmpresa = @idEmpresa
+
+GO
+
+CREATE PROCEDURE QEPD.RendirEmpresa				/* 1-  Le paso el IDEmpresa  que obtengo del selector. */
+@EmpresaId int									/* 2-  Creo una rendicion vacia con empresa y fecha*/
+												/* 3-  Obtengo el ID de esa nueva rendicion que acabo de crear para la empresa x*/
+												/* 4-  Creo el cursor para poder ir cargando los renglones rendicion en base a los pagos*/	
+AS												/* 5-  Recorro el cursor y voy cargando los nuevos renglones de rendicion*/
+	BEGIN TRANSACTION							/* 6-  Cuando voy cargando un renglon, seteo el renglon de pago como rendido*/		
+												 /*7-  Ejecuto los procedures para completar de la row de rendicion los campos*/
+												/*Total_rendicion, Porcentaje Comision e Importe comision (por defecto 0.1)*/
+	DECLARE	@cantidadRenglones int
+	DECLARE @idRendicion numeric(18,0)
+	DECLARE @PORCENTAJERENDICION NUMERIC(18,2)
+	SET @PORCENTAJERENDICION = 0.1
+	EXEC QEPD.newRendicion @EmpresaId
+	SET @idRendicion = (SELECT idRendicion FROM QEPD.Rendicion WHERE IdEmpresa = @EmpresaId AND Fecha_Rendicion = GETDATE())
+	
+		BEGIN
+		DECLARE @Nro_Pago numeric(18,0)
+		DECLARE @MontoPago numeric(18,2)
+		DECLARE @IdRendicion1 numeric(18,0)
+		DECLARE nwRenglones CURSOR LOCAL FAST_FORWARD FOR SELECT rp.Nro_Pago, rf.Item_Monto_Factura ,@idRendicion FROM QEPD.Renglon_Pago rp
+											JOIN QEPD.Factura f ON rp.Nro_Factura = f.Nro_Factura
+											JOIN QEPD.Renglon_Factura rf ON rp.Nro_Factura = rf.Nro_Factura
+											WHERE f.IdEmpresa = @idRendicion AND f.Pago_Estado != 1 
+											GROUP BY rp.Nro_Pago, rf.Item_Monto_Factura, f.IdEmpresa
+		
+		OPEN nwRenglones 
+		FETCH NEXT FROM nwRenglones
+		INTO @Nro_Pago,	@MontoPago, @IdRendicion1								
+		WHILE @@FETCH_STATUS = 0
+			BEGIN
+				INSERT INTO QEPD.Renglon_Rendicion (IdRendicion,Nro_Pago,Monto_Pago) VALUES (@idRendicion,@Nro_Pago,@MontoPago)
+				UPDATE Renglon_Pago SET Estado_Rendicion_Pago = 1 WHERE Nro_Pago = @Nro_Pago	
+				FETCH NEXT FROM nwRenglones
+				INTO @Nro_Pago,	@MontoPago, @IdRendicion1
+			END
+		CLOSE nwRenglones
+		DEALLOCATE nwRenglones
+		END
+		
+		EXEC QEPD.getTotalValoresPagos @IdRendicion
+		EXEC QEPD.getCantidadFacturasRendicion @IdRendicion
+		EXEC QEPD.setPorcentajeComisionRendicion @porcentajerendicion
+		
+	COMMIT
 
 
-GO*/
+GO
+
+ /* Repo Rubros*/
+
+ /* 
+ getRubros
+ getRubroEmpresa
+ */
+
+ CREATE PROCEDURE QEPD.getRubros
+ AS
+ SELECT * FROM QEPD.Rubro
+
+ GO
+
+ CREATE PROCEDURE QEPD.getRubroEmpresa /* Le paso el idEmpresa y me devuelve su rubro y descripcion*/
+ @idEmpresa int
+ AS
+ SELECT e.idRubro, r.Descripcion_Rubro FROM Empresa e
+ JOIN Rubro r
+ ON E.IdRubro = r.Nro_Rubro
+ WHERE e.IdEmpresa = @idEmpresa

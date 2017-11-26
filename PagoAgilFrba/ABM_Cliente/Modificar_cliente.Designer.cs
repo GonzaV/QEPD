@@ -43,13 +43,13 @@
             this.textBox_telefono = new System.Windows.Forms.TextBox();
             this.textBox_fnacimiento = new System.Windows.Forms.TextBox();
             this.boton_modificar = new System.Windows.Forms.Button();
-            this.checkBox_estado = new System.Windows.Forms.CheckBox();
             this.textBox_direccion = new System.Windows.Forms.TextBox();
             this.label_direccion = new System.Windows.Forms.Label();
             this.label_cp = new System.Windows.Forms.Label();
             this.textBox_cp = new System.Windows.Forms.TextBox();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.button_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -168,23 +168,13 @@
             // 
             // boton_modificar
             // 
-            this.boton_modificar.Location = new System.Drawing.Point(197, 360);
+            this.boton_modificar.Location = new System.Drawing.Point(179, 373);
             this.boton_modificar.Name = "boton_modificar";
             this.boton_modificar.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar.TabIndex = 14;
             this.boton_modificar.Text = "Modificar";
             this.boton_modificar.UseVisualStyleBackColor = true;
             this.boton_modificar.Click += new System.EventHandler(this.boton_modificar_Click);
-            // 
-            // checkBox_estado
-            // 
-            this.checkBox_estado.AutoSize = true;
-            this.checkBox_estado.Location = new System.Drawing.Point(15, 366);
-            this.checkBox_estado.Name = "checkBox_estado";
-            this.checkBox_estado.Size = new System.Drawing.Size(115, 17);
-            this.checkBox_estado.TabIndex = 15;
-            this.checkBox_estado.Text = "Desactivar/Activar";
-            this.checkBox_estado.UseVisualStyleBackColor = true;
             // 
             // textBox_direccion
             // 
@@ -237,16 +227,26 @@
             this.lineShape1.Y1 = 229;
             this.lineShape1.Y2 = 229;
             // 
+            // button_cancelar
+            // 
+            this.button_cancelar.Location = new System.Drawing.Point(31, 373);
+            this.button_cancelar.Name = "button_cancelar";
+            this.button_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.button_cancelar.TabIndex = 21;
+            this.button_cancelar.Text = "Cancelar";
+            this.button_cancelar.UseVisualStyleBackColor = true;
+            this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
+            // 
             // Modificar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 421);
+            this.Controls.Add(this.button_cancelar);
             this.Controls.Add(this.label_cp);
             this.Controls.Add(this.textBox_cp);
             this.Controls.Add(this.label_direccion);
             this.Controls.Add(this.textBox_direccion);
-            this.Controls.Add(this.checkBox_estado);
             this.Controls.Add(this.boton_modificar);
             this.Controls.Add(this.textBox_fnacimiento);
             this.Controls.Add(this.textBox_telefono);
@@ -287,12 +287,12 @@
         private System.Windows.Forms.TextBox textBox_telefono;
         private System.Windows.Forms.TextBox textBox_fnacimiento;
         private System.Windows.Forms.Button boton_modificar;
-        private System.Windows.Forms.CheckBox checkBox_estado;
         private System.Windows.Forms.TextBox textBox_direccion;
         private System.Windows.Forms.Label label_direccion;
         private System.Windows.Forms.Label label_cp;
         private System.Windows.Forms.TextBox textBox_cp;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.Button button_cancelar;
     }
 }

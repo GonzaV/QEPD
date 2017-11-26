@@ -19,25 +19,9 @@ namespace PagoAgilFrba.ABM_Cliente
         public abm_cliente()
         {
             InitializeComponent();
-            configurarComboBox();
+            
         }
 
-        private void comboBox_clientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            ComboBox comboBox_clientes = (ComboBox)sender;
-            this.clienteSeleccionado = (Model.Cliente)comboBox_clientes.SelectedValue;
-            Model.Repo_cliente.getInstancia().setClienteSeleccionado(this.clienteSeleccionado);
-        }
-
-        public void configurarComboBox() {
-
-            this.comboBox_clientes.ValueMember = "Objeto";
-            this.comboBox_clientes.DisplayMember = "Nombre";
-            this.comboBox_clientes.DataSource = Model.Repo_cliente.getInstancia().getClientes();
-            this.comboBox_clientes.DropDownStyle = ComboBoxStyle.DropDownList;
-
-        }
 
         private void boton_crear_cliente_Click(object sender, EventArgs e)
         {
@@ -50,8 +34,29 @@ namespace PagoAgilFrba.ABM_Cliente
         {
 
             this.Hide();
-            new Modificar_cliente().ShowDialog();
+            new Listado_seleccion_clientes().ShowDialog();
+            this.Close();
 
         }
+
+  /*      private void boton_eliminar_cliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Listado_seleccion_clientes().ShowDialog();
+            this.Close();
+        } */
+
+        private void button_volver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login.Seleccion_funcionalidades().ShowDialog();
+            this.Close();
+        }
+
+        private void abm_cliente_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
