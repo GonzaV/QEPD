@@ -15,6 +15,7 @@ namespace PagoAgilFrba.ABM_Sucursal
         public Crear_sucursal()
         {
             InitializeComponent();
+            numeric_cp.Maximum = decimal.MaxValue;
         }
 
         private void Crear_sucursal_Load(object sender, EventArgs e)
@@ -28,5 +29,14 @@ namespace PagoAgilFrba.ABM_Sucursal
             new abm_sucursal().ShowDialog();
             this.Close();
         }
+
+        private void boton_crear_sucursal_Click(object sender, EventArgs e)
+        {
+            Repositorios.Repo_sucursal.getInstancia().crearSucursal(numeric_cp.Value, textBox_nombre.Text, textBox_direccion.Text);
+            MessageBox.Show("Sucursal creada con éxito", "Sucursal creada", MessageBoxButtons.OK);
+        }
+
+
+
     }
 }
