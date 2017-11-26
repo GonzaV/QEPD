@@ -311,6 +311,12 @@ IF OBJECT_ID('QEPD.getCantidadFacturasRendicion','P') IS NOT NULL
 IF OBJECT_ID('QEPD.PagosxEmpresa','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.PagosxEmpresa
 
+IF OBJECT_ID('QEPD.getRubroEmpresa','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRubroEmpresa
+
+IF OBJECT_ID('QEPD.getRubros','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getRubros
+
 /* Se dropea schema */ 
 
 
@@ -1140,12 +1146,13 @@ AS
 		
 GO
 
---TO DO - Eliminar Sucursal /* TRIGGER ? */
+--TO DO - Eliminar Sucursal 
 
 CREATE PROCEDURE QEPD.EliminarSucursal /* Recibe IdSucursal */
 @CP_Sucursal numeric(18,0)
 AS 
 	UPDATE QEPD.Sucursal set Estado_Sucursal = 0 where CP_Sucursal = @CP_Sucursal
+	UPDATE QEPD.Usuario SET Estado_Usuario = 0  WHERE IdUsuario = (SELECT us.idUsuario FROM QEPD.UsuarioPorSucursal us WHERE us.CP_Sucursal = @CP_Sucursal)
 
 
 GO
@@ -1463,3 +1470,24 @@ AS												/* 5-  Recorro el cursor y voy cargando los nuevos renglones de re
 
 
 GO
+
+ /* Repo Rubros*/
+
+ /* 
+ getRubros
+ getRubroEmpresa
+ */
+
+ CREATE PROCEDURE QEPD.getRubros
+ AS
+ SELECT * FROM QEPD.Rubro
+
+ GO
+
+ CREATE PROCEDURE QEPD.getRubroEmpresa /* Le paso el idEmpresa y me devuelve su rubro y descripcion*/
+ @idEmpresa int
+ AS
+ SELECT e.idRubro, r.Descripcion_Rubro FROM Empresa e
+ JOIN Rubro r
+ ON E.IdRubro = r.Nro_Rubro
+ WHERE e.IdEmpresa = @idEmpresa
