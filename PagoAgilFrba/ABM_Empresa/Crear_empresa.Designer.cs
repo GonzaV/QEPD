@@ -39,10 +39,6 @@
             this.comboBox_rubro = new System.Windows.Forms.ComboBox();
             this.textBox_direccion = new System.Windows.Forms.TextBox();
             this.button_cancelar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox_codigoPostal = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,7 +78,7 @@
             // label_direccion
             // 
             this.label_direccion.AutoSize = true;
-            this.label_direccion.Location = new System.Drawing.Point(32, 32);
+            this.label_direccion.Location = new System.Drawing.Point(13, 154);
             this.label_direccion.Name = "label_direccion";
             this.label_direccion.Size = new System.Drawing.Size(55, 13);
             this.label_direccion.TabIndex = 4;
@@ -106,12 +102,13 @@
             // 
             // boton_crear_empresa
             // 
-            this.boton_crear_empresa.Location = new System.Drawing.Point(226, 294);
+            this.boton_crear_empresa.Location = new System.Drawing.Point(253, 224);
             this.boton_crear_empresa.Name = "boton_crear_empresa";
             this.boton_crear_empresa.Size = new System.Drawing.Size(75, 23);
             this.boton_crear_empresa.TabIndex = 7;
             this.boton_crear_empresa.Text = "Crear";
             this.boton_crear_empresa.UseVisualStyleBackColor = true;
+            this.boton_crear_empresa.Click += new System.EventHandler(this.boton_crear_empresa_Click);
             // 
             // comboBox_rubro
             // 
@@ -120,17 +117,18 @@
             this.comboBox_rubro.Name = "comboBox_rubro";
             this.comboBox_rubro.Size = new System.Drawing.Size(121, 21);
             this.comboBox_rubro.TabIndex = 8;
+            this.comboBox_rubro.SelectedIndexChanged += new System.EventHandler(this.comboBox_rubro_SelectedIndexChanged);
             // 
             // textBox_direccion
             // 
-            this.textBox_direccion.Location = new System.Drawing.Point(97, 29);
+            this.textBox_direccion.Location = new System.Drawing.Point(78, 154);
             this.textBox_direccion.Name = "textBox_direccion";
             this.textBox_direccion.Size = new System.Drawing.Size(100, 20);
             this.textBox_direccion.TabIndex = 9;
             // 
             // button_cancelar
             // 
-            this.button_cancelar.Location = new System.Drawing.Point(61, 294);
+            this.button_cancelar.Location = new System.Drawing.Point(43, 224);
             this.button_cancelar.Name = "button_cancelar";
             this.button_cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_cancelar.TabIndex = 10;
@@ -138,43 +136,15 @@
             this.button_cancelar.UseVisualStyleBackColor = true;
             this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox_codigoPostal);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox_direccion);
-            this.groupBox1.Controls.Add(this.label_direccion);
-            this.groupBox1.Location = new System.Drawing.Point(26, 165);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 100);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Domicilio";
-            // 
-            // textBox_codigoPostal
-            // 
-            this.textBox_codigoPostal.Location = new System.Drawing.Point(97, 55);
-            this.textBox_codigoPostal.Name = "textBox_codigoPostal";
-            this.textBox_codigoPostal.Size = new System.Drawing.Size(100, 20);
-            this.textBox_codigoPostal.TabIndex = 11;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 58);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Codigo Postal:";
-            // 
             // Crear_empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 341);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(382, 280);
             this.Controls.Add(this.button_cancelar);
+            this.Controls.Add(this.textBox_direccion);
             this.Controls.Add(this.comboBox_rubro);
+            this.Controls.Add(this.label_direccion);
             this.Controls.Add(this.boton_crear_empresa);
             this.Controls.Add(this.textBox_CUIT);
             this.Controls.Add(this.label_rubro);
@@ -184,8 +154,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Crear_empresa";
             this.Text = "Crear_empresa";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,8 +172,5 @@
         private System.Windows.Forms.ComboBox comboBox_rubro;
         private System.Windows.Forms.TextBox textBox_direccion;
         private System.Windows.Forms.Button button_cancelar;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox_codigoPostal;
-        private System.Windows.Forms.Label label2;
     }
 }

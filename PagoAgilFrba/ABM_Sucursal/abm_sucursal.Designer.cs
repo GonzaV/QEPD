@@ -40,9 +40,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(38, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 13);
+            this.label1.Size = new System.Drawing.Size(227, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Seleccione un rol a modificar o eliminar:";
+            this.label1.Text = "Seleccione una sucursal a modificar o eliminar:";
             // 
             // boton_crear_sucursal
             // 
