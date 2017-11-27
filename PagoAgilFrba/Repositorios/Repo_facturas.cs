@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.Repositorios
 {
-    class Repo_facturas
+    public class Repo_facturas
     {
         private static Repo_facturas instancia;
 
@@ -16,6 +16,22 @@ namespace PagoAgilFrba.Repositorios
                 instancia = new Repo_facturas();
             }
             return instancia;
+        }
+
+        private Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
+
+        public void crearFactura(List<Model.ItemFactura> items, decimal nroFactura, Model.Cliente cliente, Model.Empresa empresa, String fec_Alta, String fec_Baja)
+        {
+            DBhelper.crearConexion();
+
+
+
+            DBhelper.cerrarConexion();
+        }
+
+        private void crearItemFactura(Model.ItemFactura, decimal nroFactura)
+        {
+
         }
     }
 }

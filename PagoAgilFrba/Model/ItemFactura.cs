@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.Model
 {
-    class ItemFactura
+    public class ItemFactura
     {
         private String descripcion;
         private decimal cantidad;
         private decimal monto;
+
+        public ItemFactura(String descripcion, decimal cantidad, decimal monto)
+        {
+            this.descripcion = descripcion;
+            this.cantidad = cantidad;
+            this.monto = monto;
+        }
+
+
+
+
+
     }
 }

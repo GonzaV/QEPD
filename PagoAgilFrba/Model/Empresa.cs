@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.Model
 {
-    class Empresa
+    public class Empresa
     {
     }
 }

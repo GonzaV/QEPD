@@ -24,9 +24,10 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void boton_crear_factura_Click(object sender, EventArgs e)
         {
-
+            //new Model.Factura_builder().build(numericUpDown1.Value, , , dateTimePicker1.Text, dateTimePicker2.Text);
+            
         }
 
     }

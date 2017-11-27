@@ -243,6 +243,7 @@
             this.boton_crear_factura.TabIndex = 25;
             this.boton_crear_factura.Text = "Crear factura";
             this.boton_crear_factura.UseVisualStyleBackColor = true;
+            this.boton_crear_factura.Click += new System.EventHandler(this.boton_crear_factura_Click);
             // 
             // boton_registrar_pago
             // 
@@ -277,10 +278,10 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 29;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "\"yyyy-MM-dd\"";
             this.dateTimePicker1.Location = new System.Drawing.Point(139, 141);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
