@@ -30,5 +30,12 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             
         }
 
+        private void boton_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login.Seleccion_funcionalidades().ShowDialog();
+            this.Close();
+        }
+
     }
 }

@@ -38,6 +38,7 @@
             this.checkBox_habilitar = new System.Windows.Forms.CheckBox();
             this.checkBox_inhabilitar = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.boton_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -133,11 +134,23 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Habilite/Inhabilite el rol:";
             // 
+            // boton_cancelar
+            // 
+            this.boton_cancelar.Location = new System.Drawing.Point(16, 296);
+            this.boton_cancelar.Name = "boton_cancelar";
+            this.boton_cancelar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.boton_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.boton_cancelar.TabIndex = 10;
+            this.boton_cancelar.Text = "Cancelar";
+            this.boton_cancelar.UseVisualStyleBackColor = true;
+            this.boton_cancelar.Click += new System.EventHandler(this.boton_cancelar_Click);
+            // 
             // Modificar_rol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(232, 343);
+            this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox_inhabilitar);
             this.Controls.Add(this.checkBox_habilitar);
@@ -167,5 +180,6 @@
         private System.Windows.Forms.CheckBox checkBox_habilitar;
         private System.Windows.Forms.CheckBox checkBox_inhabilitar;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button boton_cancelar;
     }
 }

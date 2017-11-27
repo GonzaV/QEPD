@@ -54,5 +54,12 @@ namespace PagoAgilFrba.ABM_Rol
             this.comboBox_roles.DropDownStyle = ComboBoxStyle.DropDownList;
         
         }
+
+        private void boton_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login.Seleccion_funcionalidades_admin().ShowDialog();
+            this.Close();
+        }
     }
 }

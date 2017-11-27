@@ -33,6 +33,7 @@
             this.boton_modificar_rol = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.boton_crear_rol = new System.Windows.Forms.Button();
+            this.boton_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -66,7 +67,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 173);
+            this.label3.Location = new System.Drawing.Point(12, 169);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 5;
@@ -74,7 +75,7 @@
             // 
             // boton_crear_rol
             // 
-            this.boton_crear_rol.Location = new System.Drawing.Point(75, 216);
+            this.boton_crear_rol.Location = new System.Drawing.Point(75, 211);
             this.boton_crear_rol.Name = "boton_crear_rol";
             this.boton_crear_rol.Size = new System.Drawing.Size(75, 23);
             this.boton_crear_rol.TabIndex = 6;
@@ -82,11 +83,22 @@
             this.boton_crear_rol.UseVisualStyleBackColor = true;
             this.boton_crear_rol.Click += new System.EventHandler(this.boton_crear_rol_Click);
             // 
+            // boton_cancelar
+            // 
+            this.boton_cancelar.Location = new System.Drawing.Point(16, 259);
+            this.boton_cancelar.Name = "boton_cancelar";
+            this.boton_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.boton_cancelar.TabIndex = 7;
+            this.boton_cancelar.Text = "Cancelar";
+            this.boton_cancelar.UseVisualStyleBackColor = true;
+            this.boton_cancelar.Click += new System.EventHandler(this.boton_cancelar_Click);
+            // 
             // abm_rol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(225, 261);
+            this.ClientSize = new System.Drawing.Size(225, 306);
+            this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.boton_crear_rol);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.boton_modificar_rol);
@@ -106,5 +118,6 @@
         private System.Windows.Forms.Button boton_modificar_rol;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button boton_crear_rol;
+        private System.Windows.Forms.Button boton_cancelar;
     }
 }

@@ -43,6 +43,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.boton_cancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -171,11 +172,22 @@
             this.button2.Text = "Agregar factura";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // boton_cancelar
+            // 
+            this.boton_cancelar.Location = new System.Drawing.Point(16, 333);
+            this.boton_cancelar.Name = "boton_cancelar";
+            this.boton_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.boton_cancelar.TabIndex = 15;
+            this.boton_cancelar.Text = "Cancelar";
+            this.boton_cancelar.UseVisualStyleBackColor = true;
+            this.boton_cancelar.Click += new System.EventHandler(this.boton_cancelar_Click);
+            // 
             // Cobrar_facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 352);
+            this.ClientSize = new System.Drawing.Size(394, 368);
+            this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button boton_cancelar;
     }
 }
