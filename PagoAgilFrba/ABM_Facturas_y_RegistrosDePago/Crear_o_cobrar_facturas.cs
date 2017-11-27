@@ -19,7 +19,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         private void boton_ingresar_items_Click(object sender, EventArgs e)
         {
-
+            
             new Agregar_items().ShowDialog();
 
         }
