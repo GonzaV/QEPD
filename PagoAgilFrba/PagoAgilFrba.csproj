@@ -248,6 +248,7 @@
     <Compile Include="Repositorios\Repo_cliente.cs" />
     <Compile Include="Repositorios\Repo_empresas.cs" />
     <Compile Include="Repositorios\Repo_roles_func.cs" />
+    <Compile Include="Repositorios\Repo_sucursal.cs" />
     <Compile Include="Repositorios\Repo_usuario.cs" />
     <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\Usuario.cs" />

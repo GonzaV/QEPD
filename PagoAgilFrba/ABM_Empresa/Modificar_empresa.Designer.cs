@@ -36,13 +36,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.boton_modificar_empresa = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox_codigoPostal = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_direccion = new System.Windows.Forms.TextBox();
-            this.label_direccion = new System.Windows.Forms.Label();
             this.button_volver = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.label_direccion = new System.Windows.Forms.Label();
+            this.textBox_direccion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +93,7 @@
             // 
             // boton_modificar_empresa
             // 
-            this.boton_modificar_empresa.Location = new System.Drawing.Point(213, 284);
+            this.boton_modificar_empresa.Location = new System.Drawing.Point(211, 231);
             this.boton_modificar_empresa.Name = "boton_modificar_empresa";
             this.boton_modificar_empresa.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar_empresa.TabIndex = 10;
@@ -113,54 +109,9 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 11;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox_codigoPostal);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox_direccion);
-            this.groupBox1.Controls.Add(this.label_direccion);
-            this.groupBox1.Location = new System.Drawing.Point(15, 163);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 100);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Domicilio";
-            // 
-            // textBox_codigoPostal
-            // 
-            this.textBox_codigoPostal.Location = new System.Drawing.Point(97, 55);
-            this.textBox_codigoPostal.Name = "textBox_codigoPostal";
-            this.textBox_codigoPostal.Size = new System.Drawing.Size(100, 20);
-            this.textBox_codigoPostal.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Codigo Postal:";
-            // 
-            // textBox_direccion
-            // 
-            this.textBox_direccion.Location = new System.Drawing.Point(97, 29);
-            this.textBox_direccion.Name = "textBox_direccion";
-            this.textBox_direccion.Size = new System.Drawing.Size(100, 20);
-            this.textBox_direccion.TabIndex = 9;
-            // 
-            // label_direccion
-            // 
-            this.label_direccion.AutoSize = true;
-            this.label_direccion.Location = new System.Drawing.Point(32, 32);
-            this.label_direccion.Name = "label_direccion";
-            this.label_direccion.Size = new System.Drawing.Size(55, 13);
-            this.label_direccion.TabIndex = 4;
-            this.label_direccion.Text = "Dirección:";
-            // 
             // button_volver
             // 
-            this.button_volver.Location = new System.Drawing.Point(78, 284);
+            this.button_volver.Location = new System.Drawing.Point(78, 231);
             this.button_volver.Name = "button_volver";
             this.button_volver.Size = new System.Drawing.Size(75, 23);
             this.button_volver.TabIndex = 13;
@@ -168,14 +119,31 @@
             this.button_volver.UseVisualStyleBackColor = true;
             this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
             // 
+            // label_direccion
+            // 
+            this.label_direccion.AutoSize = true;
+            this.label_direccion.Location = new System.Drawing.Point(12, 167);
+            this.label_direccion.Name = "label_direccion";
+            this.label_direccion.Size = new System.Drawing.Size(55, 13);
+            this.label_direccion.TabIndex = 4;
+            this.label_direccion.Text = "Dirección:";
+            // 
+            // textBox_direccion
+            // 
+            this.textBox_direccion.Location = new System.Drawing.Point(78, 164);
+            this.textBox_direccion.Name = "textBox_direccion";
+            this.textBox_direccion.Size = new System.Drawing.Size(100, 20);
+            this.textBox_direccion.TabIndex = 9;
+            // 
             // Modificar_empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 358);
+            this.ClientSize = new System.Drawing.Size(366, 287);
             this.Controls.Add(this.button_volver);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.textBox_direccion);
             this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label_direccion);
             this.Controls.Add(this.boton_modificar_empresa);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox1);
@@ -185,8 +153,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Modificar_empresa";
             this.Text = "Modificar_empresa";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,11 +168,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button boton_modificar_empresa;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox_codigoPostal;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox_direccion;
-        private System.Windows.Forms.Label label_direccion;
         private System.Windows.Forms.Button button_volver;
+        private System.Windows.Forms.Label label_direccion;
+        private System.Windows.Forms.TextBox textBox_direccion;
     }
 }

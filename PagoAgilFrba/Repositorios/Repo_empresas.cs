@@ -14,6 +14,7 @@ namespace PagoAgilFrba.Repositorios
     {
 
         public static Repo_empresas instancia;
+        public Int32 idEmpresaSeleccionada;
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
 
         public static Repo_empresas getInstancia()
@@ -29,6 +30,12 @@ namespace PagoAgilFrba.Repositorios
 
                 return instancia;
             }
+        }
+
+        public void setIdEmpresaSeleccionada(Int32 id) {
+
+            this.idEmpresaSeleccionada = id;
+
         }
 
         public void crearEmpresa(String nombre, String cuit, String direccion, String rubro) {
@@ -79,6 +86,8 @@ namespace PagoAgilFrba.Repositorios
             return listaDeRubros;
 
         }
+
+
 
     }
 }
