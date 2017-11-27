@@ -31,13 +31,15 @@ namespace PagoAgilFrba.Repositorios
             }
         }
 
-        public void crearEmpresa(String nombre, String cuit, String direccion, String cp) {
+        public void crearEmpresa(String nombre, String cuit, String direccion, String rubro) {
 
             DBhelper.crearConexion();
 
-            SqlCommand cmd = DBhelper.crearCommand("QEPD.modificarRol");
-            cmd.Parameters.Add("@rolId", SqlDbType.Int).Value = rolSeleccionado.getId();
-            cmd.Parameters.Add("@rolNombreNuevo", SqlDbType.NVarChar).Value = nuevoNombre;
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.newEmpresa");
+            cmd.Parameters.Add("@Nombre_Empresa", SqlDbType.NVarChar).Value = nombre;
+            cmd.Parameters.Add("@Cuit_Empresa", SqlDbType.NVarChar).Value = cuit;
+            cmd.Parameters.Add("@Direccion_Empresa", SqlDbType.NVarChar).Value = direccion;
+            cmd.Parameters.Add("@descripcionRubro_Empresa", SqlDbType.NVarChar).Value = rubro;
 
             DBhelper.abrirConexion();
 
@@ -46,6 +48,36 @@ namespace PagoAgilFrba.Repositorios
             DBhelper.cerrarConexion();
         
         
+        }
+
+
+        public List<Model.Rubro> getRubros()
+        {
+
+            DataTable tablaRubros;
+            List<Model.Rubro> listaDeRubros = new List<Model.Rubro>();
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getRubros");
+
+            DBhelper.abrirConexion();
+
+            tablaRubros = DBhelper.obtenerTabla(cmd);
+
+            foreach (DataRow row in tablaRubros.Rows)
+            {
+
+                Model.Rubro rubro = new Model.Rubro();
+
+                rubro.setDescripcion((String)row["Descripcion_Rubro"]);
+                rubro.setNro((decimal)row["Nro_Rubro"]);
+                
+                listaDeRubros.Add(rubro);
+            }
+
+            return listaDeRubros;
+
         }
 
     }

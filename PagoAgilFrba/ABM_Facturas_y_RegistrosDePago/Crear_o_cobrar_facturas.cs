@@ -24,5 +24,10 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         }
 
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

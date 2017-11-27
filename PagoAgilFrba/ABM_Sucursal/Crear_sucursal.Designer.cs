@@ -33,10 +33,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.boton_crear_sucursal = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_nombre = new System.Windows.Forms.TextBox();
+            this.textBox_direccion = new System.Windows.Forms.TextBox();
             this.button_cancelar = new System.Windows.Forms.Button();
+            this.numeric_cp = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_cp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +70,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 136);
+            this.label4.Location = new System.Drawing.Point(13, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 3;
@@ -83,27 +84,21 @@
             this.boton_crear_sucursal.TabIndex = 4;
             this.boton_crear_sucursal.Text = "Crear";
             this.boton_crear_sucursal.UseVisualStyleBackColor = true;
+            this.boton_crear_sucursal.Click += new System.EventHandler(this.boton_crear_sucursal_Click);
             // 
-            // textBox1
+            // textBox_nombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.textBox_nombre.Location = new System.Drawing.Point(94, 57);
+            this.textBox_nombre.Name = "textBox_nombre";
+            this.textBox_nombre.Size = new System.Drawing.Size(100, 20);
+            this.textBox_nombre.TabIndex = 5;
             // 
-            // textBox2
+            // textBox_direccion
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(94, 133);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.textBox_direccion.Location = new System.Drawing.Point(94, 94);
+            this.textBox_direccion.Name = "textBox_direccion";
+            this.textBox_direccion.Size = new System.Drawing.Size(100, 20);
+            this.textBox_direccion.TabIndex = 6;
             // 
             // button_cancelar
             // 
@@ -115,15 +110,22 @@
             this.button_cancelar.UseVisualStyleBackColor = true;
             this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
             // 
+            // numeric_cp
+            // 
+            this.numeric_cp.Location = new System.Drawing.Point(94, 129);
+            this.numeric_cp.Name = "numeric_cp";
+            this.numeric_cp.Size = new System.Drawing.Size(100, 20);
+            this.numeric_cp.TabIndex = 9;
+            // 
             // Crear_sucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 249);
+            this.Controls.Add(this.numeric_cp);
             this.Controls.Add(this.button_cancelar);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_direccion);
+            this.Controls.Add(this.textBox_nombre);
             this.Controls.Add(this.boton_crear_sucursal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -132,6 +134,7 @@
             this.Name = "Crear_sucursal";
             this.Text = "Crear_sucursal";
             this.Load += new System.EventHandler(this.Crear_sucursal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_cp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,9 +147,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button boton_crear_sucursal;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_nombre;
+        private System.Windows.Forms.TextBox textBox_direccion;
         private System.Windows.Forms.Button button_cancelar;
+        private System.Windows.Forms.NumericUpDown numeric_cp;
     }
 }

@@ -8,5 +8,8 @@ namespace PagoAgilFrba.Model
 {
     class ItemFactura
     {
+        private String descripcion;
+        private decimal cantidad;
+        private decimal monto;
     }
 }

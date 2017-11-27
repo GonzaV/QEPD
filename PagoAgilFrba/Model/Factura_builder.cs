@@ -8,5 +8,7 @@ namespace PagoAgilFrba.Model
 {
     class Factura_builder
     {
+        
+       
     }
 }

@@ -229,16 +229,21 @@
     <Compile Include="Login\Seleccion_funcionalidades_admin.Designer.cs">
       <DependentUpon>Seleccion_funcionalidades_admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Empresa.cs" />
+    <Compile Include="Model\Factura.cs" />
+    <Compile Include="Model\Factura_builder.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Domicilio.cs" />
     <Compile Include="Model\Encriptador.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
+    <Compile Include="Model\ItemFactura.cs" />
     <Compile Include="Rendiciones\Form_rendicion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Rendiciones\Form_rendicion.Designer.cs">
       <DependentUpon>Form_rendicion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositorios\Repo_facturas.cs" />
     <Compile Include="Repositorios\Repo_cliente.cs" />
     <Compile Include="Repositorios\Repo_empresas.cs" />
     <Compile Include="Repositorios\Repo_roles_func.cs" />
