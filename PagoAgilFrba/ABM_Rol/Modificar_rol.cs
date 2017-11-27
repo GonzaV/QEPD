@@ -71,5 +71,13 @@ namespace PagoAgilFrba.ABM_Rol
 
         }
 
+        private void boton_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ABM_Rol.abm_rol().ShowDialog();
+            this.Close();
+            
+        }
+
     }
 }
