@@ -36,7 +36,7 @@
             this.comboBox_rubros = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.idEmpresa_seleccionada = new System.Windows.Forms.TextBox();
-            this.textBox_filtroDNI = new System.Windows.Forms.TextBox();
+            this.textBox_filtroCuit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_filtroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@
             this.groupBox1.Controls.Add(this.comboBox_rubros);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.idEmpresa_seleccionada);
-            this.groupBox1.Controls.Add(this.textBox_filtroDNI);
+            this.groupBox1.Controls.Add(this.textBox_filtroCuit);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox_filtroNombre);
             this.groupBox1.Controls.Add(this.label1);
@@ -109,6 +109,7 @@
             this.comboBox_rubros.Name = "comboBox_rubros";
             this.comboBox_rubros.Size = new System.Drawing.Size(121, 21);
             this.comboBox_rubros.TabIndex = 7;
+            this.comboBox_rubros.SelectedIndexChanged += new System.EventHandler(this.comboBox_rubros_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -127,12 +128,12 @@
             this.idEmpresa_seleccionada.Size = new System.Drawing.Size(121, 20);
             this.idEmpresa_seleccionada.TabIndex = 5;
             // 
-            // textBox_filtroDNI
+            // textBox_filtroCuit
             // 
-            this.textBox_filtroDNI.Location = new System.Drawing.Point(57, 62);
-            this.textBox_filtroDNI.Name = "textBox_filtroDNI";
-            this.textBox_filtroDNI.Size = new System.Drawing.Size(100, 20);
-            this.textBox_filtroDNI.TabIndex = 4;
+            this.textBox_filtroCuit.Location = new System.Drawing.Point(57, 62);
+            this.textBox_filtroCuit.Name = "textBox_filtroCuit";
+            this.textBox_filtroCuit.Size = new System.Drawing.Size(100, 20);
+            this.textBox_filtroCuit.TabIndex = 4;
             // 
             // label2
             // 
@@ -175,6 +176,7 @@
             this.button_filtrar.TabIndex = 10;
             this.button_filtrar.Text = "Filtrar";
             this.button_filtrar.UseVisualStyleBackColor = true;
+            this.button_filtrar.Click += new System.EventHandler(this.button_filtrar_Click);
             // 
             // Listado_seleccion_empresas
             // 
@@ -205,7 +207,7 @@
         private System.Windows.Forms.ComboBox comboBox_rubros;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox idEmpresa_seleccionada;
-        private System.Windows.Forms.TextBox textBox_filtroDNI;
+        private System.Windows.Forms.TextBox textBox_filtroCuit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_filtroNombre;
         private System.Windows.Forms.Label label1;
