@@ -177,3 +177,11 @@ E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Ba
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
 E:\ProyectosVisualStudio\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionPago.resources
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Rendiciones.Form_rendicion.resources

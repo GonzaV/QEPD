@@ -9,8 +9,11 @@ namespace PagoAgilFrba.Model
     public class ItemFactura
     {
         private String descripcion;
+
         private decimal cantidad;
+
         private decimal monto;
+  
 
         public ItemFactura(String descripcion, decimal cantidad, decimal monto)
         {
@@ -19,6 +22,11 @@ namespace PagoAgilFrba.Model
             this.monto = monto;
         }
 
+        public String getDescripcion()
+        {
+            return descripcion;
+        }
+    
 
 
 

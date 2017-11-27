@@ -80,19 +80,27 @@ namespace PagoAgilFrba.Utils
 
         }
 
-      /*  public DataTable obtenerUnicoResultadoTabla(SqlCommand cmd) {
+        public DataTable obtenerData(String query) {
 
-            SqlDataReader reader;
+            //DataSet data = new DataSet();
+
+            crearConexion();
+            abrirConexion();
+
             DataTable tabla = new DataTable();
+            SqlCommand cmd = new SqlCommand(query, conexion);
 
-            reader = cmd.ExecuteScalar();
-            tabla.Load(reader);
+            tabla.Load(cmd.ExecuteReader());
+            //data.Tables.Add(tabla);
+
+            cerrarConexion();
 
             return tabla;
-        
-        }*/
+              
+        }
 
-        //AGREGO ESTO PARA SABER SI SE CREO ALGO EN LA TABLA
+       
+  
         
         
 

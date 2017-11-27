@@ -29,9 +29,9 @@ namespace PagoAgilFrba.Repositorios
             DBhelper.cerrarConexion();
         }
 
-        private void crearItemFactura(Model.ItemFactura, decimal nroFactura)
+        private void crearItemFactura(Model.ItemFactura item, decimal nroFactura)
         {
-
+            ;
         }
     }
 }

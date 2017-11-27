@@ -7,23 +7,24 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
+
 namespace PagoAgilFrba.Repositorios
+
 {
     class Repo_sucursal
-    {
+   {
 
         public static Repo_sucursal instancia;
         private Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
 
         public static Repo_sucursal getInstancia()
         {
-
             if (instancia != null)
-            {
-                return instancia;
-            }
+           {
+               return instancia;
+           }
             else
-            {
+           {
                 instancia = new Repo_sucursal();
 
                 return instancia;
@@ -35,18 +36,18 @@ namespace PagoAgilFrba.Repositorios
 
             DBhelper.crearConexion();
 
-            SqlCommand cmd = DBhelper.crearCommand("QEPD.newSucursal");
+           SqlCommand cmd = DBhelper.crearCommand("QEPD.newSucursal");
             cmd.Parameters.Add("@CodPostal", SqlDbType.Float).Value = codigo_postal;
             cmd.Parameters.Add("@SucursalNombre", SqlDbType.NVarChar).Value = nombre;
             cmd.Parameters.Add("@SucursalDirecc", SqlDbType.NVarChar).Value = direccion;
             
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+           DBhelper.obtenerRetornoProcedure(cmd);
 
             DBhelper.cerrarConexion();
 
-        }
+       }
 
     }
 }

@@ -30,18 +30,19 @@
         {
             this.button_volver = new System.Windows.Forms.Button();
             this.button_Baja_cliente = new System.Windows.Forms.Button();
-            this.button_Modificar_cliente = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox_rubros = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.idEmpresa_seleccionada = new System.Windows.Forms.TextBox();
-            this.textBox_filtroDNI = new System.Windows.Forms.TextBox();
+            this.textBox_filtroCuit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_filtroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGrid_empresas = new System.Windows.Forms.DataGridView();
             this.button_filtrar = new System.Windows.Forms.Button();
+            this.boton_modificar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).BeginInit();
             this.SuspendLayout();
@@ -66,23 +67,13 @@
             this.button_Baja_cliente.UseVisualStyleBackColor = true;
             this.button_Baja_cliente.Click += new System.EventHandler(this.button_Baja_empresa_Click);
             // 
-            // button_Modificar_cliente
-            // 
-            this.button_Modificar_cliente.Location = new System.Drawing.Point(333, 403);
-            this.button_Modificar_cliente.Name = "button_Modificar_cliente";
-            this.button_Modificar_cliente.Size = new System.Drawing.Size(75, 23);
-            this.button_Modificar_cliente.TabIndex = 7;
-            this.button_Modificar_cliente.Text = "Modificar";
-            this.button_Modificar_cliente.UseVisualStyleBackColor = true;
-            this.button_Modificar_cliente.Click += new System.EventHandler(this.button_Modificar_empresa_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBox_rubros);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.idEmpresa_seleccionada);
-            this.groupBox1.Controls.Add(this.textBox_filtroDNI);
+            this.groupBox1.Controls.Add(this.textBox_filtroCuit);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox_filtroNombre);
             this.groupBox1.Controls.Add(this.label1);
@@ -109,6 +100,7 @@
             this.comboBox_rubros.Name = "comboBox_rubros";
             this.comboBox_rubros.Size = new System.Drawing.Size(121, 21);
             this.comboBox_rubros.TabIndex = 7;
+            this.comboBox_rubros.SelectedIndexChanged += new System.EventHandler(this.comboBox_rubros_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -127,12 +119,12 @@
             this.idEmpresa_seleccionada.Size = new System.Drawing.Size(121, 20);
             this.idEmpresa_seleccionada.TabIndex = 5;
             // 
-            // textBox_filtroDNI
+            // textBox_filtroCuit
             // 
-            this.textBox_filtroDNI.Location = new System.Drawing.Point(57, 62);
-            this.textBox_filtroDNI.Name = "textBox_filtroDNI";
-            this.textBox_filtroDNI.Size = new System.Drawing.Size(100, 20);
-            this.textBox_filtroDNI.TabIndex = 4;
+            this.textBox_filtroCuit.Location = new System.Drawing.Point(57, 62);
+            this.textBox_filtroCuit.Name = "textBox_filtroCuit";
+            this.textBox_filtroCuit.Size = new System.Drawing.Size(100, 20);
+            this.textBox_filtroCuit.TabIndex = 4;
             // 
             // label2
             // 
@@ -166,6 +158,7 @@
             this.dataGrid_empresas.Name = "dataGrid_empresas";
             this.dataGrid_empresas.Size = new System.Drawing.Size(474, 185);
             this.dataGrid_empresas.TabIndex = 5;
+            this.dataGrid_empresas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_empresas_CellContentClick);
             // 
             // button_filtrar
             // 
@@ -175,16 +168,37 @@
             this.button_filtrar.TabIndex = 10;
             this.button_filtrar.Text = "Filtrar";
             this.button_filtrar.UseVisualStyleBackColor = true;
+            this.button_filtrar.Click += new System.EventHandler(this.button_filtrar_Click);
+            // 
+            // boton_modificar
+            // 
+            this.boton_modificar.Location = new System.Drawing.Point(335, 403);
+            this.boton_modificar.Name = "boton_modificar";
+            this.boton_modificar.Size = new System.Drawing.Size(75, 23);
+            this.boton_modificar.TabIndex = 11;
+            this.boton_modificar.Text = "Modificar";
+            this.boton_modificar.UseVisualStyleBackColor = true;
+            this.boton_modificar.Click += new System.EventHandler(this.boton_modificar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(63, 170);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(304, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Seleccione la fila de la empresa que desee modificar o eliminar:";
             // 
             // Listado_seleccion_empresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 447);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.boton_modificar);
             this.Controls.Add(this.button_filtrar);
             this.Controls.Add(this.button_volver);
             this.Controls.Add(this.button_Baja_cliente);
-            this.Controls.Add(this.button_Modificar_cliente);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGrid_empresas);
             this.Name = "Listado_seleccion_empresas";
@@ -193,6 +207,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -200,17 +215,18 @@
 
         private System.Windows.Forms.Button button_volver;
         private System.Windows.Forms.Button button_Baja_cliente;
-        private System.Windows.Forms.Button button_Modificar_cliente;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox_rubros;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox idEmpresa_seleccionada;
-        private System.Windows.Forms.TextBox textBox_filtroDNI;
+        private System.Windows.Forms.TextBox textBox_filtroCuit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_filtroNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGrid_empresas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_filtrar;
+        private System.Windows.Forms.Button boton_modificar;
+        private System.Windows.Forms.Label label5;
     }
 }

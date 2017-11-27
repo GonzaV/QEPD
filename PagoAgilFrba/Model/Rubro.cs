@@ -12,15 +12,17 @@ namespace PagoAgilFrba.Model
         public String descripcion;
         public decimal nro_rubro;
 
-        public Rubro (){
-    
-         }
+        public Rubro()
+        {
 
-        public Rubro(String descripcion, decimal nro_rubro) {
+        }
+
+        public Rubro(String descripcion, decimal nro_rubro)
+        {
 
             this.descripcion = descripcion;
             this.nro_rubro = nro_rubro;
-        
+
         }
 
         public void setDescripcion(String descripcion)
@@ -37,10 +39,11 @@ namespace PagoAgilFrba.Model
 
         }
 
-        public String getDescripcion() {
+        public String getDescripcion()
+        {
 
             return descripcion;
-        
+
         }
 
         public Rubro Objeto //Este metodo es el que usa el selector para seleccionar el objeto,
