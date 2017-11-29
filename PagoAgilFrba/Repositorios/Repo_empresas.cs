@@ -13,6 +13,7 @@ namespace PagoAgilFrba.Repositorios
     public class Repo_empresas
     {
 
+        const Int32 VACIO = -1;
         public static Repo_empresas instancia;
         public Int32 idEmpresaSeleccionada;
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
@@ -35,6 +36,18 @@ namespace PagoAgilFrba.Repositorios
         public void setIdEmpresaSeleccionada(Int32 id) {
 
             this.idEmpresaSeleccionada = id;
+
+        }
+
+        public Int32 getIdEmpresaSeleccionada() {
+
+            return idEmpresaSeleccionada;
+
+        }
+
+        public void reiniciarEmpresaSeleccionada() {
+
+            idEmpresaSeleccionada = VACIO;
 
         }
 
@@ -114,6 +127,34 @@ namespace PagoAgilFrba.Repositorios
 
         }
 
+        public void modificarEmpresa(String nombre, String cuit, String direccion, String rubro) {
+
+            DBhelper.crearConexion();
+
+            if(nombre == "") nombre = "acaPidoNombreEmpresa";
+            if(cuit == "") cuit = "acaPidoCuitEmpresa";
+            if(direccion == "") direccion = "acaPidoDireccionEmpresa";
+            if(rubro == "") rubro = "acaPidoRubroEmpresa";
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.modificarEmpresa");
+            cmd.Parameters.Add("@idEmpresa",SqlDbType.Int).Value = idEmpresaSeleccionada;
+            cmd.Parameters.Add("@Nombre_Empresa", SqlDbType.NVarChar).Value = nombre;
+            cmd.Parameters.Add("@Cuit_Empresa", SqlDbType.NVarChar).Value = cuit;
+            cmd.Parameters.Add("@Direccion_Empresa", SqlDbType.NVarChar).Value = direccion;
+            cmd.Parameters.Add("@descripcionRubro_Empresa", SqlDbType.NVarChar).Value = rubro;
+            cmd.Parameters.Add("@Fecha_Rendicion", SqlDbType.DateTime).Value = DateTime.Now;
+
+            DBhelper.abrirConexion();
+
+            DBhelper.ejecutarProcedure(cmd);
+
+            DBhelper.cerrarConexion();
+
+        }
+
+            
+        
+        
 
 
     }

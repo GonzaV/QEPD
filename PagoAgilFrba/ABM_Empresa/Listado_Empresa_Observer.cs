@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.ABM_Empresa
 {
-    interface Listado_Empresa_Observer
+    public interface Listado_Empresa_Observer
     {
-        private void mostrarEmpresaElegidad(String empresaElegida);
+        void mostrarEmpresaElegidad(String empresaElegida);
     }
 }

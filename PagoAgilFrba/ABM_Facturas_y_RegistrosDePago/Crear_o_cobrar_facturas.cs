@@ -63,12 +63,12 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             listado.ShowDialog();
         }
 
-        private void mostrarEmpresaElegidad(String empresaElegida)
+        public void mostrarEmpresaElegidad(String empresaElegida)
         {
             this.empresa.Text = empresaElegida;
         }
 
-        private void mostrarClienteElegido(String clienteElegido)
+        public void mostrarClienteElegido(String clienteElegido)
         {
             this.cliente.Text = clienteElegido;
         }

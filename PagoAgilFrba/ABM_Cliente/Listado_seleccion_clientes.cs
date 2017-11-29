@@ -12,7 +12,7 @@ namespace PagoAgilFrba.ABM_Cliente
 {
     public partial class Listado_seleccion_clientes : Form
     {
-        private Listado_Clientes_Observer controller;
+         Listado_Clientes_Observer controller;
 
         public Listado_seleccion_clientes()
         {
