@@ -32,15 +32,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.boton_ingresar_items = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -53,9 +48,12 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label_total = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.boton_cancelar = new System.Windows.Forms.Button();
+            this.empresa = new System.Windows.Forms.TextBox();
+            this.cliente = new System.Windows.Forms.TextBox();
+            this.btnCliente = new System.Windows.Forms.Button();
+            this.btnEmpresa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,15 +93,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Número de factura:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 141);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Fecha de alta:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -141,40 +130,6 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Ingrese los siguientes datos si tambien desea registrar un pago (*):";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(139, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(282, 55);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Deberia ser algo para filtrar";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(139, 80);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 12;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(282, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(133, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Deberia ser algo para filtrar";
-            // 
             // boton_ingresar_items
             // 
             this.boton_ingresar_items.Location = new System.Drawing.Point(139, 196);
@@ -188,7 +143,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 167);
+            this.label10.Location = new System.Drawing.Point(13, 155);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 13);
             this.label10.TabIndex = 17;
@@ -280,17 +235,9 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 29;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "\"yyyy-MM-dd\"";
-            this.dateTimePicker1.Location = new System.Drawing.Point(139, 141);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 30;
-            // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(139, 167);
+            this.dateTimePicker2.Location = new System.Drawing.Point(139, 155);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 31;
@@ -305,14 +252,54 @@
             this.boton_cancelar.UseVisualStyleBackColor = true;
             this.boton_cancelar.Click += new System.EventHandler(this.boton_cancelar_Click);
             // 
+            // empresa
+            // 
+            this.empresa.Enabled = false;
+            this.empresa.Location = new System.Drawing.Point(138, 83);
+            this.empresa.Name = "empresa";
+            this.empresa.Size = new System.Drawing.Size(121, 20);
+            this.empresa.TabIndex = 33;
+            // 
+            // cliente
+            // 
+            this.cliente.Location = new System.Drawing.Point(138, 52);
+            this.cliente.Name = "cliente";
+            this.cliente.Size = new System.Drawing.Size(121, 20);
+            this.cliente.TabIndex = 34;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.Location = new System.Drawing.Point(265, 50);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(74, 22);
+            this.btnCliente.TabIndex = 35;
+            this.btnCliente.Text = "Seleccionar";
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            // 
+            // btnEmpresa
+            // 
+            this.btnEmpresa.Cursor = System.Windows.Forms.Cursors.No;
+            this.btnEmpresa.Enabled = false;
+            this.btnEmpresa.Location = new System.Drawing.Point(265, 83);
+            this.btnEmpresa.Name = "btnEmpresa";
+            this.btnEmpresa.Size = new System.Drawing.Size(74, 22);
+            this.btnEmpresa.TabIndex = 36;
+            this.btnEmpresa.Text = "Seleccionar";
+            this.btnEmpresa.UseVisualStyleBackColor = true;
+            this.btnEmpresa.Click += new System.EventHandler(this.btnEmpresa_Click);
+            // 
             // Crear_o_cobrar_facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 540);
+            this.Controls.Add(this.btnEmpresa);
+            this.Controls.Add(this.btnCliente);
+            this.Controls.Add(this.cliente);
+            this.Controls.Add(this.empresa);
             this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label_total);
             this.Controls.Add(this.label14);
@@ -325,18 +312,15 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.boton_ingresar_items);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.shapeContainer1);
+            this.Cursor = System.Windows.Forms.Cursors.No;
+            this.Enabled = false;
             this.Name = "Crear_o_cobrar_facturas";
             this.Text = "Crear_o_cobrar_facturas";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -351,15 +335,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button boton_ingresar_items;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
@@ -372,8 +351,11 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button boton_cancelar;
+        private System.Windows.Forms.TextBox empresa;
+        private System.Windows.Forms.TextBox cliente;
+        private System.Windows.Forms.Button btnCliente;
+        private System.Windows.Forms.Button btnEmpresa;
     }
 }

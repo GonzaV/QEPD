@@ -12,6 +12,8 @@ namespace PagoAgilFrba.ABM_Cliente
 {
     public partial class Listado_seleccion_clientes : Form
     {
+        private Listado_Clientes_Observer controller;
+
         public Listado_seleccion_clientes()
         {
             InitializeComponent();
@@ -34,6 +36,11 @@ namespace PagoAgilFrba.ABM_Cliente
         private void button_Baja_cliente_Click(object sender, EventArgs e)
         {
             new Baja_cliente().ShowDialog();
+        }
+
+        public void setController(Listado_Clientes_Observer controller)
+        {
+            this.controller = controller;
         }
     }
 }

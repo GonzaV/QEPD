@@ -68,7 +68,7 @@ namespace PagoAgilFrba.Utils
 
         }
 
-        public void obtenerRetornoProcedure(SqlCommand cmd) { //Cuando el procedure no retorna tabla
+        public void ejecutarProcedure(SqlCommand cmd) { //Cuando el procedure no retorna tabla
 
            cmd.ExecuteNonQuery();
             

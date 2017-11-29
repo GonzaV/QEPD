@@ -78,6 +78,32 @@ namespace PagoAgilFrba.Model{
  
         }
 
+        public Model.Cliente getCliente(Int32 dni)
+        {
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getCliente");
+            cmd.Parameters.Add("@Dni_Cliente", SqlDbType.NVarChar).Value = Convert.ToString(dni);
+
+            DataTable tablaCliente = DBhelper.obtenerTabla(cmd);
+
+            Model.Cliente cliente = new Cliente();
+
+            foreach (DataRow row in tablaCliente.Rows)
+            {
+                cliente.setNombre((String)row["Nombre_Cliente"]);
+                cliente.setApellido((String)row["Apellido_Cliente"]);
+                cliente.setEmail((String)row["Email_Cliente"]);
+                cliente.setFnacimiento((DateTime)row["Fecha_Nac_Cliente"]);
+                cliente.setId((Int32)row["IdCliente"]);
+                //cliente.setTelefono((Int32)row["Telefono_Cliente"]);  Problema de tipados
+                //cliente.setIdDomicilio((Int32)row["idDomicilio"]);
+                cliente.setEstado(Convert.ToInt16(row["Estado_Cliente"]));
+            }
+
+            return cliente;
+        }
+
 
         public void newCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp)
         {

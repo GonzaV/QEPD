@@ -43,7 +43,7 @@ namespace PagoAgilFrba.Model
           
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
 
@@ -61,7 +61,7 @@ namespace PagoAgilFrba.Model
 
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
             Console.WriteLine("Bloquie");

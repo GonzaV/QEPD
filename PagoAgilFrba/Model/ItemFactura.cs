@@ -26,8 +26,16 @@ namespace PagoAgilFrba.Model
         {
             return descripcion;
         }
-    
 
+        public decimal getCantidad()
+        {
+            return cantidad;
+        }
+
+        public decimal getMonto()
+        {
+            return monto;
+        }
 
 
 

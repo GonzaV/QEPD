@@ -56,7 +56,7 @@ namespace PagoAgilFrba.Login
         private void boton_crear_y_cobrar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas().ShowDialog();
+            new ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas(new Model.Factura_builder()).ShowDialog();
             this.Close();
         }
 

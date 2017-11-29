@@ -1,6 +1,7 @@
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.pdb
+E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csprojResolveAssemblyReference.cache
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.abm_cliente.resources
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Crear_cliente.resources

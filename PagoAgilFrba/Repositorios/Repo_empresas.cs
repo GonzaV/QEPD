@@ -50,11 +50,38 @@ namespace PagoAgilFrba.Repositorios
 
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
         
         
+        }
+
+        public Model.Empresa getEmpresa(String nombre) 
+        {
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getEmpresaNombre");
+            cmd.Parameters.Add("@Nombre_Empresa", SqlDbType.NVarChar).Value = nombre;
+
+            DBhelper.abrirConexion();
+
+            DataTable tablaEmpresa = DBhelper.obtenerTabla(cmd);
+
+            Model.Empresa empresa = new Model.Empresa();
+
+            foreach (DataRow row in tablaEmpresa.Rows)
+            {
+               /* empresa.set
+                
+                setar lo de empresa pero para eso necesito la clase vieja de empresa
+                
+                */
+            }
+
+            DBhelper.cerrarConexion();
+
+            return empresa;
         }
 
 

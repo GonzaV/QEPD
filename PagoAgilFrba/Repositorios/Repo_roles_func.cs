@@ -100,7 +100,7 @@ namespace PagoAgilFrba.Repositorios
 
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
         
@@ -115,7 +115,7 @@ namespace PagoAgilFrba.Repositorios
 
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
         
@@ -131,7 +131,7 @@ namespace PagoAgilFrba.Repositorios
 
             DBhelper.abrirConexion();
 
-            DBhelper.obtenerRetornoProcedure(cmd);
+            DBhelper.ejecutarProcedure(cmd);
 
             DBhelper.cerrarConexion();
 

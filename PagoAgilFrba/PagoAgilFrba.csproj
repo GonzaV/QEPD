@@ -80,6 +80,7 @@
     <Compile Include="ABM_Cliente\Crear_cliente.Designer.cs">
       <DependentUpon>Crear_cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Cliente\Listado_Clientes_Observer.cs" />
     <Compile Include="ABM_Cliente\Listado_seleccion_clientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +111,7 @@
     <Compile Include="ABM_Empresa\Crear_empresa.Designer.cs">
       <DependentUpon>Crear_empresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Empresa\Listado_Empresa_Observer.cs" />
     <Compile Include="ABM_Empresa\Listado_seleccion_empresas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +240,7 @@
     <Compile Include="Model\Encriptador.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
     <Compile Include="Model\ItemFactura.cs" />
+    <Compile Include="Model\PagosBuilder.cs" />
     <Compile Include="Model\Rubro.cs" />
     <Compile Include="Rendiciones\Form_rendicion.cs">
       <SubType>Form</SubType>
@@ -245,6 +248,7 @@
     <Compile Include="Rendiciones\Form_rendicion.Designer.cs">
       <DependentUpon>Form_rendicion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositorios\RepoPagos.cs" />
     <Compile Include="Repositorios\Repo_facturas.cs" />
     <Compile Include="Repositorios\Repo_cliente.cs" />
     <Compile Include="Repositorios\Repo_empresas.cs" />
