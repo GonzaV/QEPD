@@ -1022,6 +1022,13 @@ AS
 
 GO
 
+CREATE PROCEDURE QEPD.getEmpresa /* Devuelve UNA empresa, buscandola por ID */
+@IdEmpresa int
+AS
+	SELECT * FROM QEPD.Empresa e WHERE e.IdEmpresa = @IdEmpresa
+
+GO
+
 CREATE PROCEDURE QEPD.newEmpresa /* Creo una empresa, rubro lo seteo por su descripcion, valido que no repita ni domicilio */
 @Nombre_Empresa nvarchar(255),          /* ni rubro de la empresa si ya existen en sus tablas*/
 @Cuit_Empresa nvarchar(50),

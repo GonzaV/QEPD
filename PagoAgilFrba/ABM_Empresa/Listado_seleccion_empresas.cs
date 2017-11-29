@@ -15,11 +15,13 @@ namespace PagoAgilFrba.ABM_Empresa
 
         public Int32 idEmpresa;
         public Model.Rubro rubroElegido;
+        const Int32 VACIO = -1;
 
         public Listado_seleccion_empresas()
         {
             InitializeComponent();
             configuarComboBox();
+            Repositorios.Repo_empresas.getInstancia().reiniciarEmpresaSeleccionada();
         }
 
         private void button_volver_Click(object sender, EventArgs e)
@@ -60,10 +62,19 @@ namespace PagoAgilFrba.ABM_Empresa
         private void boton_modificar_Click(object sender, EventArgs e)
         {
 
+            if (Repositorios.Repo_empresas.getInstancia().getIdEmpresaSeleccionada() == VACIO) {
+
+                MessageBox.Show("Por favor, seleccione de la grilla una empresa a modificar clickeando en cualquiera de sus atributos", "Seleccione empresa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           
+            }
+
+            else {
+
             this.Hide();
             new Modificar_empresa().ShowDialog();
             this.Close();
 
+            }
         }
 
         private void dataGrid_empresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
