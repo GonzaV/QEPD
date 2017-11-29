@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlTypes;
 
 namespace PagoAgilFrba.ABM_Empresa
 {
     public partial class Listado_seleccion_empresas : Form
     {
 
+        public Boolean estado;
         public Int32 idEmpresa;
         public Model.Rubro rubroElegido;
         const Int32 VACIO = -1;
@@ -80,7 +82,10 @@ namespace PagoAgilFrba.ABM_Empresa
         private void dataGrid_empresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
                 idEmpresa_seleccionada.Text = dataGrid_empresas.Rows[e.RowIndex].Cells["IdEmpresa"].Value.ToString();
+                estado = (Boolean)dataGrid_empresas.Rows[e.RowIndex].Cells["Estado_Empresa"].Value;
+                Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
                 Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
+                       
         }
 }
 

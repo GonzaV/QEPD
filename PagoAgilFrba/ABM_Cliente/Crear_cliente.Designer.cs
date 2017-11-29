@@ -40,7 +40,6 @@
             this.textBox_mail = new System.Windows.Forms.TextBox();
             this.textBox_telefono = new System.Windows.Forms.TextBox();
             this.label_fecha_nac = new System.Windows.Forms.Label();
-            this.textBox_fnacimiento = new System.Windows.Forms.TextBox();
             this.button_crearCliente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
@@ -50,6 +49,7 @@
             this.textBox_cp = new System.Windows.Forms.TextBox();
             this.label_cp = new System.Windows.Forms.Label();
             this.button_volver = new System.Windows.Forms.Button();
+            this.dateTimeFechaNac = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label_crear_cliente
@@ -151,13 +151,6 @@
             this.label_fecha_nac.TabIndex = 11;
             this.label_fecha_nac.Text = "F. Nacimiento:";
             // 
-            // textBox_fnacimiento
-            // 
-            this.textBox_fnacimiento.Location = new System.Drawing.Point(108, 212);
-            this.textBox_fnacimiento.Name = "textBox_fnacimiento";
-            this.textBox_fnacimiento.Size = new System.Drawing.Size(100, 20);
-            this.textBox_fnacimiento.TabIndex = 12;
-            // 
             // button_crearCliente
             // 
             this.button_crearCliente.Location = new System.Drawing.Point(282, 363);
@@ -211,7 +204,7 @@
             this.label_direccion.Size = new System.Drawing.Size(55, 13);
             this.label_direccion.TabIndex = 16;
             this.label_direccion.Text = "Direccion:";
-            this.label_direccion.Click += new System.EventHandler(this.label2_Click);
+            
             // 
             // textBox_cp
             // 
@@ -239,11 +232,19 @@
             this.button_volver.UseVisualStyleBackColor = true;
             this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
             // 
+            // dateTimeFechaNac
+            // 
+            this.dateTimeFechaNac.Location = new System.Drawing.Point(108, 209);
+            this.dateTimeFechaNac.Name = "dateTimeFechaNac";
+            this.dateTimeFechaNac.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFechaNac.TabIndex = 21;
+            // 
             // Crear_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 398);
+            this.Controls.Add(this.dateTimeFechaNac);
             this.Controls.Add(this.button_volver);
             this.Controls.Add(this.textBox_cp);
             this.Controls.Add(this.label_cp);
@@ -251,7 +252,6 @@
             this.Controls.Add(this.label_direccion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_crearCliente);
-            this.Controls.Add(this.textBox_fnacimiento);
             this.Controls.Add(this.label_fecha_nac);
             this.Controls.Add(this.textBox_telefono);
             this.Controls.Add(this.textBox_mail);
@@ -286,7 +286,6 @@
         private System.Windows.Forms.TextBox textBox_mail;
         private System.Windows.Forms.TextBox textBox_telefono;
         private System.Windows.Forms.Label label_fecha_nac;
-        private System.Windows.Forms.TextBox textBox_fnacimiento;
         private System.Windows.Forms.Button button_crearCliente;
         private System.Windows.Forms.Label label1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
@@ -296,5 +295,6 @@
         private System.Windows.Forms.TextBox textBox_cp;
         private System.Windows.Forms.Label label_cp;
         private System.Windows.Forms.Button button_volver;
+        private System.Windows.Forms.DateTimePicker dateTimeFechaNac;
     }
 }

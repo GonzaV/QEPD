@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGrid_clientes = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox_filtroActivos = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,17 +40,18 @@
             this.button_Modificar_cliente = new System.Windows.Forms.Button();
             this.button_Baja_cliente = new System.Windows.Forms.Button();
             this.button_volver = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.boton_filtrar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_clientes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGrid_clientes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 149);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(474, 185);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGrid_clientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid_clientes.Location = new System.Drawing.Point(12, 199);
+            this.dataGrid_clientes.Name = "dataGrid_clientes";
+            this.dataGrid_clientes.Size = new System.Drawing.Size(474, 185);
+            this.dataGrid_clientes.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -129,7 +130,7 @@
             // 
             // button_Modificar_cliente
             // 
-            this.button_Modificar_cliente.Location = new System.Drawing.Point(283, 353);
+            this.button_Modificar_cliente.Location = new System.Drawing.Point(285, 414);
             this.button_Modificar_cliente.Name = "button_Modificar_cliente";
             this.button_Modificar_cliente.Size = new System.Drawing.Size(75, 23);
             this.button_Modificar_cliente.TabIndex = 2;
@@ -139,7 +140,7 @@
             // 
             // button_Baja_cliente
             // 
-            this.button_Baja_cliente.Location = new System.Drawing.Point(394, 353);
+            this.button_Baja_cliente.Location = new System.Drawing.Point(394, 414);
             this.button_Baja_cliente.Name = "button_Baja_cliente";
             this.button_Baja_cliente.Size = new System.Drawing.Size(75, 23);
             this.button_Baja_cliente.TabIndex = 3;
@@ -149,7 +150,7 @@
             // 
             // button_volver
             // 
-            this.button_volver.Location = new System.Drawing.Point(41, 353);
+            this.button_volver.Location = new System.Drawing.Point(35, 414);
             this.button_volver.Name = "button_volver";
             this.button_volver.Size = new System.Drawing.Size(75, 23);
             this.button_volver.TabIndex = 4;
@@ -157,19 +158,30 @@
             this.button_volver.UseVisualStyleBackColor = true;
             this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
             // 
+            // boton_filtrar
+            // 
+            this.boton_filtrar.Location = new System.Drawing.Point(348, 142);
+            this.boton_filtrar.Name = "boton_filtrar";
+            this.boton_filtrar.Size = new System.Drawing.Size(75, 23);
+            this.boton_filtrar.TabIndex = 5;
+            this.boton_filtrar.Text = "Filtrar";
+            this.boton_filtrar.UseVisualStyleBackColor = true;
+            this.boton_filtrar.Click += new System.EventHandler(this.boton_filtrar_Click);
+            // 
             // Listado_seleccion_clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 388);
+            this.ClientSize = new System.Drawing.Size(499, 465);
+            this.Controls.Add(this.boton_filtrar);
             this.Controls.Add(this.button_volver);
             this.Controls.Add(this.button_Baja_cliente);
             this.Controls.Add(this.button_Modificar_cliente);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGrid_clientes);
             this.Name = "Listado_seleccion_clientes";
             this.Text = "Listado_seleccion_clientes";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_clientes)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -178,7 +190,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGrid_clientes;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox idCliente_seleccionado;
@@ -190,5 +202,6 @@
         private System.Windows.Forms.Button button_Baja_cliente;
         private System.Windows.Forms.Button button_volver;
         private System.Windows.Forms.CheckBox checkBox_filtroActivos;
+        private System.Windows.Forms.Button boton_filtrar;
     }
 }

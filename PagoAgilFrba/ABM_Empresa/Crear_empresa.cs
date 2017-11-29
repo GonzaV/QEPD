@@ -45,8 +45,19 @@ namespace PagoAgilFrba.ABM_Empresa
 
         private void boton_crear_empresa_Click(object sender, EventArgs e)
         {
+
+            if(string.IsNullOrWhiteSpace(textBox_nombre.Text) || string.IsNullOrWhiteSpace(textBox_direccion.Text) || string.IsNullOrWhiteSpace(textBox_CUIT.Text)) {
+
+                MessageBox.Show("Por favor complete todos los campos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+            else { 
+
             Repositorios.Repo_empresas.getInstancia().crearEmpresa(textBox_nombre.Text, textBox_CUIT.Text, textBox_direccion.Text, rubroSeleccionado.getDescripcion());
             MessageBox.Show("Empresa creada con éxito", "Empresa creada", MessageBoxButtons.OK);
+            
+            }
         }
     }
 }

@@ -78,6 +78,25 @@ namespace PagoAgilFrba.Model{
  
         }
 
+        public DataTable getTablaClientesFiltrados(String nombre, String dni, Boolean estado) {
+
+            DataTable tablaClientesFiltrados;
+
+            DBhelper.crearConexion();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getClientesFiltrados");
+            cmd.Parameters.Add("@Nombre_Cliente", SqlDbType.NVarChar).Value = nombre;
+            cmd.Parameters.Add("@Dni_Cliente", SqlDbType.NVarChar).Value = dni;
+            cmd.Parameters.Add("@Estado", SqlDbType.Bit).Value = estado;
+
+            DBhelper.abrirConexion();
+
+            tablaClientesFiltrados = DBhelper.obtenerTabla(cmd);
+
+            return tablaClientesFiltrados;
+        
+        }
+
 
         public void newCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp)
         {

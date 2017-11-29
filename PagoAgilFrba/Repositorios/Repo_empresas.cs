@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlTypes;
 
 
 namespace PagoAgilFrba.Repositorios
@@ -16,6 +17,7 @@ namespace PagoAgilFrba.Repositorios
         const Int32 VACIO = -1;
         public static Repo_empresas instancia;
         public Int32 idEmpresaSeleccionada;
+        public Boolean estadoEmpresaSeleccionada;
         public Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
 
         public static Repo_empresas getInstancia()
@@ -39,11 +41,24 @@ namespace PagoAgilFrba.Repositorios
 
         }
 
+        public void setEstadoEmpresaSeleccionada(Boolean estado) {
+
+            this.estadoEmpresaSeleccionada = estado;
+
+        }
+
         public Int32 getIdEmpresaSeleccionada() {
 
             return idEmpresaSeleccionada;
 
         }
+
+        public Boolean getEstadoEmpresa() {
+
+            return estadoEmpresaSeleccionada;
+
+        }
+
 
         public void reiniciarEmpresaSeleccionada() {
 
@@ -60,6 +75,7 @@ namespace PagoAgilFrba.Repositorios
             cmd.Parameters.Add("@Cuit_Empresa", SqlDbType.NVarChar).Value = cuit;
             cmd.Parameters.Add("@Direccion_Empresa", SqlDbType.NVarChar).Value = direccion;
             cmd.Parameters.Add("@descripcionRubro_Empresa", SqlDbType.NVarChar).Value = rubro;
+            
 
             DBhelper.abrirConexion();
 
@@ -116,6 +132,7 @@ namespace PagoAgilFrba.Repositorios
             cmd.Parameters.Add("@Direccion_Empresa", SqlDbType.NVarChar).Value = direccion;
             cmd.Parameters.Add("@descripcionRubro_Empresa", SqlDbType.NVarChar).Value = rubro;
             cmd.Parameters.Add("@Fecha_Rendicion", SqlDbType.DateTime).Value = DateTime.Now;
+            cmd.Parameters.Add("@estado", SqlDbType.Bit).Value = 0;
 
             DBhelper.abrirConexion();
 

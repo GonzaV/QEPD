@@ -259,9 +259,11 @@
     <Compile Include="Utils\DBhelper.cs" />
     <EmbeddedResource Include="ABM_Cliente\abm_cliente.resx">
       <DependentUpon>abm_cliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Baja_cliente.resx">
       <DependentUpon>Baja_cliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Cliente\Crear_cliente.resx">
       <DependentUpon>Crear_cliente.cs</DependentUpon>

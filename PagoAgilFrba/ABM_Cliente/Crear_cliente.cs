@@ -51,23 +51,29 @@ namespace PagoAgilFrba.ABM_Cliente
         }
         private void button_crearCliente_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(textBox_nombre.Text) || string.IsNullOrWhiteSpace(textBox_apellido.Text) || string.IsNullOrWhiteSpace(textBox_cp.Text)  || string.IsNullOrWhiteSpace(textBox_dni.Text) || string.IsNullOrWhiteSpace(textBox_mail.Text) || string.IsNullOrWhiteSpace(textBox_telefono.Text) || string.IsNullOrWhiteSpace(textBox_direccion.Text))
+            {
+                MessageBox.Show("Por favor complete todos los campos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            else{
+
                 Model.Repo_cliente.getInstancia().newCliente(
                 textBox_nombre.Text,
                 textBox_apellido.Text,
                 Convert.ToInt32(textBox_dni.Text),
                 textBox_mail.Text,
                 Convert.ToInt32(textBox_telefono.Text),
-                Convert.ToDateTime(textBox_fnacimiento.Text),
+                Convert.ToDateTime(dateTimeFechaNac.Value),
                 textBox_direccion.Text,
                 Convert.ToInt32(textBox_cp.Text));
 
                 MessageBox.Show("Cliente creado correctamente");
+
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button_volver_Click(object sender, EventArgs e)
         {

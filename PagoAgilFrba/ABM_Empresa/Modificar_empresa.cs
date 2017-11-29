@@ -7,15 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlTypes;
 
 namespace PagoAgilFrba.ABM_Empresa
 {
     public partial class Modificar_empresa : Form
     {
+
+        const String HABILITADO = "True";
+        const String INHABILITADO = "False";
+
         public Modificar_empresa()
         {
             InitializeComponent();
-            configuarComboBox();
+            configurarComboBox();
+            configurarCheckBoxes();
         }
 
         private void boton_modificar_empresa_Click(object sender, EventArgs e)
@@ -31,7 +37,7 @@ namespace PagoAgilFrba.ABM_Empresa
             this.Close();
         }
 
-        public void configuarComboBox()
+        public void configurarComboBox()
         {
 
             this.comboBox_rubros.ValueMember = "Descripcion";
@@ -44,7 +50,7 @@ namespace PagoAgilFrba.ABM_Empresa
         public void configurarCheckBoxes()
         {
 
-            if (Repositorios.Repo_roles_func.getInstancia().getRolSeleccionado().getEstado() == HABILITADO)
+            if (Repositorios.Repo_empresas.getInstancia().getEstadoEmpresa().ToString() == HABILITADO)
             {
 
                 checkBox_habilitar.Enabled = false;
@@ -54,6 +60,6 @@ namespace PagoAgilFrba.ABM_Empresa
             else checkBox_inhabilitar.Enabled = false;
 
         }
-
+        
     }
 }

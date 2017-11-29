@@ -912,6 +912,17 @@ create procedure qepd.getCliente
 as
 select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clienteNombre*/
 
+GO
+create procedure qepd.getClientesFiltrados
+@Nombre_Cliente nvarchar(255),
+@Dni_Cliente nvarchar(255),
+@Estado bit
+
+as
+
+SELECT * FROM QEPD.Cliente c WHERE Nombre_Cliente LIKE '%' + @Nombre_Cliente + '%' AND Dni_Cliente LIKE '%' + @Dni_Cliente + '%' AND Estado_Cliente = @Estado
+
+
 
 GO
 CREATE PROCEDURE QEPD.getClientesActivos
