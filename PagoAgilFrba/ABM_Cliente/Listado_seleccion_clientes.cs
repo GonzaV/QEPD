@@ -15,6 +15,9 @@ namespace PagoAgilFrba.ABM_Cliente
 
         const String CHECKED = "True";
 
+         Listado_Clientes_Observer controller;
+
+
         public Listado_seleccion_clientes()
         {
             InitializeComponent();
@@ -38,6 +41,7 @@ namespace PagoAgilFrba.ABM_Cliente
         {
             new Baja_cliente().ShowDialog();
         }
+
 
         private void boton_filtrar_Click(object sender, EventArgs e)
         {
@@ -67,6 +71,12 @@ namespace PagoAgilFrba.ABM_Cliente
             //Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
             //Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
 
+        }
+
+
+        public void setController(Listado_Clientes_Observer controller)
+        {
+            this.controller = controller;
         }
 
     }

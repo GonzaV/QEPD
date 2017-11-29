@@ -10,24 +10,26 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 {
-    public partial class Crear_o_cobrar_facturas : Form
+    public partial class Crear_o_cobrar_facturas : Form, ABM_Empresa.Listado_Empresa_Observer, ABM_Cliente.Listado_Clientes_Observer
     {
-        public Crear_o_cobrar_facturas()
+        private Model.Factura_builder facturaBuilder;
+
+        public Crear_o_cobrar_facturas(Model.Factura_builder facturaBuilder)
         {
             InitializeComponent();
+            this.facturaBuilder = facturaBuilder;
         }
 
         private void boton_ingresar_items_Click(object sender, EventArgs e)
         {
-            
-            new Agregar_items().ShowDialog();
-
+            new Agregar_items(this).ShowDialog();
         }
 
         private void boton_crear_factura_Click(object sender, EventArgs e)
         {
-            //new Model.Factura_builder().build(numericUpDown1.Value, , , dateTimePicker1.Text, dateTimePicker2.Text);
-            
+            Model.Empresa empresaObj = Repositorios.Repo_empresas.getInstancia().getEmpresa(empresa.Text);
+            Model.Cliente clienteObj = Model.Repo_cliente.getInstancia().getCliente(Convert.ToInt32(cliente.Text));
+            facturaBuilder.build(numericUpDown1.Value, clienteObj, empresaObj, dateTimePicker2.Text);
         }
 
         private void boton_cancelar_Click(object sender, EventArgs e)
@@ -37,5 +39,43 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.Close();
         }
 
+        public void setfacturaBuilder(Model.Factura_builder facturaBuilder)
+        {
+            this.facturaBuilder = facturaBuilder;
+        }
+
+        public Model.Factura_builder getfacturaBuilder()
+        {
+            return this.facturaBuilder;
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
+            listado.setController(this);
+            listado.ShowDialog();
+        }
+
+        private void btnEmpresa_Click(object sender, EventArgs e)
+        {
+            ABM_Empresa.Listado_seleccion_empresas listado = new ABM_Empresa.Listado_seleccion_empresas();
+            listado.setController(this);
+            listado.ShowDialog();
+        }
+
+        public void mostrarEmpresaElegidad(String empresaElegida)
+        {
+            this.empresa.Text = empresaElegida;
+        }
+
+        public void mostrarClienteElegido(String clienteElegido)
+        {
+            this.cliente.Text = clienteElegido;
+        }
+
+        public void modificarLabelTotal(String total)
+        {
+            this.label_total.Text = total;
+        }
     }
 }

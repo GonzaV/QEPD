@@ -50,7 +50,9 @@ namespace PagoAgilFrba.ABM_Empresa
         public void configurarCheckBoxes()
         {
 
+
             if (Repositorios.Repo_empresas.getInstancia().getEstadoEmpresa().ToString() == HABILITADO)
+
             {
 
                 checkBox_habilitar.Enabled = false;

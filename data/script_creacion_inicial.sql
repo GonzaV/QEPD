@@ -1361,7 +1361,7 @@ GO
 CREATE PROCEDURE QEPD.getEmpresasARendirHoy /* Devuelve empresas a rendir hoy */
 AS
 	SELECT * FROM QEPD.Empresa
-	WHERE Fecha_Rendicion = GETDATE()-30
+	WHERE Fecha_Rendicion = MONTH(GETDATE())-1
 
 
 GO
@@ -1463,7 +1463,8 @@ AS												/* 5-  Recorro el cursor y voy cargando los nuevos renglones de re
 		DECLARE nwRenglones CURSOR LOCAL FAST_FORWARD FOR SELECT rp.Nro_Pago, rf.Item_Monto_Factura ,@idRendicion FROM QEPD.Renglon_Pago rp
 											JOIN QEPD.Factura f ON rp.Nro_Factura = f.Nro_Factura
 											JOIN QEPD.Renglon_Factura rf ON rp.Nro_Factura = rf.Nro_Factura
-											WHERE f.IdEmpresa = @idRendicion AND f.Pago_Estado != 1 
+											JOIN QEPD.Pago p ON rp.Nro_Pago = p.Nro_Pago
+											WHERE f.IdEmpresa = @idRendicion AND f.Pago_Estado != 1 AND MONTH(p.Fecha_Cobro_Pago) = MONTH(GETDATE()) /* El enunciado indica que las rendiciones que se hacen son del mes en cuestion */
 											GROUP BY rp.Nro_Pago, rf.Item_Monto_Factura, f.IdEmpresa
 		
 		OPEN nwRenglones 

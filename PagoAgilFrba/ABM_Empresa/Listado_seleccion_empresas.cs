@@ -17,8 +17,8 @@ namespace PagoAgilFrba.ABM_Empresa
         public Boolean estado;
         public Int32 idEmpresa;
         public Model.Rubro rubroElegido;
+        private Listado_Empresa_Observer controller;
         const Int32 VACIO = -1;
-
         public Listado_seleccion_empresas()
         {
             InitializeComponent();
@@ -81,12 +81,21 @@ namespace PagoAgilFrba.ABM_Empresa
 
         private void dataGrid_empresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
                 idEmpresa_seleccionada.Text = dataGrid_empresas.Rows[e.RowIndex].Cells["IdEmpresa"].Value.ToString();
                 estado = (Boolean)dataGrid_empresas.Rows[e.RowIndex].Cells["Estado_Empresa"].Value;
                 Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
                 Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
                        
+                String nombreEmpresaElegida = dataGrid_empresas.Rows[e.RowIndex].Cells["Nombre_Empresa"].Value.ToString();
+                this.controller.mostrarEmpresaElegidad(nombreEmpresaElegida);
         }
-}
 
+        public void setController(Listado_Empresa_Observer controller)
+        {
+            this.controller = controller;
+
+        }
+
+    }
 }

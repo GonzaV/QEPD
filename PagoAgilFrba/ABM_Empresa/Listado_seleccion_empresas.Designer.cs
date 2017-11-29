@@ -43,8 +43,10 @@
             this.button_filtrar = new System.Windows.Forms.Button();
             this.boton_modificar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_volver
@@ -206,6 +208,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +231,6 @@
         private System.Windows.Forms.Button button_filtrar;
         private System.Windows.Forms.Button boton_modificar;
         private System.Windows.Forms.Label label5;
+        private System.Diagnostics.PerformanceCounter performanceCounter1;
     }
 }
