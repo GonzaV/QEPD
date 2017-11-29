@@ -34,3 +34,40 @@ E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgi
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csproj.GenerateResource.Cache
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
 E:\Jesus\Google Drive\Estudio\3ro\GDD\Codigo\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
+D:\Facu\gdd\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe.config
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.exe
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.pdb
+D:\Facu\gdd\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.exe
+D:\Facu\gdd\QEPD\PagoAgilFrba\bin\Debug\PagoAgilFrba.pdb
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csprojResolveAssemblyReference.cache
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.abm_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Baja_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Crear_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Listado_seleccion_clientes.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Cliente.Modificar_cliente.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.abm_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Baja_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Crear_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Listado_seleccion_empresas.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Empresa.Modificar_empresa.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Agregar_items.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Cobrar_facturas.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Facturas_y_RegistrosDePago.Crear_o_cobrar_facturas.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.abm_rol.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Agregar_funcionalidad.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Crear_rol.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Modificar_rol.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Rol.Quitar_funcionalidad.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.abm_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Baja_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Crear_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Listado_seleccion_sucursales.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.ABM_Sucursal.Modificar_sucursal.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Devoluciones.Form_devolucionPago.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Login.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.SeleccionRol.SeleccionRol.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Login.Seleccion_funcionalidades_admin.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Properties.Resources.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.Rendiciones.Form_rendicion.resources
+D:\Facu\gdd\QEPD\PagoAgilFrba\obj\Debug\PagoAgilFrba.csproj.GenerateResource.Cache
