@@ -91,6 +91,7 @@ namespace PagoAgilFrba.ABM_Empresa
                 {
                     String nombreEmpresaElegida = dataGrid_empresas.Rows[e.RowIndex].Cells["Nombre_Empresa"].Value.ToString();
                     this.controller.mostrarEmpresaElegidad(nombreEmpresaElegida);
+                    this.controller.setIdEmpresa(Convert.ToInt32(dataGrid_empresas.Rows[e.RowIndex].Cells["IdEmpresa"].Value));
                 }
                 
         }

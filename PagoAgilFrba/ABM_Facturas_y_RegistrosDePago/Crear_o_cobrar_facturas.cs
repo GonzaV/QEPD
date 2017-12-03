@@ -14,7 +14,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
     {
         private Model.Factura_builder facturaBuilder;
         private decimal dniCliente;
-        private int idEmpresa;
+        private Int32 idEmpresa;
 
         public Crear_o_cobrar_facturas(Model.Factura_builder facturaBuilder)
         {
@@ -24,6 +24,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         private void boton_ingresar_items_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new Agregar_items(this).ShowDialog();
         }
 
@@ -58,7 +59,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             listado.setController(this);
             listado.ocultarBtnModificar();
             listado.ocultarBtnEliminar();
-            listado.ShowDialog();/**/
+            listado.ShowDialog();
         }
 
         private void btnEmpresa_Click(object sender, EventArgs e)
@@ -73,13 +74,13 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         public void mostrarEmpresaElegidad(String empresaElegida)
         {
-            this.empresa.Enabled = true;
+            //this.empresa.Enabled = true;
             this.empresa.Text = empresaElegida;
         }
 
         public void mostrarClienteElegido(String clienteElegido)
         {
-            this.cliente.Enabled = true;
+            //this.cliente.Enabled = true;
             this.cliente.Text = clienteElegido;
         }
 

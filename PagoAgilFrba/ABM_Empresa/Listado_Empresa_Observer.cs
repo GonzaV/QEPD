@@ -9,5 +9,8 @@ namespace PagoAgilFrba.ABM_Empresa
     public interface Listado_Empresa_Observer
     {
         void mostrarEmpresaElegidad(String empresaElegida);
+        void setIdEmpresa(Int32 id);
+
+   
     }
 }
