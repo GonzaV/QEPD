@@ -99,6 +99,16 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.dniCliente = dni;
         }
 
+        public void agregarFilaGrid(DataRow row)
+        {
+            dataGridView1.Rows.Add(row);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     
     }
 }

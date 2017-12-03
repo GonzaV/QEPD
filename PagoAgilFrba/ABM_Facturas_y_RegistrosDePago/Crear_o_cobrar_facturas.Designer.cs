@@ -47,6 +47,7 @@
             this.label_total = new System.Windows.Forms.Label();
             this.boton_cancelar = new System.Windows.Forms.Button();
             this.boton_crear_factura = new System.Windows.Forms.Button();
+            this.btnBorrarItem = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnBorrarItem);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnEmpresa);
             this.groupBox1.Controls.Add(this.label2);
@@ -135,7 +137,6 @@
             this.btnCliente.TabIndex = 35;
             this.btnCliente.Text = "Seleccionar";
             this.btnCliente.UseVisualStyleBackColor = true;
-
             // 
             // label3
             // 
@@ -179,7 +180,7 @@
             this.boton_ingresar_items.Name = "boton_ingresar_items";
             this.boton_ingresar_items.Size = new System.Drawing.Size(121, 23);
             this.boton_ingresar_items.TabIndex = 16;
-            this.boton_ingresar_items.Text = "Ingresar Items";
+            this.boton_ingresar_items.Text = "Ingresar Item";
             this.boton_ingresar_items.UseVisualStyleBackColor = true;
             // 
             // label10
@@ -246,6 +247,16 @@
             this.boton_crear_factura.Text = "Crear factura";
             this.boton_crear_factura.UseVisualStyleBackColor = true;
             // 
+            // btnBorrarItem
+            // 
+            this.btnBorrarItem.Location = new System.Drawing.Point(288, 184);
+            this.btnBorrarItem.Name = "btnBorrarItem";
+            this.btnBorrarItem.Size = new System.Drawing.Size(121, 23);
+            this.btnBorrarItem.TabIndex = 37;
+            this.btnBorrarItem.Text = "Borrar Item";
+            this.btnBorrarItem.UseVisualStyleBackColor = true;
+            this.btnBorrarItem.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Crear_o_cobrar_facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,6 +299,7 @@
         private System.Windows.Forms.Label label_total;
         private System.Windows.Forms.Button boton_cancelar;
         private System.Windows.Forms.Button boton_crear_factura;
+        private System.Windows.Forms.Button btnBorrarItem;
 
     }
 }
