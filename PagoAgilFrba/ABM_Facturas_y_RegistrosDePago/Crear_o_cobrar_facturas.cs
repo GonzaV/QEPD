@@ -30,7 +30,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         private void boton_crear_factura_Click(object sender, EventArgs e)
         {
-            Model.Empresa empresaObj = Repositorios.Repo_empresas.getInstancia().getEmpresa(empresa.Text);
+            Model.Empresa empresaObj = Repositorios.Repo_empresas.getInstancia().getEmpresa(idEmpresa);
             Model.Cliente clienteObj = Model.Repo_cliente.getInstancia().getCliente(dniCliente);
             facturaBuilder.build(numericUpDown1.Value, clienteObj, empresaObj, dateTimePicker2.Text);
         }
@@ -87,6 +87,11 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
         public void modificarLabelTotal(String total)
         {
             this.label_total.Text = total;
+        }
+
+        public void setIdEmpresa(Int32 id)
+        {
+            this.idEmpresa = id;
         }
 
     

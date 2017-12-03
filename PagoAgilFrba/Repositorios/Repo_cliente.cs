@@ -192,7 +192,7 @@ namespace PagoAgilFrba.Model{
 
         private Model.Domicilio getDomiclio(Int32 id)
         {
-            Model.Domicilio domicilio = new Domicilio();
+            Model.Domicilio domicilio = new Model.Domicilio();
 
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getDomicilio");
             cmd.Parameters.Add("@idDomicilio", SqlDbType.Int).Value = id;

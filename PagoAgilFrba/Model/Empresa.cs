@@ -11,7 +11,7 @@ namespace PagoAgilFrba.Model
         private Int32 id;
         private String nombre;
         private String cuit;
-        private String fecha_Rendicion;
+        private DateTime fecha_Rendicion;
         private Domicilio domicilio;
         private Rubro rubro;
         private Int16 estado;
@@ -31,7 +31,7 @@ namespace PagoAgilFrba.Model
             return cuit;
         }
 
-        public String getFechaRendicion()
+        public DateTime getFechaRendicion()
         {
             return fecha_Rendicion;
         }
@@ -66,7 +66,7 @@ namespace PagoAgilFrba.Model
             this.cuit = cuit;
         }
 
-        public void setFechaRendicion(String fecha)
+        public void setFechaRendicion(DateTime fecha)
         {
             this.fecha_Rendicion = fecha;
         }

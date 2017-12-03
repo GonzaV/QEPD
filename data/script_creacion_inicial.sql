@@ -320,6 +320,11 @@ IF OBJECT_ID('QEPD.getRubros','P') IS NOT NULL
 IF OBJECT_ID('QEPD.getDomicilio','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getDomicilio
 
+IF OBJECT_ID('qepd.getClientesFiltrados','P') IS NOT NULL  
+	DROP PROCEDURE qepd.getClientesFiltrados
+
+IF OBJECT_ID('qepd.getRubro','P') IS NOT NULL  
+	DROP PROCEDURE qepd.getRubro
 
 
 /* Se dropea schema */ 
@@ -1493,7 +1498,7 @@ AS												/* 5-  Recorro el cursor y voy cargando los nuevos renglones de re
 	COMMIT
 
 
-GO
+
 
  /* Repo Rubros*/
 
@@ -1502,12 +1507,13 @@ GO
  getRubroEmpresa
  */
 
+ GO
  CREATE PROCEDURE QEPD.getRubros
  AS
  SELECT * FROM QEPD.Rubro
 
- GO
 
+ GO
  CREATE PROCEDURE QEPD.getRubroEmpresa /* Le paso el idEmpresa y me devuelve su rubro y descripcion*/
  @idEmpresa int
  AS
@@ -1515,6 +1521,13 @@ GO
  JOIN Rubro r
  ON E.IdRubro = r.Nro_Rubro
  WHERE e.IdEmpresa = @idEmpresa
+
+
+ GO
+ create procedure qepd.getRubro
+ @idRubro numeric(18,0)
+ as
+ select * from Rubro r where r.Nro_Rubro = @idRubro 
 
 
  /*Repo Domicilio*/
