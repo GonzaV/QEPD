@@ -53,29 +53,33 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
-            listado.ocultarBtnModificar();
-            listado.ocultarBtnEliminar();
             listado.setController(this);
             listado.ShowDialog();
+            listado.ocultarBtnModificar();
+            listado.ocultarBtnEliminar();
         }
 
         private void btnEmpresa_Click(object sender, EventArgs e)
         {
+            this.Hide();
             ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
-            listado.ocultarBtnModificar();
-            listado.ocultarBtnEliminar();
             listado.setController(this);
             listado.ShowDialog();
+            listado.ocultarBtnModificar();
+            listado.ocultarBtnEliminar();
         }
 
         public void mostrarEmpresaElegidad(String empresaElegida)
         {
+            this.empresa.Enabled = true;
             this.empresa.Text = empresaElegida;
         }
 
         public void mostrarClienteElegido(String clienteElegido)
         {
+            this.cliente.Enabled = true;
             this.cliente.Text = clienteElegido;
         }
 
@@ -83,5 +87,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
         {
             this.label_total.Text = total;
         }
+
+    
     }
 }

@@ -56,8 +56,10 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox2.Location = new System.Drawing.Point(13, 280);
             this.groupBox2.Name = "groupBox2";
+            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox2.Size = new System.Drawing.Size(480, 187);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
@@ -87,8 +89,10 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.label_total);
+            this.groupBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox1.Size = new System.Drawing.Size(481, 261);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
@@ -105,8 +109,7 @@
             // 
             // btnEmpresa
             // 
-            this.btnEmpresa.Cursor = System.Windows.Forms.Cursors.No;
-            this.btnEmpresa.Enabled = false;
+            this.btnEmpresa.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnEmpresa.Location = new System.Drawing.Point(287, 102);
             this.btnEmpresa.Name = "btnEmpresa";
             this.btnEmpresa.Size = new System.Drawing.Size(74, 22);
@@ -125,12 +128,14 @@
             // 
             // btnCliente
             // 
+            this.btnCliente.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnCliente.Location = new System.Drawing.Point(287, 69);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(74, 22);
             this.btnCliente.TabIndex = 35;
             this.btnCliente.Text = "Seleccionar";
             this.btnCliente.UseVisualStyleBackColor = true;
+
             // 
             // label3
             // 
@@ -143,6 +148,8 @@
             // 
             // cliente
             // 
+            this.cliente.Cursor = System.Windows.Forms.Cursors.No;
+            this.cliente.Enabled = false;
             this.cliente.Location = new System.Drawing.Point(160, 71);
             this.cliente.Name = "cliente";
             this.cliente.Size = new System.Drawing.Size(121, 20);
@@ -159,6 +166,7 @@
             // 
             // empresa
             // 
+            this.empresa.Cursor = System.Windows.Forms.Cursors.No;
             this.empresa.Enabled = false;
             this.empresa.Location = new System.Drawing.Point(160, 102);
             this.empresa.Name = "empresa";
@@ -201,6 +209,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numericUpDown1.Location = new System.Drawing.Point(161, 39);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
@@ -217,8 +226,10 @@
             // 
             // boton_cancelar
             // 
+            this.boton_cancelar.Cursor = System.Windows.Forms.Cursors.Default;
             this.boton_cancelar.Location = new System.Drawing.Point(143, 474);
             this.boton_cancelar.Name = "boton_cancelar";
+            this.boton_cancelar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.boton_cancelar.Size = new System.Drawing.Size(75, 23);
             this.boton_cancelar.TabIndex = 42;
             this.boton_cancelar.Text = "Cancelar";
@@ -226,8 +237,10 @@
             // 
             // boton_crear_factura
             // 
+            this.boton_crear_factura.Cursor = System.Windows.Forms.Cursors.Default;
             this.boton_crear_factura.Location = new System.Drawing.Point(257, 474);
             this.boton_crear_factura.Name = "boton_crear_factura";
+            this.boton_crear_factura.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.boton_crear_factura.Size = new System.Drawing.Size(80, 23);
             this.boton_crear_factura.TabIndex = 41;
             this.boton_crear_factura.Text = "Crear factura";
@@ -243,7 +256,6 @@
             this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.boton_crear_factura);
             this.Cursor = System.Windows.Forms.Cursors.No;
-            this.Enabled = false;
             this.Name = "Crear_o_cobrar_facturas";
             this.Text = "Crear_o_cobrar_facturas";
             this.groupBox2.ResumeLayout(false);
