@@ -43,15 +43,13 @@
             this.button_filtrar = new System.Windows.Forms.Button();
             this.boton_modificar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.performanceCounter1 = new System.Diagnostics.PerformanceCounter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_volver
             // 
-            this.button_volver.Location = new System.Drawing.Point(84, 403);
+            this.button_volver.Location = new System.Drawing.Point(56, 402);
             this.button_volver.Name = "button_volver";
             this.button_volver.Size = new System.Drawing.Size(75, 23);
             this.button_volver.TabIndex = 9;
@@ -61,7 +59,7 @@
             // 
             // button_Baja_cliente
             // 
-            this.button_Baja_cliente.Location = new System.Drawing.Point(435, 403);
+            this.button_Baja_cliente.Location = new System.Drawing.Point(407, 402);
             this.button_Baja_cliente.Name = "button_Baja_cliente";
             this.button_Baja_cliente.Size = new System.Drawing.Size(75, 23);
             this.button_Baja_cliente.TabIndex = 8;
@@ -79,7 +77,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox_filtroNombre);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(53, 10);
+            this.groupBox1.Location = new System.Drawing.Point(25, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(474, 102);
             this.groupBox1.TabIndex = 6;
@@ -156,7 +154,7 @@
             // dataGrid_empresas
             // 
             this.dataGrid_empresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_empresas.Location = new System.Drawing.Point(53, 189);
+            this.dataGrid_empresas.Location = new System.Drawing.Point(25, 191);
             this.dataGrid_empresas.Name = "dataGrid_empresas";
             this.dataGrid_empresas.Size = new System.Drawing.Size(474, 185);
             this.dataGrid_empresas.TabIndex = 5;
@@ -164,7 +162,7 @@
             // 
             // button_filtrar
             // 
-            this.button_filtrar.Location = new System.Drawing.Point(389, 132);
+            this.button_filtrar.Location = new System.Drawing.Point(361, 134);
             this.button_filtrar.Name = "button_filtrar";
             this.button_filtrar.Size = new System.Drawing.Size(121, 23);
             this.button_filtrar.TabIndex = 10;
@@ -174,7 +172,7 @@
             // 
             // boton_modificar
             // 
-            this.boton_modificar.Location = new System.Drawing.Point(335, 403);
+            this.boton_modificar.Location = new System.Drawing.Point(307, 402);
             this.boton_modificar.Name = "boton_modificar";
             this.boton_modificar.Size = new System.Drawing.Size(75, 23);
             this.boton_modificar.TabIndex = 11;
@@ -185,17 +183,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(63, 170);
+            this.label5.Location = new System.Drawing.Point(35, 172);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(304, 13);
+            this.label5.Size = new System.Drawing.Size(353, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Seleccione la fila de la empresa que desee modificar o eliminar:";
+            this.label5.Text = "Seleccione la fila de la empresa que desee confirmar, modificar o eliminar:";
             // 
             // Listado_seleccion_empresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 447);
+            this.ClientSize = new System.Drawing.Size(534, 447);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.boton_modificar);
             this.Controls.Add(this.button_filtrar);
@@ -208,7 +206,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_empresas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +228,5 @@
         private System.Windows.Forms.Button button_filtrar;
         private System.Windows.Forms.Button boton_modificar;
         private System.Windows.Forms.Label label5;
-        private System.Diagnostics.PerformanceCounter performanceCounter1;
     }
 }

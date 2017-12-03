@@ -22,10 +22,33 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.facturaBuilder = facturaBuilder;
         }
 
-        private void boton_ingresar_items_Click(object sender, EventArgs e)
+
+
+
+        private void boton_cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Agregar_items(this).ShowDialog();
+            new Login.Seleccion_funcionalidades().ShowDialog();
+            this.Close();
+        }
+
+        private void btnEmpresa_Click(object sender, EventArgs e)
+        {
+            
+            ABM_Empresa.Listado_seleccion_empresas listado = new ABM_Empresa.Listado_seleccion_empresas();
+            listado.setController(this);
+            listado.ocultarBtnModificar();
+            listado.ocultarBtnEliminar();
+            listado.ShowDialog();
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
+            listado.setController(this);
+            listado.ocultarBtnModificar();
+            listado.ocultarBtnEliminar();
+            listado.ShowDialog();
         }
 
         private void boton_crear_factura_Click(object sender, EventArgs e)
@@ -35,42 +58,13 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             facturaBuilder.build(numericUpDown1.Value, clienteObj, empresaObj, dateTimePicker2.Text);
         }
 
-        private void boton_cancelar_Click(object sender, EventArgs e)
+        private void boton_ingresar_items_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new Login.Seleccion_funcionalidades().ShowDialog();
-            this.Close();
+            new Agregar_items(this).ShowDialog();
         }
 
-        public void setfacturaBuilder(Model.Factura_builder facturaBuilder)
-        {
-            this.facturaBuilder = facturaBuilder;
-        }
 
-        public Model.Factura_builder getfacturaBuilder()
-        {
-            return this.facturaBuilder;
-        }
 
-        private void btnCliente_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
-            listado.setController(this);
-            listado.ocultarBtnModificar();
-            listado.ocultarBtnEliminar();
-            listado.ShowDialog();
-        }
-
-        private void btnEmpresa_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
-            listado.setController(this);
-            listado.ocultarBtnModificar();
-            listado.ocultarBtnEliminar();
-            listado.ShowDialog();
-        }
 
         public void mostrarEmpresaElegidad(String empresaElegida)
         {
@@ -89,6 +83,24 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.label_total.Text = total;
         }
 
+        public void agregarFilaGrid(DataRow row)
+        {
+            dataGridView1.Rows.Add(row);
+        }
+
+
+
+
+        public void setfacturaBuilder(Model.Factura_builder facturaBuilder)
+        {
+            this.facturaBuilder = facturaBuilder;
+        }
+
+        public Model.Factura_builder getfacturaBuilder()
+        {
+            return this.facturaBuilder;
+        }
+
         public void setIdEmpresa(Int32 id)
         {
             this.idEmpresa = id;
@@ -99,15 +111,14 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.dniCliente = dni;
         }
 
-        public void agregarFilaGrid(DataRow row)
-        {
-            dataGridView1.Rows.Add(row);
-        }
+   
 
         private void button1_Click(object sender, EventArgs e)
         {
 
         }
+
+      
 
     
     }

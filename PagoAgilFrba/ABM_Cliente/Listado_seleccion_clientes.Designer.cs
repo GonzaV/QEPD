@@ -41,6 +41,7 @@
             this.button_Baja_cliente = new System.Windows.Forms.Button();
             this.button_volver = new System.Windows.Forms.Button();
             this.boton_filtrar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_clientes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -130,7 +131,7 @@
             // 
             // button_Modificar_cliente
             // 
-            this.button_Modificar_cliente.Location = new System.Drawing.Point(285, 414);
+            this.button_Modificar_cliente.Location = new System.Drawing.Point(285, 406);
             this.button_Modificar_cliente.Name = "button_Modificar_cliente";
             this.button_Modificar_cliente.Size = new System.Drawing.Size(75, 23);
             this.button_Modificar_cliente.TabIndex = 2;
@@ -140,7 +141,7 @@
             // 
             // button_Baja_cliente
             // 
-            this.button_Baja_cliente.Location = new System.Drawing.Point(394, 414);
+            this.button_Baja_cliente.Location = new System.Drawing.Point(394, 406);
             this.button_Baja_cliente.Name = "button_Baja_cliente";
             this.button_Baja_cliente.Size = new System.Drawing.Size(75, 23);
             this.button_Baja_cliente.TabIndex = 3;
@@ -150,7 +151,7 @@
             // 
             // button_volver
             // 
-            this.button_volver.Location = new System.Drawing.Point(35, 414);
+            this.button_volver.Location = new System.Drawing.Point(35, 406);
             this.button_volver.Name = "button_volver";
             this.button_volver.Size = new System.Drawing.Size(75, 23);
             this.button_volver.TabIndex = 4;
@@ -160,19 +161,29 @@
             // 
             // boton_filtrar
             // 
-            this.boton_filtrar.Location = new System.Drawing.Point(348, 142);
+            this.boton_filtrar.Location = new System.Drawing.Point(348, 140);
             this.boton_filtrar.Name = "boton_filtrar";
-            this.boton_filtrar.Size = new System.Drawing.Size(75, 23);
+            this.boton_filtrar.Size = new System.Drawing.Size(121, 23);
             this.boton_filtrar.TabIndex = 5;
             this.boton_filtrar.Text = "Filtrar";
             this.boton_filtrar.UseVisualStyleBackColor = true;
             this.boton_filtrar.Click += new System.EventHandler(this.boton_filtrar_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 183);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(353, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Seleccione la fila de la empresa que desee confirmar, modificar o eliminar:";
+            // 
             // Listado_seleccion_clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 465);
+            this.ClientSize = new System.Drawing.Size(499, 451);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.boton_filtrar);
             this.Controls.Add(this.button_volver);
             this.Controls.Add(this.button_Baja_cliente);
@@ -185,6 +196,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -203,5 +215,6 @@
         private System.Windows.Forms.Button button_volver;
         private System.Windows.Forms.CheckBox checkBox_filtroActivos;
         private System.Windows.Forms.Button boton_filtrar;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -95,12 +95,14 @@ namespace PagoAgilFrba.Model{
 
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getClientesFiltrados");
             cmd.Parameters.Add("@Nombre_Cliente", SqlDbType.NVarChar).Value = nombre;
-            cmd.Parameters.Add("@Dni_Cliente", SqlDbType.NVarChar).Value = dni;
+            cmd.Parameters.Add("@Dni_Cliente", SqlDbType.Decimal).Value = Convert.ToDecimal(dni);
             cmd.Parameters.Add("@Estado", SqlDbType.Bit).Value = estado;
 
             DBhelper.abrirConexion();
 
             tablaClientesFiltrados = DBhelper.obtenerTabla(cmd);
+
+            DBhelper.cerrarConexion();
 
             return tablaClientesFiltrados;
 

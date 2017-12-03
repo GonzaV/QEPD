@@ -33,7 +33,6 @@ namespace PagoAgilFrba.ABM_Cliente
         private void button_volver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new abm_cliente().ShowDialog();
             this.Close();
         }
 
@@ -75,6 +74,7 @@ namespace PagoAgilFrba.ABM_Cliente
             {
                 this.controller.mostrarClienteElegido(dataGrid_clientes.Rows[e.RowIndex].Cells["Nombre_Cliente"].Value.ToString());
                 this.controller.setDniCliente(Convert.ToDecimal(dataGrid_clientes.Rows[e.RowIndex].Cells["Dni_Cliente"].Value));
+                this.Close();
             }
         }
 

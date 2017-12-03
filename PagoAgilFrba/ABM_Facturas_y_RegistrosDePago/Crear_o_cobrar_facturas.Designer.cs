@@ -31,6 +31,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBorrarItem = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnEmpresa = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.label_total = new System.Windows.Forms.Label();
             this.boton_cancelar = new System.Windows.Forms.Button();
             this.boton_crear_factura = new System.Windows.Forms.Button();
-            this.btnBorrarItem = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -100,6 +100,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los datos para crear la factura (estos campos son obligatorios)";
             // 
+            // btnBorrarItem
+            // 
+            this.btnBorrarItem.Location = new System.Drawing.Point(288, 184);
+            this.btnBorrarItem.Name = "btnBorrarItem";
+            this.btnBorrarItem.Size = new System.Drawing.Size(121, 23);
+            this.btnBorrarItem.TabIndex = 37;
+            this.btnBorrarItem.Text = "Borrar Item";
+            this.btnBorrarItem.UseVisualStyleBackColor = true;
+            this.btnBorrarItem.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -118,6 +128,7 @@
             this.btnEmpresa.TabIndex = 36;
             this.btnEmpresa.Text = "Seleccionar";
             this.btnEmpresa.UseVisualStyleBackColor = true;
+            this.btnEmpresa.Click += new System.EventHandler(this.btnEmpresa_Click);
             // 
             // label2
             // 
@@ -137,6 +148,7 @@
             this.btnCliente.TabIndex = 35;
             this.btnCliente.Text = "Seleccionar";
             this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // label3
             // 
@@ -182,6 +194,7 @@
             this.boton_ingresar_items.TabIndex = 16;
             this.boton_ingresar_items.Text = "Ingresar Item";
             this.boton_ingresar_items.UseVisualStyleBackColor = true;
+            this.boton_ingresar_items.Click += new System.EventHandler(this.boton_ingresar_items_Click);
             // 
             // label10
             // 
@@ -235,6 +248,7 @@
             this.boton_cancelar.TabIndex = 42;
             this.boton_cancelar.Text = "Cancelar";
             this.boton_cancelar.UseVisualStyleBackColor = true;
+            this.boton_cancelar.Click += new System.EventHandler(this.boton_cancelar_Click);
             // 
             // boton_crear_factura
             // 
@@ -246,16 +260,7 @@
             this.boton_crear_factura.TabIndex = 41;
             this.boton_crear_factura.Text = "Crear factura";
             this.boton_crear_factura.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrarItem
-            // 
-            this.btnBorrarItem.Location = new System.Drawing.Point(288, 184);
-            this.btnBorrarItem.Name = "btnBorrarItem";
-            this.btnBorrarItem.Size = new System.Drawing.Size(121, 23);
-            this.btnBorrarItem.TabIndex = 37;
-            this.btnBorrarItem.Text = "Borrar Item";
-            this.btnBorrarItem.UseVisualStyleBackColor = true;
-            this.btnBorrarItem.Click += new System.EventHandler(this.button1_Click);
+            this.boton_crear_factura.Click += new System.EventHandler(this.boton_crear_factura_Click);
             // 
             // Crear_o_cobrar_facturas
             // 
@@ -266,7 +271,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.boton_cancelar);
             this.Controls.Add(this.boton_crear_factura);
-            this.Cursor = System.Windows.Forms.Cursors.No;
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Name = "Crear_o_cobrar_facturas";
             this.Text = "Crear_o_cobrar_facturas";
             this.groupBox2.ResumeLayout(false);

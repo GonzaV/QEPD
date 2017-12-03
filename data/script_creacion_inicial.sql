@@ -925,7 +925,7 @@ select * from QEPD.Cliente c where c.Dni_Cliente = @Dni_Cliente /* cambio @clien
 GO
 create procedure qepd.getClientesFiltrados
 @Nombre_Cliente nvarchar(255),
-@Dni_Cliente nvarchar(255),
+@Dni_Cliente numeric(18,0),
 @Estado bit
 
 as
