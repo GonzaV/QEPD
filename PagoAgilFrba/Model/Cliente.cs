@@ -11,28 +11,29 @@ namespace PagoAgilFrba.Model{
         public String nombre;
         public String apellido;
         public Int32 id;
-        public Int32 dni;
+        public decimal dni;
         public DateTime fnacimiento;
         public String email;
-        public Int32 telefono;
+        public decimal telefono;
         public Int16 estado;
         public Domicilio domicilio;
-       
+
 
 
         //getters
-        public String getNombre(){
+        public String getNombre()
+        {
 
             return this.nombre;
 
         }
 
-        public String Nombre 
+        public String Nombre
         {
 
             get
             {
-                return nombre + " " + apellido ;
+                return nombre + " " + apellido;
             }
         }
 
@@ -45,48 +46,56 @@ namespace PagoAgilFrba.Model{
             }
         }
 
-        public String getApellido(){
+        public String getApellido()
+        {
 
             return this.apellido;
 
         }
 
-        public Int32 getId(){
+        public Int32 getId()
+        {
 
             return this.id;
 
         }
 
-        public Int32 getDni(){
+        public decimal getDni()
+        {
 
             return this.dni;
 
         }
 
-        public DateTime getFnacimiento(){
+        public DateTime getFnacimiento()
+        {
 
             return this.fnacimiento;
 
         }
-        public String getEmail(){
+        public String getEmail()
+        {
 
             return this.email;
 
         }
 
-        public Int32 getTelefono(){
+        public decimal getTelefono()
+        {
 
             return this.telefono;
 
         }
 
-        public Int16 getEstado(){
+        public Int16 getEstado()
+        {
 
             return this.estado;
 
         }
 
-        public Domicilio getDomicilio(){
+        public Domicilio getDomicilio()
+        {
 
             return this.domicilio;
         }
@@ -114,7 +123,7 @@ namespace PagoAgilFrba.Model{
 
         }
 
-        public void setDni(Int32 dni)
+        public void setDni(decimal dni)
         {
 
             this.dni = dni;
@@ -134,7 +143,7 @@ namespace PagoAgilFrba.Model{
 
         }
 
-        public void setTelefono(Int32 telefono)
+        public void setTelefono(decimal telefono)
         {
 
             this.telefono = telefono;

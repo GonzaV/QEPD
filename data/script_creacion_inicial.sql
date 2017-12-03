@@ -317,6 +317,11 @@ IF OBJECT_ID('QEPD.getRubroEmpresa','P') IS NOT NULL
 IF OBJECT_ID('QEPD.getRubros','P') IS NOT NULL  
 	DROP PROCEDURE QEPD.getRubros
 
+IF OBJECT_ID('QEPD.getDomicilio','P') IS NOT NULL  
+	DROP PROCEDURE QEPD.getDomicilio
+
+
+
 /* Se dropea schema */ 
 
 
@@ -1510,3 +1515,12 @@ GO
  JOIN Rubro r
  ON E.IdRubro = r.Nro_Rubro
  WHERE e.IdEmpresa = @idEmpresa
+
+
+ /*Repo Domicilio*/
+
+ GO
+ create procedure QEPD.getDomicilio
+ @idDomicilio int
+ as
+ select * from QEPD.Domicilio d where d.IdDomicilio = @idDomicilio

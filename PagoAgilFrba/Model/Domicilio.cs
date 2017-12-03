@@ -10,14 +10,12 @@ namespace PagoAgilFrba.Model{
 
         public String direccion;
         public String cod_postal;
+        private Int32 id;
 
 
+        public String getDireccion()
+        {
 
-        
-        //getters
-
-        public String getDireccion(){
-            
             return this.direccion;
         }
 
@@ -25,6 +23,26 @@ namespace PagoAgilFrba.Model{
         {
 
             return this.cod_postal;
+        }
+
+        public Int32 getId()
+        {
+            return this.id;
+        }
+
+        public void setId(Int32 id)
+        {
+            this.id = id;
+        }
+
+        public void setCod_Postal(String cod_postal)
+        {
+            this.cod_postal = cod_postal;
+        }
+
+        public void setDireccion(String direccion)
+        {
+            this.direccion = direccion;
         }
     }
 }

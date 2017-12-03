@@ -125,6 +125,12 @@
     <Compile Include="ABM_Empresa\Modificar_empresa.Designer.cs">
       <DependentUpon>Modificar_empresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\AgregarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM_Facturas_y_RegistrosDePago\AgregarFactura.Designer.cs">
+      <DependentUpon>AgregarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM_Facturas_y_RegistrosDePago\Agregar_items.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Empresa\Modificar_empresa.resx">
       <DependentUpon>Modificar_empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM_Facturas_y_RegistrosDePago\AgregarFactura.resx">
+      <DependentUpon>AgregarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM_Facturas_y_RegistrosDePago\Agregar_items.resx">
       <DependentUpon>Agregar_items.cs</DependentUpon>

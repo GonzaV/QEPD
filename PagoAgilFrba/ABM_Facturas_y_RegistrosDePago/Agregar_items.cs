@@ -29,5 +29,7 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             miViewFacturas.setfacturaBuilder(this.facturaBuilder);
         }
 
+    
+
     }
 }

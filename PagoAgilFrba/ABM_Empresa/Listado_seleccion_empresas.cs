@@ -86,15 +86,29 @@ namespace PagoAgilFrba.ABM_Empresa
                 estado = (Boolean)dataGrid_empresas.Rows[e.RowIndex].Cells["Estado_Empresa"].Value;
                 Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
                 Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
-                       
-                String nombreEmpresaElegida = dataGrid_empresas.Rows[e.RowIndex].Cells["Nombre_Empresa"].Value.ToString();
-                this.controller.mostrarEmpresaElegidad(nombreEmpresaElegida);
+
+                if (controller != null)
+                {
+                    String nombreEmpresaElegida = dataGrid_empresas.Rows[e.RowIndex].Cells["Nombre_Empresa"].Value.ToString();
+                    this.controller.mostrarEmpresaElegidad(nombreEmpresaElegida);
+                }
+                
         }
 
         public void setController(Listado_Empresa_Observer controller)
         {
             this.controller = controller;
 
+        }
+
+        public void ocultarBtnModificar()
+        {
+            boton_modificar.Visible = false;
+        }
+ 
+        public void ocultarBtnEliminar()
+        {
+            button_Baja_cliente.Visible = false;
         }
 
     }

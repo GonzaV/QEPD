@@ -44,21 +44,23 @@ namespace PagoAgilFrba.Model{
         
         }
 
-        public List<Cliente> getClientes(){
+        public List<Cliente> getClientes()
+        {
 
             DataTable tablaClientes;
 
-            List<Model.Cliente> listaDeRoles = new List<Model.Cliente>();
+            List<Model.Cliente> listaDeClientes = new List<Model.Cliente>();
 
             DBhelper.crearConexion();
 
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getClientes");
-            
+
             DBhelper.abrirConexion();
 
             tablaClientes = DBhelper.obtenerTabla(cmd);
 
-            foreach (DataRow row in tablaClientes.Rows){
+            foreach (DataRow row in tablaClientes.Rows)
+            {
 
                 Model.Cliente cliente = new Cliente();
 
@@ -67,15 +69,21 @@ namespace PagoAgilFrba.Model{
                 cliente.setEmail((String)row["Email_Cliente"]);
                 cliente.setFnacimiento((DateTime)row["Fecha_Nac_Cliente"]);
                 cliente.setId((Int32)row["IdCliente"]);
-                //cliente.setTelefono((Int32)row["Telefono_Cliente"]);  Problema de tipados
-                //cliente.setIdDomicilio((Int32)row["idDomicilio"]);
+                cliente.setDni((decimal)row["Dni_Cliente"]);
+                cliente.setTelefono((decimal)row["Telefono_Cliente"]);
                 cliente.setEstado(Convert.ToInt16(row["Estado_Cliente"]));
+
+                Int32 idDomicilio = (Int32)row["idDomicilio"];
+
+                cliente.setDomicilio(this.getDomiclio(idDomicilio));
 
                 listaDeClientes.Add(cliente);
             }
 
+            DBhelper.cerrarConexion();
+
             return listaDeClientes;
- 
+
         }
 
 
@@ -97,14 +105,16 @@ namespace PagoAgilFrba.Model{
             return tablaClientesFiltrados;
 
             }
-        
 
-        public Model.Cliente getCliente(Int32 dni)
+
+        public Model.Cliente getCliente(decimal dni)
         {
             DBhelper.crearConexion();
 
             SqlCommand cmd = DBhelper.crearCommand("QEPD.getCliente");
             cmd.Parameters.Add("@Dni_Cliente", SqlDbType.NVarChar).Value = Convert.ToString(dni);
+
+            DBhelper.abrirConexion();
 
             DataTable tablaCliente = DBhelper.obtenerTabla(cmd);
 
@@ -117,13 +127,18 @@ namespace PagoAgilFrba.Model{
                 cliente.setEmail((String)row["Email_Cliente"]);
                 cliente.setFnacimiento((DateTime)row["Fecha_Nac_Cliente"]);
                 cliente.setId((Int32)row["IdCliente"]);
-                //cliente.setTelefono((Int32)row["Telefono_Cliente"]);  Problema de tipados
-                //cliente.setIdDomicilio((Int32)row["idDomicilio"]);
+                cliente.setTelefono((decimal)row["Telefono_Cliente"]);
+                cliente.setDni((decimal)row["Dni_Cliente"]);
                 cliente.setEstado(Convert.ToInt16(row["Estado_Cliente"]));
+
+                Int32 idDomicilio = (Int32)row["idDomicilio"];
+
+                cliente.setDomicilio(this.getDomiclio(idDomicilio));
             }
 
-            return cliente;
+            DBhelper.cerrarConexion();
 
+            return cliente;
         }
 
 
@@ -144,9 +159,12 @@ namespace PagoAgilFrba.Model{
             DBhelper.abrirConexion();
 
             cmd.ExecuteNonQuery();
+
+            DBhelper.cerrarConexion();
         }
-        
-        public void modificarCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp){
+
+        public void modificarCliente(String nombre, String apellido, Int32 dni, String email, Int32 telefono, DateTime fnacimiento, String direccion, Int32 cp)
+        {
 
             DBhelper.crearConexion();
             SqlCommand cmd = DBhelper.crearCommand("QEPD.newCliente");
@@ -163,16 +181,33 @@ namespace PagoAgilFrba.Model{
 
             cmd.ExecuteNonQuery();
 
-
+            DBhelper.cerrarConexion();
         }
-        
 
-        public void eliminarCliente(Int32 idCliente){
+        /*public void eliminarCliente(Int32 idCliente){
             DBhelper.crearConexion();
             SqlCommand cmd = DBhelper.crearCommand("QEPD.eliminarCliente");
             cmd.Parameters.Add("@idCLiente", SqlDbType.NVarChar).Value = idCliente;
-        }
+        }*/
 
+        private Model.Domicilio getDomiclio(Int32 id)
+        {
+            Model.Domicilio domicilio = new Domicilio();
+
+            SqlCommand cmd = DBhelper.crearCommand("QEPD.getDomicilio");
+            cmd.Parameters.Add("@idDomicilio", SqlDbType.Int).Value = id;
+
+            DataTable tabla = DBhelper.obtenerTabla(cmd);
+
+            foreach (DataRow row in tabla.Rows)
+            {
+                domicilio.setId(id);
+                domicilio.setCod_Postal((String)row["Cod_Postal"]);
+                domicilio.setDireccion((String)row["Direccion"]);
+            }
+
+            return domicilio;
+        }
             
         }
     }

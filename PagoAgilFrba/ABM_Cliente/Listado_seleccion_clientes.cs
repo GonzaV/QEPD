@@ -79,5 +79,16 @@ namespace PagoAgilFrba.ABM_Cliente
             this.controller = controller;
         }
 
+        public void ocultarBtnModificar()
+        {
+            button_Modificar_cliente.Visible = false;
+        }
+
+        public void ocultarBtnEliminar()
+        {
+            button_Baja_cliente.Visible = false;
+        }
+
+         /*Hacer que cuando toque en el grid, no solo se muestre el nombre del cliente, sino que tambien se llene la variable dni cliente que se usa para obtener un cliente del repo*/
     }
 }
