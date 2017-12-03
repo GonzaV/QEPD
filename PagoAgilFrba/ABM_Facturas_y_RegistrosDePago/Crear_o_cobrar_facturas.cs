@@ -94,6 +94,11 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.idEmpresa = id;
         }
 
+        public void setDniCliente(decimal dni)
+        {
+            this.dniCliente = dni;
+        }
+
     
     }
 }

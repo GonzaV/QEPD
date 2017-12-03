@@ -71,6 +71,10 @@ namespace PagoAgilFrba.ABM_Cliente
             //Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
             //Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
 
+            if (controller != null)
+            {
+                this.controller.mostrarClienteElegido(dataGrid_clientes.Rows[e.RowIndex].Cells["Nombre_Cliente"].Value.ToString());
+            }
         }
 
 
@@ -88,6 +92,7 @@ namespace PagoAgilFrba.ABM_Cliente
         {
             button_Baja_cliente.Visible = false;
         }
+
 
          /*Hacer que cuando toque en el grid, no solo se muestre el nombre del cliente, sino que tambien se llene la variable dni cliente que se usa para obtener un cliente del repo*/
     }

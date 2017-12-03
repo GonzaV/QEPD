@@ -9,5 +9,6 @@ namespace PagoAgilFrba.ABM_Cliente
     public interface Listado_Clientes_Observer
     {
         void mostrarClienteElegido(String clienteElegido);
+        void setDniCliente(decimal dni);
     }
 }
