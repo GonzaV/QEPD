@@ -56,9 +56,9 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.Hide();
             ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
             listado.setController(this);
-            listado.ShowDialog();
             listado.ocultarBtnModificar();
             listado.ocultarBtnEliminar();
+            listado.ShowDialog();/**/
         }
 
         private void btnEmpresa_Click(object sender, EventArgs e)
@@ -66,9 +66,9 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.Hide();
             ABM_Cliente.Listado_seleccion_clientes listado = new ABM_Cliente.Listado_seleccion_clientes();
             listado.setController(this);
-            listado.ShowDialog();
             listado.ocultarBtnModificar();
             listado.ocultarBtnEliminar();
+            listado.ShowDialog();
         }
 
         public void mostrarEmpresaElegidad(String empresaElegida)
