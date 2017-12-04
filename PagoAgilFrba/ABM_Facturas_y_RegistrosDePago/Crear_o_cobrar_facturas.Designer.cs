@@ -61,7 +61,7 @@
             this.groupBox2.Location = new System.Drawing.Point(13, 280);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox2.Size = new System.Drawing.Size(480, 187);
+            this.groupBox2.Size = new System.Drawing.Size(408, 187);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Items";
@@ -69,9 +69,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 31);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 32);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 138);
+            this.dataGridView1.Size = new System.Drawing.Size(355, 138);
             this.dataGridView1.TabIndex = 39;
             // 
             // groupBox1
@@ -95,16 +95,16 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(481, 261);
+            this.groupBox1.Size = new System.Drawing.Size(409, 261);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los datos para crear la factura (estos campos son obligatorios)";
             // 
             // btnBorrarItem
             // 
-            this.btnBorrarItem.Location = new System.Drawing.Point(288, 184);
+            this.btnBorrarItem.Location = new System.Drawing.Point(265, 184);
             this.btnBorrarItem.Name = "btnBorrarItem";
-            this.btnBorrarItem.Size = new System.Drawing.Size(121, 23);
+            this.btnBorrarItem.Size = new System.Drawing.Size(96, 23);
             this.btnBorrarItem.TabIndex = 37;
             this.btnBorrarItem.Text = "Borrar Item";
             this.btnBorrarItem.UseVisualStyleBackColor = true;
@@ -188,9 +188,9 @@
             // 
             // boton_ingresar_items
             // 
-            this.boton_ingresar_items.Location = new System.Drawing.Point(161, 184);
+            this.boton_ingresar_items.Location = new System.Drawing.Point(160, 184);
             this.boton_ingresar_items.Name = "boton_ingresar_items";
-            this.boton_ingresar_items.Size = new System.Drawing.Size(121, 23);
+            this.boton_ingresar_items.Size = new System.Drawing.Size(95, 23);
             this.boton_ingresar_items.TabIndex = 16;
             this.boton_ingresar_items.Text = "Ingresar Item";
             this.boton_ingresar_items.UseVisualStyleBackColor = true;
@@ -207,10 +207,12 @@
             // 
             // dateTimePicker2
             // 
+            this.dateTimePicker2.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker2.Location = new System.Drawing.Point(161, 143);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 31;
+            this.dateTimePicker2.Value = new System.DateTime(2017, 12, 4, 0, 0, 0, 0);
             // 
             // label14
             // 
@@ -234,14 +236,14 @@
             this.label_total.AutoSize = true;
             this.label_total.Location = new System.Drawing.Point(161, 218);
             this.label_total.Name = "label_total";
-            this.label_total.Size = new System.Drawing.Size(295, 13);
+            this.label_total.Size = new System.Drawing.Size(34, 13);
             this.label_total.TabIndex = 28;
-            this.label_total.Text = "Este label se actualiza con el total segun los items agregados";
+            this.label_total.Text = "         ";
             // 
             // boton_cancelar
             // 
             this.boton_cancelar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.boton_cancelar.Location = new System.Drawing.Point(143, 474);
+            this.boton_cancelar.Location = new System.Drawing.Point(117, 473);
             this.boton_cancelar.Name = "boton_cancelar";
             this.boton_cancelar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.boton_cancelar.Size = new System.Drawing.Size(75, 23);
@@ -253,7 +255,7 @@
             // boton_crear_factura
             // 
             this.boton_crear_factura.Cursor = System.Windows.Forms.Cursors.Default;
-            this.boton_crear_factura.Location = new System.Drawing.Point(257, 474);
+            this.boton_crear_factura.Location = new System.Drawing.Point(227, 473);
             this.boton_crear_factura.Name = "boton_crear_factura";
             this.boton_crear_factura.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.boton_crear_factura.Size = new System.Drawing.Size(80, 23);
@@ -266,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 518);
+            this.ClientSize = new System.Drawing.Size(432, 518);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.boton_cancelar);

@@ -20,14 +20,21 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             InitializeComponent();
             this.miViewFacturas = miViewFacturas;
             facturaBuilder = this.miViewFacturas.getfacturaBuilder();
-            this.miViewFacturas.modificarLabelTotal(Convert.ToString(facturaBuilder.getItems().Sum(x => x.getMonto())));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             facturaBuilder.agregarItemFactura(textBox1.Text, numericUpDown1.Value, numericUpDown2.Value);
             miViewFacturas.setfacturaBuilder(this.facturaBuilder);
+
+            miViewFacturas.agregarFilaGrid(textBox1.Text, numericUpDown1.Value, numericUpDown2.Value);
+
+            this.miViewFacturas.modificarLabelTotal(Convert.ToString(facturaBuilder.getItems().Sum(x => x.getMonto()*x.getCantidad())));
+
+            this.Close();
         }
+
+       
 
     
 

@@ -15,14 +15,14 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
         private Model.Factura_builder facturaBuilder;
         private decimal dniCliente;
         private Int32 idEmpresa;
+        private DataTable dataTable;
 
         public Crear_o_cobrar_facturas(Model.Factura_builder facturaBuilder)
         {
             InitializeComponent();
             this.facturaBuilder = facturaBuilder;
+            this.iniciarDataTable();
         }
-
-
 
 
         private void boton_cancelar_Click(object sender, EventArgs e)
@@ -55,7 +55,8 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
         {
             Model.Empresa empresaObj = Repositorios.Repo_empresas.getInstancia().getEmpresa(idEmpresa);
             Model.Cliente clienteObj = Model.Repo_cliente.getInstancia().getCliente(dniCliente);
-            facturaBuilder.build(numericUpDown1.Value, clienteObj, empresaObj, dateTimePicker2.Text);
+            facturaBuilder.build(numericUpDown1.Value, clienteObj, empresaObj, dateTimePicker2.Value);
+     
         }
 
         private void boton_ingresar_items_Click(object sender, EventArgs e)
@@ -83,9 +84,24 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.label_total.Text = total;
         }
 
-        public void agregarFilaGrid(DataRow row)
+        public void agregarFilaGrid(String des, decimal cant, decimal monto)
         {
-            dataGridView1.Rows.Add(row);
+            DataRow row = dataTable.NewRow();
+            row["Descripcion"] = des;
+            row["Cantidad"] = cant;
+            row["Monto"] = monto;
+
+            dataTable.Rows.Add(row);
+            dataGridView1.DataSource = dataTable;
+        }
+
+        private void iniciarDataTable()
+        {
+            dataTable = new DataTable();
+
+            dataTable.Columns.Add("Descripcion", typeof(String));
+            dataTable.Columns.Add("Cantidad", typeof(decimal));
+            dataTable.Columns.Add("Monto", typeof(decimal));
         }
 
 
@@ -111,7 +127,18 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             this.dniCliente = dni;
         }
 
-   
+        public DataTable getDataTable()
+        {
+            return dataTable;
+        }
+
+        public void setDataTable(DataTable dt)
+        {
+            this.dataTable = dt;
+        }
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {

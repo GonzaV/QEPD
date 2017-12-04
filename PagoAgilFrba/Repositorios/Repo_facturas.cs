@@ -23,7 +23,7 @@ namespace PagoAgilFrba.Repositorios
 
         private Utils.DBhelper DBhelper = Utils.DBhelper.getInstancia();
 
-        public void crearFactura(List<Model.ItemFactura> items, decimal nroFactura, Model.Cliente cliente, Model.Empresa empresa, String fec_Baja)
+        public void crearFactura(List<Model.ItemFactura> items, decimal nroFactura, Model.Cliente cliente, Model.Empresa empresa, DateTime fec_Baja)
         {
             DBhelper.crearConexion();
 
@@ -37,7 +37,7 @@ namespace PagoAgilFrba.Repositorios
             SqlCommand cmd = DBhelper.crearCommand("QEPD.newFactura");
             cmd.Parameters.Add("@nroFactura", SqlDbType.Decimal).Value = Convert.ToDecimal(nroFactura);
             cmd.Parameters.Add("@fecha_vto", SqlDbType.DateTime).Value = Convert.ToDateTime(fec_Baja);
-            /*cmd.Parameters.Add("@idEmpresa", SqlDbType.Int).Value = empresa.getId();*/      /////////////////////////getId agregar
+            cmd.Parameters.Add("@idEmpresa", SqlDbType.Int).Value = empresa.getId();
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = cliente.getId();
 
             cmd.ExecuteNonQuery();
@@ -55,7 +55,7 @@ namespace PagoAgilFrba.Repositorios
             cmd.Parameters.Add("@idFactura", SqlDbType.Decimal).Value = Convert.ToDecimal(nroFactura);
             cmd.Parameters.Add("@cantidad", SqlDbType.Decimal).Value = Convert.ToDecimal(cantidad);
             cmd.Parameters.Add("@monto", SqlDbType.Decimal).Value = Convert.ToDecimal(monto);
-            cmd.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = descripcion;
+            cmd.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = Convert.ToString(descripcion);
 
             cmd.ExecuteNonQuery();
         }

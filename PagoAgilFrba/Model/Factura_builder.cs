@@ -15,7 +15,7 @@ namespace PagoAgilFrba.Model
             items.Add(new ItemFactura(descripcion, cantidad, monto));
         }
       
-       public void build(decimal nroFactura, Cliente cliente, Empresa empresa, String fec_Baja)
+       public void build(decimal nroFactura, Cliente cliente, Empresa empresa, DateTime fec_Baja)
        {
            using (System.Transactions.TransactionScope updateTransaction =
            new System.Transactions.TransactionScope())
