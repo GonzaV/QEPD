@@ -64,18 +64,36 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
             new Agregar_items(this).ShowDialog();
         }
 
+        private void btnBorrarItem_Click(object sender, EventArgs e)
+        {
+            /*
+            Int32 rowToDelete = this.dataGridView1.Rows.GetFirstRow(
+              DataGridViewElementStates.Selected);
+            if (rowToDelete > -1)
+            {
+                this.dataGridView1.Rows.RemoveAt(rowToDelete);
+
+
+            }*/
+            
+            facturaBuilder.setItems(
+            facturaBuilder.getItems().Where(x => x.getDescripcion() == dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["Descripcion"].Value.ToString()
+               && x.getCantidad() == Convert.ToDecimal(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["Cantidad"].Value)
+               && x.getCantidad() == Convert.ToDecimal(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["Monto"].Value)
+               ).ToList());
+
+            dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+        }
 
 
 
         public void mostrarEmpresaElegidad(String empresaElegida)
         {
-            //this.empresa.Enabled = true;
             this.empresa.Text = empresaElegida;
         }
 
         public void mostrarClienteElegido(String clienteElegido)
         {
-            //this.cliente.Enabled = true;
             this.cliente.Text = clienteElegido;
         }
 
@@ -136,16 +154,6 @@ namespace PagoAgilFrba.ABM_Facturas_y_RegistrosDePago
         {
             this.dataTable = dt;
         }
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
 
     
     }

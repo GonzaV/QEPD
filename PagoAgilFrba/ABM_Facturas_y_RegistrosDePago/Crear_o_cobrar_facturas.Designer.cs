@@ -108,7 +108,7 @@
             this.btnBorrarItem.TabIndex = 37;
             this.btnBorrarItem.Text = "Borrar Item";
             this.btnBorrarItem.UseVisualStyleBackColor = true;
-            this.btnBorrarItem.Click += new System.EventHandler(this.button1_Click);
+            this.btnBorrarItem.Click += new System.EventHandler(this.btnBorrarItem_Click);
             // 
             // label4
             // 

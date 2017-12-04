@@ -29,5 +29,10 @@ namespace PagoAgilFrba.Model
        {
            return items;
        }
+
+       public void setItems(List<ItemFactura> items)
+       {
+           this.items = items;
+       }
     }
 }

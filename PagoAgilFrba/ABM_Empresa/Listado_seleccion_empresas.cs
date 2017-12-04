@@ -75,7 +75,7 @@ namespace PagoAgilFrba.ABM_Empresa
             this.Hide();
             new Modificar_empresa().ShowDialog();
             this.Close();
-
+                
             }
         }
 
