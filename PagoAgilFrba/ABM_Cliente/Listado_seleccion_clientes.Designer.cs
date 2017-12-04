@@ -53,6 +53,7 @@
             this.dataGrid_clientes.Name = "dataGrid_clientes";
             this.dataGrid_clientes.Size = new System.Drawing.Size(474, 185);
             this.dataGrid_clientes.TabIndex = 0;
+            this.dataGrid_clientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_clientes_CellContentClick);
             // 
             // groupBox1
             // 

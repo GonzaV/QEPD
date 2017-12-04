@@ -15,7 +15,7 @@ namespace PagoAgilFrba.ABM_Cliente
 
         const String CHECKED = "True";
 
-         Listado_Clientes_Observer controller;
+        private Listado_Clientes_Observer controller;
 
 
         public Listado_seleccion_clientes()
@@ -63,20 +63,7 @@ namespace PagoAgilFrba.ABM_Cliente
 
         }
 
-        private void dataGrid_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            idCliente_seleccionado.Text = dataGrid_clientes.Rows[e.RowIndex].Cells["IdCliente"].Value.ToString();
-            //estado = (Boolean)dataGrid_empresas.Rows[e.RowIndex].Cells["Estado_Empresa"].Value;
-            //Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
-            //Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
-
-            if (controller != null)
-            {
-                this.controller.mostrarClienteElegido(dataGrid_clientes.Rows[e.RowIndex].Cells["Nombre_Cliente"].Value.ToString());
-                this.controller.setDniCliente(Convert.ToDecimal(dataGrid_clientes.Rows[e.RowIndex].Cells["Dni_Cliente"].Value));
-                this.Close();
-            }
-        }
+ 
 
 
         public void setController(Listado_Clientes_Observer controller)
@@ -92,6 +79,21 @@ namespace PagoAgilFrba.ABM_Cliente
         public void ocultarBtnEliminar()
         {
             button_Baja_cliente.Visible = false;
+        }
+
+        private void dataGrid_clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idCliente_seleccionado.Text = dataGrid_clientes.Rows[e.RowIndex].Cells["IdCliente"].Value.ToString();
+            //estado = (Boolean)dataGrid_empresas.Rows[e.RowIndex].Cells["Estado_Empresa"].Value;
+            //Repositorios.Repo_empresas.getInstancia().setEstadoEmpresaSeleccionada(estado);
+            //Repositorios.Repo_empresas.getInstancia().setIdEmpresaSeleccionada(Int32.Parse(idEmpresa_seleccionada.Text));
+
+            if (controller != null)
+            {
+                this.controller.mostrarClienteElegido(dataGrid_clientes.Rows[e.RowIndex].Cells["Nombre_Cliente"].Value.ToString());
+                this.controller.setDniCliente(Convert.ToDecimal(dataGrid_clientes.Rows[e.RowIndex].Cells["Dni_Cliente"].Value));
+                this.Close();
+            }
         }
 
 
